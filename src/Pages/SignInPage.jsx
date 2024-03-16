@@ -4,9 +4,9 @@ import SignIn from '../components/SignIn';
 
 const SignInPage = () => {
     return (
-        <div className='bg-[#890000] flex flex-col items-center pt-[50px] h-screen'>
+        <div className='bg-[#890000] flex flex-col items-center pt-[50px] h-dvh'>
             <div className='pr-8 relative'>
-                <Logo width={"183px"} height={"200px"}></Logo>
+                <Logo width={"w-[180px]"} height={"h-[200px]"}></Logo>
             </div>
             <div className=' space-y-4 text-center'>
                 <h1 className='text-white mt-4 text-2xl'>POWER ACTIVE +</h1>

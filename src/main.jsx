@@ -7,6 +7,7 @@ import ErrorPage from '../src/components/ErrorPage';
 import StartPage from './Pages/StartPage';
 // import Homepage from './Pages/SignInPage';
 import SignInPage from './Pages/SignInPage';
+import AddConsumerUse from './Pages/AddConsumerUse';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignInPage></SignInPage>
+      },
+      {
+        path:"/usedproduct",
+        element:<AddConsumerUse></AddConsumerUse>
       }
     ]
   },

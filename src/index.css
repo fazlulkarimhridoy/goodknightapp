@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn-primary {
+      @apply w-[220px] text-center text-black shadow-slate-300 shadow-inner px-4  py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9] focus:bg-[#393939] focus:text-white;
+    }
+  }
+
+.arrow{
+  position: relative;
+}
+
+.arrow::after{
+  content: 	"\2193";
+  color: black;
+  font-size: 30px;
+  font-weight: 800;
+  position: absolute;
+  right: 40px;
+  
+}
+
+.arrow select{
+  appearance: none;
+}
+
+
