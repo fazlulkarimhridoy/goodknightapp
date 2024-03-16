@@ -15,7 +15,7 @@ const StartPage = () => {
       <div className="text-center mt-32">
         <Link to={'/signin'}>
           <button className="bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
-            ENTER
+            ENTERr
           </button>
         </Link>
       </div>
