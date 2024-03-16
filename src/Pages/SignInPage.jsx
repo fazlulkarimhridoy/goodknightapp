@@ -16,7 +16,7 @@ const SignInPage = () => {
             <div>
                 <SignIn></SignIn>
             </div>
-            
+
         </div>
     );
 }
