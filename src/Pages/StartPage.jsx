@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo"
-// import logo from "../assets/goodKnight.png";
 const StartPage = () => {
     return (
         <div className="h-dvh bg-[#890000]">
             <div className="flex items-center justify-center pt-52 pr-5">
-                <Logo />
+                <Logo width={"w-[180px]"} height={"h-[200px]"}/>
             </div>
             <div className="text-center mt-10">
                 <h2 className="text-white text-2xl font-normal">POWER ACTIV +</h2>
