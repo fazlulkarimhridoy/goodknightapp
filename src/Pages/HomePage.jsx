@@ -38,7 +38,7 @@ const HomePage = () => {
             <div>
                 <img src="" alt="" />
                 <div>
-                    
+
                 </div>
             </div>
         </div>
