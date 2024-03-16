@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './Root';
 import ErrorPage from '../src/components/ErrorPage';
 import StartPage from './Pages/StartPage';
-// import Homepage from './Pages/SignInPage';
+import Homepage from './Pages/HomePage';
 import SignInPage from './Pages/SignInPage';
 import AddConsumerUse from './Pages/AddConsumerUse';
 
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path:"/usedproduct",
         element:<AddConsumerUse></AddConsumerUse>
+      },
+      {
+        path:"/homePage",
+        element:<Homepage></Homepage>
       }
     ]
   },
