@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './Root';
 import ErrorPage from '../src/components/ErrorPage';
 import StartPage from './Pages/StartPage';
-// import Homepage from './Pages/SignInPage';
+import Homepage from './Pages/HomePage';
 import SignInPage from './Pages/SignInPage';
 import AddConsumerUse from './Pages/AddConsumerUse';
 import ConsumedProductName from './Pages/ConsumedProductName';
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
         element:<AddConsumerUse></AddConsumerUse>
       },
       {
+<<<<<<< HEAD
         path:"/getproductname",
         element:<ConsumedProductName/>
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path:"/buyproductstart",
         element:<BuyProductStart></BuyProductStart>
+=======
+        path:"/homePage",
+        element:<Homepage></Homepage>
+>>>>>>> 3c7c25aec7cd1bd401232dd773ca3736533ed839
       }
     ]
   },
