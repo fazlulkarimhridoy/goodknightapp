@@ -6,13 +6,17 @@
     .btn-primary {
       @apply w-[220px] text-center text-black shadow-slate-300 shadow-inner px-4  py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9] focus:bg-[#393939] focus:text-white;
     }
+
+    .container{
+      @apply bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4
+    }
   }
 
 .arrow{
   position: relative;
 }
 
-.arrow::after{
+/* .arrow::after{
   content: 	"\2193";
   color: black;
   font-size: 30px;
@@ -24,6 +28,6 @@
 
 .arrow select{
   appearance: none;
-}
+} */
 
 

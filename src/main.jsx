@@ -8,6 +8,9 @@ import StartPage from './Pages/StartPage';
 // import Homepage from './Pages/SignInPage';
 import SignInPage from './Pages/SignInPage';
 import AddConsumerUse from './Pages/AddConsumerUse';
+import ConsumedProductName from './Pages/ConsumedProductName';
+import ConsumerForm from './Pages/ConsumerForm';
+import BuyProductStart from './Pages/BuyProductStart';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +29,19 @@ const router = createBrowserRouter([
       {
         path:"/usedproduct",
         element:<AddConsumerUse></AddConsumerUse>
+      },
+      {
+        path:"/getproductname",
+        element:<ConsumedProductName/>
+
+      },
+      {
+        path:"/consumerform",
+        element:<ConsumerForm/>
+      },
+      {
+        path:"/buyproductstart",
+        element:<BuyProductStart></BuyProductStart>
       }
     ]
   },
