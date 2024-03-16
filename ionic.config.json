@@ -1,0 +1,7 @@
+{
+  "name": "goodknight",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
