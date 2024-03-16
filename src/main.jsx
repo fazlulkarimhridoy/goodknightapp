@@ -5,8 +5,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './Root';
 import ErrorPage from '../src/components/ErrorPage';
 import StartPage from './Pages/StartPage';
-import HomePage from './Pages/HomePage';
+// import Homepage from './Pages/SignInPage';
 import SignInPage from './Pages/SignInPage';
+import AddConsumerUse from './Pages/AddConsumerUse';
 
 const router = createBrowserRouter([
   {
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
         element: <SignInPage></SignInPage>
       },
       {
-        path: "/homePage",
-        element: <HomePage></HomePage>
+        path:"/usedproduct",
+        element:<AddConsumerUse></AddConsumerUse>
       }
     ]
   },
