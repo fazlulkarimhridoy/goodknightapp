@@ -1,8 +1,8 @@
 
 
-const Logo = () => {
+const Logo = ({width,height}) => {
     return (
-        <div className=' w-[183px] h-[200px] relative'>
+        <div className={` w-[${width}] h-[${height}] relative`}>
             <img className='absolute top-8' src='/images/godrejLogo.svg'></img>
             <img className='absolute top-[60px] left-[30px] rounded-full bg-gradient-to-b from-[#FFFFFF] to-[#373737]' src='/images/GoodNightLogo.svg'></img>
         </div>

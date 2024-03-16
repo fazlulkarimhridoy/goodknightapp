@@ -5,7 +5,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Root from './Root';
 import ErrorPage from '../src/components/ErrorPage';
 import StartPage from './Pages/StartPage';
-import Homepage from './Pages/SignInPage';
+// import Homepage from './Pages/SignInPage';
+import SignInPage from './Pages/SignInPage';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: "signin",
-        element: <Homepage></Homepage>
+        element: <SignInPage></SignInPage>
       }
     ]
   },
