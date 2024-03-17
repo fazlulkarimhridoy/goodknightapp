@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 const ConsumedProductName = () => {
   return (
@@ -62,7 +63,9 @@ const ConsumedProductName = () => {
         ></input>
       </div>
       <div className="mt-12">
-        <Button title={"NEXT"}></Button>
+        <Link to="/buyproductstart">
+          <Button title={"NEXT"}></Button>
+        </Link>
       </div>
     </div>
   );

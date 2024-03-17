@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../components/Logo";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 const BuyProductStart = () => {
   return (
@@ -17,7 +18,9 @@ const BuyProductStart = () => {
       </div>
       <div className="flex justify-between gap-10">
         <button className="text-xl text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></button>
-        <button className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></button>
+        <Link to="/consumerform">
+          <button className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></button>
+        </Link>
       </div>
     </div>
   );

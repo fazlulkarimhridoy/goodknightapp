@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../components/Logo";
 import { FaArrowDown } from "react-icons/fa";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 
 
@@ -18,8 +19,8 @@ const AddConsumerUse = () => {
       </div>
 
       <div className="arrow">
-        <select defaultValue={"coil"}  name="product" id="product" className= " w-[220px] text-center text-black shadow-slate-300 shadow-inner px-12 py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9]">
-          <option disabled  className="text-xl" value="coil">Coil </option>
+        <select defaultValue={"coil"} name="product" id="product" className=" w-[220px] text-center text-black shadow-slate-300 shadow-inner px-12 py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9]">
+          <option disabled className="text-xl" value="coil">Coil </option>
           <option className="text-xl" value="saab">Saab</option>
           <option className="text-xl" value="mercedes">Mercedes</option>
           <option className="text-xl" value="audi">Audi</option>
@@ -33,10 +34,12 @@ const AddConsumerUse = () => {
         <button className="btn-primary">Others</button>
       </div>
       <div className="mt-12">
-        <Button title={'NEXT'}></Button>
+        <Link to="/getproductname">
+          <Button title={'NEXT'}></Button>
+        </Link>
       </div>
-        
-      
+
+
     </div>
   );
 };
