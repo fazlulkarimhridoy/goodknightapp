@@ -2,13 +2,28 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../assets/goodKnight.png"
 import { Link } from "react-router-dom";
+import { Drawer } from "antd";
+import { useState } from "react";
 
 const HomePage = () => {
+
+    const [open, setOpen] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
+
     return (
         <div className="h-dvh">
             {/* hamburger menu */}
             <div className="flex justify-end px-4 py-2">
-                <GiHamburgerMenu size={25} color="#890000" />
+                <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
+                <Drawer onClose={onClose} open={open}>
+                    <p>Home</p>
+                    <p>Logout</p>
+                </Drawer>
             </div>
 
             {/* profile information */}
