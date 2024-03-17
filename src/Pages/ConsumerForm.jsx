@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 const ConsumerForm = () => {
   return (
@@ -56,7 +57,9 @@ const ConsumerForm = () => {
         </div>
       </div>
       <div className="mt-12">
-        <Button title={"NEXT"}></Button>
+        <Link to="/calculation">
+          <Button title={"NEXT"}></Button>
+        </Link>
       </div>
     </div>
   );
