@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ConsumerForm = () => {
+  const [number, setNumber] = useState(null);
+
+  const handleNumber = (e) => {
+    const number = e.target.value;
+    setNumber(number);
+  }
+
+  const handleNumberCheck = () => {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    axios.post('https://goodknight.xri.com.bd/api/check-customer-number', { phone_number: number }, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(res => {
+        if (res.data.new_customer) {
+          window.location.href = '/calculation';
+        }
+        else {
+          console.log(res.data.message);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   return (
     <div className="container">
       <div className="pr-12 relative">
@@ -50,16 +78,16 @@ const ConsumerForm = () => {
         </div>
         <div>
           <input
+            onChange={handleNumber}
+            name="number"
             placeholder="mobile"
-            type="text"
+            type="number"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
           ></input>
         </div>
       </div>
-      <div className="mt-12">
-        <Link to="/calculation">
-          <Button title={"NEXT"}></Button>
-        </Link>
+      <div onClick={handleNumberCheck} className="mt-12">
+        <Button title={"NEXT"}></Button>
       </div>
     </div>
   );
