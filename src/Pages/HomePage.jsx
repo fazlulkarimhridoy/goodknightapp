@@ -136,7 +136,7 @@ const HomePage = () => {
                             <br />
                             Per Day
                         </h4>
-                        <h2 className="text-xl font-bold bg-white px-5 py-3 rounded-lg">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
                             27
                         </h2>
                     </div>
@@ -146,7 +146,7 @@ const HomePage = () => {
                             <br />
                             Days
                         </h4>
-                        <h2 className="text-xl font-bold bg-white px-5 py-3 rounded-lg">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
                             12
                         </h2>
                     </div>
@@ -156,7 +156,7 @@ const HomePage = () => {
                             <br />
                             Days
                         </h4>
-                        <h2 className="text-xl font-bold bg-white px-5 py-3 rounded-lg">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
                             5
                         </h2>
                     </div>
