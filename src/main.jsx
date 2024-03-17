@@ -43,10 +43,6 @@ const router = createBrowserRouter([
       {
         path:"/buyproductstart",
         element:<BuyProductStart></BuyProductStart>
-=======
-        path:"/homePage",
-        element:<Homepage></Homepage>
->>>>>>> 3c7c25aec7cd1bd401232dd773ca3736533ed839
       }
     ]
   },
