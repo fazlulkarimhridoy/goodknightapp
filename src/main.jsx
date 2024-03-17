@@ -8,6 +8,9 @@ import StartPage from './Pages/StartPage';
 import Homepage from './Pages/HomePage';
 import SignInPage from './Pages/SignInPage';
 import AddConsumerUse from './Pages/AddConsumerUse';
+import ConsumedProductName from './Pages/ConsumedProductName';
+import ConsumerForm from './Pages/ConsumerForm';
+import BuyProductStart from './Pages/BuyProductStart';
 
 const router = createBrowserRouter([
   {
@@ -28,8 +31,22 @@ const router = createBrowserRouter([
         element:<AddConsumerUse></AddConsumerUse>
       },
       {
+<<<<<<< HEAD
+        path:"/getproductname",
+        element:<ConsumedProductName/>
+
+      },
+      {
+        path:"/consumerform",
+        element:<ConsumerForm/>
+      },
+      {
+        path:"/buyproductstart",
+        element:<BuyProductStart></BuyProductStart>
+=======
         path:"/homePage",
         element:<Homepage></Homepage>
+>>>>>>> 3c7c25aec7cd1bd401232dd773ca3736533ed839
       }
     ]
   },
