@@ -1,0 +1,13 @@
+body
+  > div:nth-child(3)
+  > div
+  > div.ant-drawer-content-wrapper
+  > div
+  > div.ant-drawer-header.ant-drawer-header-close-only
+  > div
+  > button
+  > span
+  > svg
+  > path {
+  color: white; /* Change this to the desired color */
+}

@@ -4,10 +4,13 @@ import logo from "../assets/goodKnight.png"
 import { Link } from "react-router-dom";
 import { Drawer } from "antd";
 import { useState } from "react";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import '../CSS/Navbar.css'
 
 const HomePage = () => {
 
     const [open, setOpen] = useState(false);
+    const [placement] = useState('right');
     const showDrawer = () => {
         setOpen(true);
     };
@@ -15,14 +18,37 @@ const HomePage = () => {
         setOpen(false);
     };
 
+    // handle signout
+    const handleSignout = () => {
+        localStorage.removeItem('token');
+        window.location.reload();
+        window.location.href = "/signin";
+    }
+
     return (
         <div className="h-dvh">
             {/* hamburger menu */}
             <div className="flex justify-end px-4 py-2">
                 <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
-                <Drawer onClose={onClose} open={open}>
-                    <p>Home</p>
-                    <p>Logout</p>
+                <Drawer
+                    closeIcon={true}
+                    width={250}
+                    placement={placement}
+                    onClose={onClose}
+                    open={open}
+                    key={placement}
+                    style={{ backgroundColor: "#303030", opacity: "95%" }}
+                >
+                    <div className="flex items-center gap-4 text-xl">
+                        <FaHome color="white" />
+                        <p className="text-white">Home</p>
+                    </div>
+                    <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
+                    <div onClick={handleSignout} className="flex items-center gap-4 text-xl">
+                        <FaSignOutAlt color="white" />
+                        <p className="text-white">Logout</p>
+                    </div>
+                    <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
                 </Drawer>
             </div>
 
