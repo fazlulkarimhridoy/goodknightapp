@@ -1,6 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../assets/goodKnight.png"
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -164,9 +165,11 @@ const HomePage = () => {
             </div>
 
             <div className="mt-10 pb-10 mx-8">
-                <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
-                    Add Consumer
-                </button>
+                <Link to="/usedproduct">
+                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
+                        Add Consumer
+                    </button>
+                </Link>
             </div>
         </div>
     );
