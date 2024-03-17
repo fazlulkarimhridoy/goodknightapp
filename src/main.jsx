@@ -27,22 +27,25 @@ const router = createBrowserRouter([
         element: <SignInPage></SignInPage>
       },
       {
-        path:"/usedproduct",
-        element:<AddConsumerUse></AddConsumerUse>
+        path: "/usedproduct",
+        element: <AddConsumerUse></AddConsumerUse>
       },
       {
-<<<<<<< HEAD
-        path:"/getproductname",
-        element:<ConsumedProductName/>
+        path: "/getproductname",
+        element: <ConsumedProductName />
 
       },
       {
-        path:"/consumerform",
-        element:<ConsumerForm/>
+        path: "/consumerform",
+        element: <ConsumerForm />
       },
       {
-        path:"/buyproductstart",
-        element:<BuyProductStart></BuyProductStart>
+        path: "/buyproductstart",
+        element: <BuyProductStart></BuyProductStart>
+      },
+      {
+        path: "/homePage",
+        element: <Homepage></Homepage>
       }
     ]
   },
