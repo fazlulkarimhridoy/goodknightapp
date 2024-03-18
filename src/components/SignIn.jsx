@@ -11,7 +11,7 @@ const SignIn = () => {
             .then(res => {
                 console.log(res.data);
                 if (res.data.token) {
-                    alert('Logged in successfully')
+                    // alert('Logged in successfully')
                     localStorage.setItem('token', res.data.token);
                     window.location.href = '/homePage';
                 }

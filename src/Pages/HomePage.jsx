@@ -6,8 +6,15 @@ import { Drawer } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import '../CSS/Navbar.css'
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const HomePage = () => {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return window.location.href = "/signin";
+    }
 
     const [open, setOpen] = useState(false);
     const [placement] = useState('right');
@@ -24,6 +31,22 @@ const HomePage = () => {
         window.location.reload();
         window.location.href = "/signin";
     }
+
+    // handle bp info
+
+    const { data: bpInfo = {} } = useQuery({
+        queryKey: ['bpInfo'],
+        queryFn: async () => {
+            const res = await axios.get('https://goodknight.xri.com.bd/api/bp_info', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return res.data;
+        },
+        refetchOnWindowFocus: false,
+        retry: 2
+    })
 
     return (
         <div className="h-dvh">
@@ -62,8 +85,8 @@ const HomePage = () => {
                     />
                     <div>
                         <h3 className="font-bold text-lg truncate overflow-hidden">Welcome !</h3>
-                        <h4 className="text-sm font-medium mt-2 truncate overflow-hidden">Mr. Rakib Hasan</h4>
-                        <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: 500763</h4>
+                        <h4 className="text-sm font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
+                        <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
                     </div>
                 </div>
                 <div>
@@ -118,7 +141,7 @@ const HomePage = () => {
                             </span>
                             <br />
                             <span className="text-xl font-bold">
-                                37
+                                {bpInfo?.today_summery?.today_contact}
                             </span>
                         </p>
                     </div>
@@ -136,7 +159,7 @@ const HomePage = () => {
                             </span>
                             <br />
                             <span className="text-xl font-bold">
-                                18
+                                {bpInfo?.today_summery?.today_pro_call}
                             </span>
                         </p>
                     </div>
@@ -152,7 +175,7 @@ const HomePage = () => {
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Contact</span>
                                 <br />
-                                <span className="text-2xl font-bold">378</span>
+                                <span className="text-2xl font-bold">{bpInfo?.total_history?.total_contact}</span>
                             </div>
                         </div>
                     </div>
@@ -161,7 +184,7 @@ const HomePage = () => {
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Pro. Call</span>
                                 <br />
-                                <span className="text-2xl font-bold">180</span>
+                                <span className="text-2xl font-bold">{bpInfo?.total_history?.total_pro_call}</span>
                             </div>
                         </div>
                     </div>

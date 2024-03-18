@@ -1,12 +1,17 @@
 import React from "react";
 import Logo from "../components/Logo";
-import { FaArrowDown } from "react-icons/fa";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 
 
 const AddConsumerUse = () => {
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
+
   return (
     <div className="bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4">
       <div className="pr-12 relative">

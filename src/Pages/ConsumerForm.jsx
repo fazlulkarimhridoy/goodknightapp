@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ConsumerForm = () => {
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
+
   const [number, setNumber] = useState(null);
 
   const handleNumber = (e) => {
@@ -23,6 +29,9 @@ const ConsumerForm = () => {
       .then(res => {
         if (res.data.new_customer) {
           window.location.href = '/calculation';
+        }
+        else if (!res.data.new_customer) {
+          window.location.href = '/homePage';
         }
         else {
           console.log(res.data.message);
@@ -46,6 +55,7 @@ const ConsumerForm = () => {
       <div className="flex flex-col gap-2">
         <div>
           <input
+            required
             placeholder="name"
             type="text"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
@@ -53,6 +63,7 @@ const ConsumerForm = () => {
         </div>
         <div>
           <input
+            required
             placeholder="age"
             type="number"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
@@ -60,6 +71,7 @@ const ConsumerForm = () => {
         </div>
         <div className="arrow">
           <select
+            required
             defaultValue={"coil"}
             name="product"
             id="product"
@@ -78,6 +90,7 @@ const ConsumerForm = () => {
         </div>
         <div>
           <input
+            required
             onChange={handleNumber}
             name="number"
             placeholder="mobile"

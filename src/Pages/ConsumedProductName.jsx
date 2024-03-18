@@ -4,6 +4,12 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 const ConsumedProductName = () => {
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
+
   return (
     <div className="container">
       <div className="pr-12 relative">

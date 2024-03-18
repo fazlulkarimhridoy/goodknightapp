@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../components/Logo";
-import { FaArrowDown } from "react-icons/fa";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import OTPInput from "react-otp-input";
 
 
 
 const OtpVerification = () => {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return window.location.href = "/signin";
+    }
+
+    const [otp, setOtp] = useState(null);
+
+
     return (
         <div className="bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4">
             <div className="pr-12 relative">
@@ -16,12 +25,19 @@ const OtpVerification = () => {
                 <h1 className="text-white mt-4 text-2xl p-2">
                     Verification Code
                 </h1>
-                <div className="flex items-center justify-center gap-2">
-                    <button className="btn-primary w-14 h-14">X</button>
-                    <button className="btn-primary w-14 h-14">X</button>
-                    <button className="btn-primary w-14 h-14">X</button>
-                    <button className="btn-primary w-14 h-14">X</button>
-                </div>
+
+            </div>
+            <div className="w-3/4 mx-auto">
+                <OTPInput
+                    inputStyle={{ fontSize: "30px", fontWeight: "bold", borderRadius: "10px", width: "15%", margin: "auto" }}
+                    placeholder="XXXX"
+                    inputType="number"
+                    value={otp}
+                    onChange={setOtp}
+                    numInputs={4}
+                    renderSeparator={<span></span>}
+                    renderInput={(props) => <input {...props} />}
+                />
             </div>
 
             <div className="mt-32">

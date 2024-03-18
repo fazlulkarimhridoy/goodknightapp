@@ -7,6 +7,12 @@ import { Link } from "react-router-dom";
 
 
 const MobileNumber = () => {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return window.location.href = "/signin";
+    }
+
     return (
         <div className="bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4">
             <div className="pr-12 relative">
