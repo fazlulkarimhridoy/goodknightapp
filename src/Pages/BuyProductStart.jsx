@@ -5,6 +5,12 @@ import { TiTick } from "react-icons/ti";
 import { Link } from "react-router-dom";
 
 const BuyProductStart = () => {
+
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
+
   return (
     <div className="container">
       <div className="pr-12 relative">
