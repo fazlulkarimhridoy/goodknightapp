@@ -11,6 +11,10 @@ import AddConsumerUse from './Pages/AddConsumerUse';
 import ConsumedProductName from './Pages/ConsumedProductName';
 import ConsumerForm from './Pages/ConsumerForm';
 import BuyProductStart from './Pages/BuyProductStart';
+import AmountCalculation from './Pages/AmountCalculation';
+import MobileNumber from './Pages/MobileNumber';
+import OtpVerification from './Pages/OtpVerification';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const router = createBrowserRouter([
   {
@@ -46,13 +50,29 @@ const router = createBrowserRouter([
       {
         path: "/homePage",
         element: <Homepage></Homepage>
+      },
+      {
+        path: "/calculation",
+        element: <AmountCalculation></AmountCalculation>
+      },
+      {
+        path: "/number",
+        element: <MobileNumber></MobileNumber>
+      },
+      {
+        path: "/otp",
+        element: <OtpVerification></OtpVerification>
       }
     ]
   },
 ]);
 
+const queryClient = new QueryClient()
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>,
 )

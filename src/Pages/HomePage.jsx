@@ -2,13 +2,77 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../assets/goodKnight.png"
 import { Link } from "react-router-dom";
+import { Drawer } from "antd";
+import { useState } from "react";
+import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import '../CSS/Navbar.css'
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const HomePage = () => {
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+        return window.location.href = "/signin";
+    }
+
+    const [open, setOpen] = useState(false);
+    const [placement] = useState('right');
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
+
+    // handle signout
+    const handleSignout = () => {
+        localStorage.removeItem('token');
+        window.location.reload();
+        window.location.href = "/signin";
+    }
+
+    // handle bp info
+
+    const { data: bpInfo = {} } = useQuery({
+        queryKey: ['bpInfo'],
+        queryFn: async () => {
+            const res = await axios.get('https://goodknight.xri.com.bd/api/bp_info', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            return res.data;
+        },
+        refetchOnWindowFocus: false,
+        retry: 2
+    })
+
     return (
         <div className="h-dvh">
             {/* hamburger menu */}
             <div className="flex justify-end px-4 py-2">
-                <GiHamburgerMenu size={25} color="#890000" />
+                <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
+                <Drawer
+                    closeIcon={true}
+                    width={250}
+                    placement={placement}
+                    onClose={onClose}
+                    open={open}
+                    key={placement}
+                    style={{ backgroundColor: "#303030", opacity: "95%" }}
+                >
+                    <div className="flex items-center gap-4 text-xl">
+                        <FaHome color="white" />
+                        <p className="text-white">Home</p>
+                    </div>
+                    <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
+                    <div onClick={handleSignout} className="flex items-center gap-4 text-xl">
+                        <FaSignOutAlt color="white" />
+                        <p className="text-white">Logout</p>
+                    </div>
+                    <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
+                </Drawer>
             </div>
 
             {/* profile information */}
@@ -21,8 +85,8 @@ const HomePage = () => {
                     />
                     <div>
                         <h3 className="font-bold text-lg truncate overflow-hidden">Welcome !</h3>
-                        <h4 className="text-sm font-medium mt-2 truncate overflow-hidden">Mr. Rakib Hasan</h4>
-                        <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: 500763</h4>
+                        <h4 className="text-sm font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
+                        <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
                     </div>
                 </div>
                 <div>
@@ -77,7 +141,7 @@ const HomePage = () => {
                             </span>
                             <br />
                             <span className="text-xl font-bold">
-                                37
+                                {bpInfo?.today_summery?.today_contact}
                             </span>
                         </p>
                     </div>
@@ -95,7 +159,7 @@ const HomePage = () => {
                             </span>
                             <br />
                             <span className="text-xl font-bold">
-                                18
+                                {bpInfo?.today_summery?.today_pro_call}
                             </span>
                         </p>
                     </div>
@@ -111,7 +175,7 @@ const HomePage = () => {
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Contact</span>
                                 <br />
-                                <span className="text-2xl font-bold">378</span>
+                                <span className="text-2xl font-bold">{bpInfo?.total_history?.total_contact}</span>
                             </div>
                         </div>
                     </div>
@@ -120,7 +184,7 @@ const HomePage = () => {
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Pro. Call</span>
                                 <br />
-                                <span className="text-2xl font-bold">180</span>
+                                <span className="text-2xl font-bold">{bpInfo?.total_history?.total_pro_call}</span>
                             </div>
                         </div>
                     </div>

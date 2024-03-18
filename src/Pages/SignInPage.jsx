@@ -15,9 +15,7 @@ const SignInPage = () => {
             </div>
 
             <div>
-                <Link to="/homePage">
-                    <SignIn></SignIn>
-                </Link>
+                <SignIn></SignIn>
             </div>
 
         </div>
