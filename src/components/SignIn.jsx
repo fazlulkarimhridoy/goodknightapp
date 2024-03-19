@@ -27,8 +27,8 @@ const SignIn = () => {
 
 
     return (
-        <div className='text-white flex flex-col gap-4 mt-10'>
-            <form onSubmit={userLogIn}>
+        <div className=''>
+            <form className='text-white flex flex-col gap-4 mt-10' onSubmit={userLogIn}>
                 <input name='bp_id' placeholder='BP ID' type='number' className=' text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
                 <input name='password' placeholder='PASSWORD' type='password' className='text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
                 <button

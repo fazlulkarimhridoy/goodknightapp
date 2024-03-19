@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const BuyProductStart = () => {
   return (
     <div className="container">
-      <div className="pr-12 relative">
+      <div className="pr-14 relative">
         <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
       </div>
       <div className="text-center">

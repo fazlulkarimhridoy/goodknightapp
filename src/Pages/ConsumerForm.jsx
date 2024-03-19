@@ -1,11 +1,18 @@
 import React from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
+import { useContext, useState } from "react";
+import { DataContext } from "../context/DataProvider";
+import { Link } from "react-router-dom";
 
 const ConsumerForm = () => {
+  const { customerData, setCustomerData, handleChange } =
+    useContext(DataContext);
+  const { name, age, gender, phone_number } = customerData;
+  console.log(name);
   return (
     <div className="container">
-      <div className="pr-12 relative">
+      <div className="pr-14 relative">
         <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
       </div>
       <div className=" space-y-4 text-center">
@@ -17,6 +24,9 @@ const ConsumerForm = () => {
       <div className="flex flex-col gap-2">
         <div>
           <input
+            value={name}
+            onChange={handleChange}
+            name="name"
             placeholder="name"
             type="text"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
@@ -24,6 +34,9 @@ const ConsumerForm = () => {
         </div>
         <div>
           <input
+            value={age}
+            onChange={handleChange}
+            name="age"
             placeholder="age"
             type="number"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
@@ -31,8 +44,9 @@ const ConsumerForm = () => {
         </div>
         <div className="arrow">
           <select
-            defaultValue={"coil"}
-            name="product"
+            value={gender}
+            onChange={handleChange}
+            name="gender"
             id="product"
             className=" w-[220px] text-center text-black shadow-slate-300 shadow-inner  py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9]"
           >
@@ -49,6 +63,9 @@ const ConsumerForm = () => {
         </div>
         <div>
           <input
+            value={phone_number}
+            onChange={handleChange}
+            name="phone_number"
             placeholder="mobile"
             type="text"
             className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
@@ -56,7 +73,9 @@ const ConsumerForm = () => {
         </div>
       </div>
       <div className="mt-12">
-        <Button title={"NEXT"}></Button>
+        <Link to={"/buyproductstart"}>
+          <Button title={"NEXT"}></Button>
+        </Link>
       </div>
     </div>
   );

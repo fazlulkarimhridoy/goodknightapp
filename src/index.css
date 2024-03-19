@@ -8,7 +8,7 @@
     }
 
     .container{
-      @apply bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4
+      @apply bg-[#890000] flex flex-col items-center h-dvh gap-4
     }
   }
 
