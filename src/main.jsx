@@ -15,6 +15,7 @@ import AmountCalculation from './Pages/AmountCalculation';
 import MobileNumber from './Pages/MobileNumber';
 import OtpVerification from './Pages/OtpVerification';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import VideoPlay from './Pages/VideoPlay';
 
 const router = createBrowserRouter([
   {
@@ -36,12 +37,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/getproductname",
-        element: <ConsumedProductName />
+        element: <ConsumedProductName></ConsumedProductName>
 
       },
       {
         path: "/consumerform",
-        element: <ConsumerForm />
+        element: <ConsumerForm></ConsumerForm>
       },
       {
         path: "/buyproductstart",
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/otp",
         element: <OtpVerification></OtpVerification>
+      },
+      {
+        path: "/video",
+        element: <VideoPlay></VideoPlay>
       }
     ]
   },

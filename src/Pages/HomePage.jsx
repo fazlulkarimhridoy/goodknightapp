@@ -32,8 +32,13 @@ const HomePage = () => {
         window.location.href = "/signin";
     }
 
-    // handle bp info
+    // handle home
+    const handleToHome = () => {
+        window.location.reload();
+        window.location.href = "/homePage";
+    }
 
+    // handle bp info
     const { data: bpInfo = {} } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
@@ -62,7 +67,7 @@ const HomePage = () => {
                     key={placement}
                     style={{ backgroundColor: "#303030", opacity: "95%" }}
                 >
-                    <div className="flex items-center gap-4 text-xl">
+                    <div onClick={handleToHome} className="flex items-center gap-4 text-xl">
                         <FaHome color="white" />
                         <p className="text-white">Home</p>
                     </div>
