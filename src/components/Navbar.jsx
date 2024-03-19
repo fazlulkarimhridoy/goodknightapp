@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <div className="bg-[#890000] flex items-center justify-between px-6 pt-5">
             {/* back button */}
-            <FaArrowLeft size={25} color="white" />
+            <FaArrowLeft size={25} color="white" onClick={() => window.history.back()} />
 
             {/* hamburger menu */}
             <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRef } from "react";
-import Navbar from "../components/Navbar";
+import video from "../assets/GoodNight.mp4"
 
 const VideoPlay = () => {
     const videoEl = useRef(null);
@@ -19,17 +19,16 @@ const VideoPlay = () => {
 
     return (
         <div>
-            <Navbar></Navbar>
-            <video
-                style={{ maxWidth: "100%", width: "800px", margin: "0 auto" }}
+            {/* <video
+                style={{ transformOrigin: "top-left", transform: "rotate(90deg)", width: "100%", height: "100%" }}
                 playsInline
-                loop
-                muted={false}
-                controls={true}
-                alt="All the devices"
-                src="https://stream.mux.com/6fiGM5ChLz8T66ZZiuzk1KZuIKX8zJz00/medium.mp4"
+                muted={true}
+                src={video}
                 ref={videoEl}
-            />
+            /> */}
+            <div >
+
+            </div>
         </div>
     );
 };

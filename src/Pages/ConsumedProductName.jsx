@@ -72,7 +72,7 @@ const ConsumedProductName = () => {
           ></input>
         </div>
         <div className="mt-12">
-          <Link to="/buyproductstart">
+          <Link to="/consumerform">
             <Button title={"NEXT"}></Button>
           </Link>
         </div>
