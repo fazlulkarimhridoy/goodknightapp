@@ -27,10 +27,10 @@ const SignIn = () => {
 
 
     return (
-        <div>
-            <form onSubmit={userLogIn} className='text-white flex flex-col gap-4 mt-10'>
-                <input name='bp_id' required placeholder='BP ID' type='number' className=' text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
-                <input name='password' required placeholder='PASSWORD' type='password' className='text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
+        <div className=''>
+            <form className='text-white flex flex-col gap-4 mt-10' onSubmit={userLogIn}>
+                <input name='bp_id' placeholder='BP ID' type='number' className=' text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
+                <input name='password' placeholder='PASSWORD' type='password' className='text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none'></input>
                 <button
                     type='submit'
                     className='btn text-white text-xl font-semibold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-4 rounded-xl outline-none'>

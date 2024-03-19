@@ -1,3 +1,19 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Root from "./Root";
+import ErrorPage from "../src/components/ErrorPage";
+import StartPage from "./Pages/StartPage";
+import Homepage from "./Pages/HomePage";
+import SignInPage from "./Pages/SignInPage";
+import AddConsumerUse from "./Pages/AddConsumerUse";
+import ConsumedProductName from "./Pages/ConsumedProductName";
+import ConsumerForm from "./Pages/ConsumerForm";
+import BuyProductStart from "./Pages/BuyProductStart";
+import { DataProvider } from "./context/DataProvider";
+import SuccessPage from "./Pages/SuccessPage";
+import ExistedConsumerError from "./Pages/ExistedConsumerError";
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -37,12 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/getproductname",
-        element: <ConsumedProductName></ConsumedProductName>
-
+        element: <ConsumedProductName />,
       },
       {
         path: "/consumerform",
-        element: <ConsumerForm></ConsumerForm>
+        element: <ConsumerForm />,
       },
       {
         path: "/buyproductstart",
@@ -50,34 +65,24 @@ const router = createBrowserRouter([
       },
       {
         path: "/homePage",
-        element: <Homepage></Homepage>
+        element: <Homepage></Homepage>,
       },
       {
-        path: "/calculation",
-        element: <AmountCalculation></AmountCalculation>
+        path:"/successPage",
+        element:<SuccessPage></SuccessPage>
       },
       {
-        path: "/number",
-        element: <MobileNumber></MobileNumber>
-      },
-      {
-        path: "/otp",
-        element: <OtpVerification></OtpVerification>
-      },
-      {
-        path: "/video",
-        element: <VideoPlay></VideoPlay>
+        path:"/existedConsumerError",
+        element:<ExistedConsumerError></ExistedConsumerError>
       }
     ],
   },
 ]);
 
-const queryClient = new QueryClient()
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <DataProvider>
       <RouterProvider router={router} />
-    </QueryClientProvider>
-  </React.StrictMode>,
-)
+    </DataProvider>
+  </React.StrictMode>
+);
