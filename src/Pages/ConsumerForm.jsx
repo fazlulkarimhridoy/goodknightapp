@@ -1,11 +1,23 @@
 import React, { useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { Geolocation } from '@capacitor/geolocation';
+
 
 const ConsumerForm = () => {
+
+  const location = async () => {
+    // get the users current position
+    const position = await Geolocation?.getCurrentPosition();
+
+    // grab latitude & longitude
+    const latitude = position?.coords?.latitude;
+    const longitude = position?.coords?.longitude;
+  };
+
+
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -29,7 +41,7 @@ const ConsumerForm = () => {
     })
       .then(res => {
         if (res.data.new_customer) {
-          window.location.href = '/calculation';
+          window.location.href = '/buyproductstart';
         }
         else if (!res.data.new_customer) {
           window.location.href = '/homePage';
@@ -58,6 +70,7 @@ const ConsumerForm = () => {
         <div className="flex flex-col gap-2">
           <div>
             <input
+              onClick={location}
               required
               placeholder="name"
               type="text"

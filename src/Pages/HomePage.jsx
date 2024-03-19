@@ -2,12 +2,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../assets/goodKnight.png"
 import { Link } from "react-router-dom";
-import { Drawer } from "antd";
+import { Drawer, Spin } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import '../CSS/Navbar.css'
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const HomePage = () => {
 
@@ -39,7 +40,7 @@ const HomePage = () => {
     }
 
     // handle bp info
-    const { data: bpInfo = {} } = useQuery({
+    const { data: bpInfo = {}, isLoading, isFetching, isPending } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
             const res = await axios.get('https://goodknight.xri.com.bd/api/bp_info', {
@@ -54,10 +55,31 @@ const HomePage = () => {
     })
 
 
-    
+    // show loader
+    if (isLoading || isFetching || isPending) {
+        return (
+            <div className="h-dvh flex items-center justify-center">
+                <Spin
+                    // fullscreen={isLoading || isFetching || isPending}
+                    indicator={
+                        <LoadingOutlined
+                            style={{
+                                fontSize: 35,
+                                color: "#890000",
+                            }}
+                            spin
+                        />
+                    }
+                />
+            </div>
+        )
+    }
+
+
+
 
     return (
-        <div className="h-dvh">
+        <div className="h-dvh bg-white">
             {/* hamburger menu */}
             <div className="flex justify-end px-4 py-2">
                 <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
