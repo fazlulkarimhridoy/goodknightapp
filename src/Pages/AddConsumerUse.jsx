@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";

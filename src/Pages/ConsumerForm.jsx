@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { DataContext } from "../context/DataProvider";
 import { Link } from "react-router-dom";
 
