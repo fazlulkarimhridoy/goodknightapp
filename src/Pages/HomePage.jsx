@@ -53,6 +53,9 @@ const HomePage = () => {
         retry: 2
     })
 
+
+    
+
     return (
         <div className="h-dvh">
             {/* hamburger menu */}
