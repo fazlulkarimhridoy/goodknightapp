@@ -8,13 +8,36 @@
     }
 
     .container{
-      @apply bg-[#890000] flex flex-col items-center pt-[50px] h-dvh gap-4
+      @apply bg-[#890000] w-full flex flex-col items-center pt-[50px] h-auto gap-4
     }
   }
 
 .arrow{
   position: relative;
 }
+
+video{
+  max-width: none;
+  height: none;
+
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 177.77%; /* 9:16 aspect ratio (16 / 9 * 100%) */
+}
+
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
 
 /* .arrow::after{
   content: 	"\2193";
