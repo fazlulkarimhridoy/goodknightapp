@@ -1,19 +1,21 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Root from "./Root";
-import ErrorPage from "../src/components/ErrorPage";
-import StartPage from "./Pages/StartPage";
-import Homepage from "./Pages/HomePage";
-import SignInPage from "./Pages/SignInPage";
-import AddConsumerUse from "./Pages/AddConsumerUse";
-import ConsumedProductName from "./Pages/ConsumedProductName";
-import ConsumerForm from "./Pages/ConsumerForm";
-import BuyProductStart from "./Pages/BuyProductStart";
-import { DataProvider } from "./context/DataProvider";
-import SuccessPage from "./Pages/SuccessPage";
-import ExistedConsumerError from "./Pages/ExistedConsumerError";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Root from './Root';
+import ErrorPage from '../src/components/ErrorPage';
+import StartPage from './Pages/StartPage';
+import Homepage from './Pages/HomePage';
+import SignInPage from './Pages/SignInPage';
+import AddConsumerUse from './Pages/AddConsumerUse';
+import ConsumedProductName from './Pages/ConsumedProductName';
+import ConsumerForm from './Pages/ConsumerForm';
+import BuyProductStart from './Pages/BuyProductStart';
+import AmountCalculation from './Pages/AmountCalculation';
+import MobileNumber from './Pages/MobileNumber';
+import OtpVerification from './Pages/OtpVerification';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import VideoPlay from './Pages/VideoPlay';
 
 const router = createBrowserRouter([
   {
@@ -35,11 +37,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/getproductname",
-        element: <ConsumedProductName />,
+        element: <ConsumedProductName></ConsumedProductName>
+
       },
       {
         path: "/consumerform",
-        element: <ConsumerForm />,
+        element: <ConsumerForm></ConsumerForm>
       },
       {
         path: "/buyproductstart",
@@ -47,24 +50,34 @@ const router = createBrowserRouter([
       },
       {
         path: "/homePage",
-        element: <Homepage></Homepage>,
+        element: <Homepage></Homepage>
       },
       {
-        path:"/successPage",
-        element:<SuccessPage></SuccessPage>
+        path: "/calculation",
+        element: <AmountCalculation></AmountCalculation>
       },
       {
-        path:"/existedConsumerError",
-        element:<ExistedConsumerError></ExistedConsumerError>
+        path: "/number",
+        element: <MobileNumber></MobileNumber>
+      },
+      {
+        path: "/otp",
+        element: <OtpVerification></OtpVerification>
+      },
+      {
+        path: "/video",
+        element: <VideoPlay></VideoPlay>
       }
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const queryClient = new QueryClient()
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <DataProvider>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    </DataProvider>
-  </React.StrictMode>
-);
+    </QueryClientProvider>
+  </React.StrictMode>,
+)
