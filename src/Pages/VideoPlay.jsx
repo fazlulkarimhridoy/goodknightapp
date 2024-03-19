@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRef } from "react";
+import Navbar from "../components/Navbar";
 
 const VideoPlay = () => {
     const videoEl = useRef(null);
@@ -18,6 +19,7 @@ const VideoPlay = () => {
 
     return (
         <div>
+            <Navbar></Navbar>
             <video
                 style={{ maxWidth: "100%", width: "800px", margin: "0 auto" }}
                 playsInline
