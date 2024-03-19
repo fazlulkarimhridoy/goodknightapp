@@ -16,7 +16,7 @@ const MobileNumber = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div className="bg-[#890000] flex flex-col items-center pt-[20px] h-dvh gap-4">
+            <div className="container">
                 <div className="pr-12 relative">
                     <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
                 </div>
@@ -29,7 +29,7 @@ const MobileNumber = () => {
                     </h1>
                 </div>
 
-                <div className="mt-32">
+                <div className="my-8">
                     <Link to="/otp">
                         <Button title={'NEXT'}></Button>
                     </Link>

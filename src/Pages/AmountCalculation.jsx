@@ -16,7 +16,7 @@ const AmountCalculation = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div className="bg-[#890000] flex flex-col items-center pt-[20px] h-dvh gap-4">
+            <div className="container">
                 <div className="pr-12 relative">
                     <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
                 </div>
@@ -54,7 +54,7 @@ const AmountCalculation = () => {
                     BDT 560/-
                 </h2>
 
-                <div className="mt-4">
+                <div className="my-4">
                     <Link to="/number">
                         <Button title={'NEXT'}></Button>
                     </Link>
