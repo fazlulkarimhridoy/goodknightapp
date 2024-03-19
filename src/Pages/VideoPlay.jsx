@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useRef } from "react";
-import Navbar from "../components/Navbar";
-import video from "../assets/GoodNight.mp4";
+import video from "../assets/GoodNight.mp4"
 
 const VideoPlay = () => {
   const videoEl = useRef(null);

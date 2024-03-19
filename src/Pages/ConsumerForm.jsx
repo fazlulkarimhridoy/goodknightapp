@@ -1,12 +1,24 @@
 import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import { Geolocation } from '@capacitor/geolocation';
+
 import { DataContext } from "../context/DataProvider";
 
 const ConsumerForm = () => {
+
+  const location = async () => {
+    // get the users current position
+    const position = await Geolocation?.getCurrentPosition();
+
+    // grab latitude & longitude
+    const latitude = position?.coords?.latitude;
+    const longitude = position?.coords?.longitude;
+  };
+
+
   const { customerData, setCustomerData, handleChange } =
     useContext(DataContext);
   const { name, age, gender, phone_number } = customerData;
@@ -38,10 +50,12 @@ const ConsumerForm = () => {
       )
       .then((res) => {
         if (res.data.new_customer) {
-          window.location.href = "/calculation";
-        } else if (!res.data.new_customer) {
-          window.location.href = "/homePage";
-        } else {
+          window.location.href = '/buyproductstart';
+        }
+        else if (!res.data.new_customer) {
+          window.location.href = '/homePage';
+        }
+        else {
           console.log(res.data.message);
         }
       })
