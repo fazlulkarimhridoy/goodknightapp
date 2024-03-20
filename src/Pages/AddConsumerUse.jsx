@@ -11,6 +11,7 @@ const AddConsumerUse = () => {
   const {customerData,setCustomerData,handleChange} = useContext(DataContext)
 
   const {previous_used_product} = customerData
+  console.log(customerData);
  
 
   const token = localStorage.getItem('token');

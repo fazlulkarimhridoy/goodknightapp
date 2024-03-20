@@ -28,6 +28,10 @@ const HomePage = () => {
 
     // handle signout
     const handleSignout = () => {
+        axios.post('https://goodknight.xri.com.bd/api/logout')
+            .then(res => {
+                console.log(res.data);
+            })
         localStorage.removeItem('token');
         window.location.reload();
         window.location.href = "/signin";
