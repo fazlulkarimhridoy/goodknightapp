@@ -20,7 +20,7 @@ const AddConsumerUse = () => {
   }
 
   return (
-    <>
+    <div className="bg-[#890000] h-screen">
       <Navbar></Navbar>
       <div className="container">
         <div className="pr-12 relative">
@@ -61,7 +61,7 @@ const AddConsumerUse = () => {
 
 
       </div>
-    </>
+    </div>
   );
 };
 

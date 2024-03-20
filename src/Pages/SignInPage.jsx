@@ -1,12 +1,11 @@
 import React from 'react';
 import Logo from '../components/Logo';
 import SignIn from '../components/SignIn';
-import { Link } from 'react-router-dom';
 
 const SignInPage = () => {
     return (
-        <div className='bg-[#890000] flex flex-col items-center pt-[50px] h-dvh'>
-            <div className='pr-8 relative'>
+        <div className='bg-[#890000] flex flex-col items-center pt-[50px] h-screen'>
+            <div className='pr-8 relative mt-16'>
                 <Logo width={"w-[180px]"} height={"h-[200px]"}></Logo>
             </div>
             <div className=' space-y-4 text-center'>

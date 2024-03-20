@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
@@ -8,13 +8,25 @@ import Navbar from "../components/Navbar";
 
 const AmountCalculation = () => {
 
+    const [amount, setAmount] = useState(0);
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
     }
 
+    // handle quantity 1
+    const handleQuantity1 = () => {
+        const price = 115;
+        setAmount(price);
+    }
+    // handle quantity 2
+    const handleQuantity2 = () => {
+        const price = 115*2;
+        setAmount(price);
+    }
+
     return (
-        <>
+        <div className="bg-[#890000] h-screen">
             <Navbar></Navbar>
             <div className="container">
                 <div className="pr-12 relative">
@@ -27,9 +39,9 @@ const AmountCalculation = () => {
                 </div>
 
                 <div className="flex items-center justify-center gap-3">
-                    <button className="btn-primary w-14 h-14">1</button>
+                    <button onClick={handleQuantity1} className="btn-primary w-14 h-14">1</button>
                     <h1 className="text-white text-2xl">or</h1>
-                    <button className="btn-primary w-14 h-14">2</button>
+                    <button onClick={handleQuantity2} className="btn-primary w-14 h-14">2</button>
                 </div>
 
                 <div className="mt-3">
@@ -51,7 +63,7 @@ const AmountCalculation = () => {
                 </div>
 
                 <h2 className="text-white text-4xl font-bold">
-                    BDT 560/-
+                    BDT {amount}/-
                 </h2>
 
                 <div className="my-4">
@@ -62,7 +74,7 @@ const AmountCalculation = () => {
 
 
             </div>
-        </>
+        </div>
 
     );
 };

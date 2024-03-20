@@ -1,7 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
-import logo from "../assets/goodKnight.png"
-import { Link, useNavigate } from "react-router-dom";
+import logo from "../../public/images/profilegoodknigtlogo.svg"
+import { Link } from "react-router-dom";
 import { Drawer, Spin } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -27,17 +27,32 @@ const HomePage = () => {
 
     // handle signout
     const handleSignout = () => {
-        axios.post('https://goodknight.xri.com.bd/api/logout', {
+        // axios.post('https://goodknight.xri.com.bd/api/logout', {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        // localStorage.removeItem('token');
+        // window.location.reload();
+        // window.location.href = "/signin";
+
+        fetch('https://goodknight.xri.com.bd/api/logout', {
+            method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
         })
-            .then(res => {
-                console.log(res.data);
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                localStorage.removeItem('token');
+                window.location.reload();
+                window.location.href = "/signin";
             })
-        localStorage.removeItem('token');
-        window.location.reload();
-        window.location.href = "/signin";
     }
 
     // handle home
@@ -67,7 +82,6 @@ const HomePage = () => {
         return (
             <div className="h-dvh flex items-center justify-center">
                 <Spin
-                    // fullscreen={isLoading || isFetching || isPending}
                     indicator={
                         <LoadingOutlined
                             style={{
@@ -88,8 +102,8 @@ const HomePage = () => {
     return (
         <div className="h-dvh bg-white">
             {/* hamburger menu */}
-            <div className="flex justify-end px-4 py-2">
-                <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
+            <div className="bg-[#BA0012] flex justify-end px-4 py-2">
+                <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
                 <Drawer
                     closeIcon={true}
                     width={250}
@@ -113,7 +127,7 @@ const HomePage = () => {
             </div>
 
             {/* profile information */}
-            <div className="flex items-center justify-between mt-3 px-4">
+            <div className="bg-[#BA0012] text-white flex items-center justify-between py-4 px-6">
                 <div className="flex items-start gap-1">
                     <img
                         className="w-28 rounded-full"
@@ -126,15 +140,12 @@ const HomePage = () => {
                         <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
                     </div>
                 </div>
-                <div>
-                    <img
-                        className="w-24"
-                        src={logo}
-                        alt="logo"
-                    />
-                </div>
+                <img
+                    src={logo}
+                    alt="logo"
+                />
             </div>
-            <hr className="border border-solid border-[#FF283D] shadow-black shadow-2xl my-5"></hr>
+            <hr className="border border-solid border-[#FF283D] shadow-black shadow-2xl mb-5"></hr>
 
             {/* summery section */}
             <div className="flex items-center justify-around pl-10 pr-4">
@@ -232,7 +243,7 @@ const HomePage = () => {
             <div className="mx-8 mt-10">
                 <h2 className="text-sm font-bold">Activity KPI</h2>
                 <div className="flex items-center gap-3 justify-between mt-3">
-                    <div className="bg-[#FFC5C5] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
+                    <div className="bg-[#FFC5C5] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full h-full">
                         <h4 className="text-xs font-bold text-center">
                             Avg. Visit
                             <br />
@@ -242,7 +253,7 @@ const HomePage = () => {
                             27
                         </h2>
                     </div>
-                    <div className="bg-[#49FFC8] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
+                    <div className="bg-[#49FFC8] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full h-full">
                         <h4 className="text-xs font-bold text-center">
                             Total Field
                             <br />
@@ -252,7 +263,7 @@ const HomePage = () => {
                             12
                         </h2>
                     </div>
-                    <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
+                    <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full h-full">
                         <h4 className="text-xs font-bold text-center">
                             Non Field
                             <br />
@@ -267,7 +278,7 @@ const HomePage = () => {
 
             <div className="mt-10 pb-10 mx-8">
                 <Link to="/usedproduct">
-                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
+                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-3.5 rounded-xl shadow-xl">
                         Add Consumer
                     </button>
                 </Link>

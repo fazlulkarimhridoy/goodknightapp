@@ -1,5 +1,5 @@
 import { Drawer } from "antd";
-import axios from "axios";
+import { CapacitorHttp } from '@capacitor/core';
 import { useState } from "react";
 import { FaArrowLeft, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -19,18 +19,48 @@ const Navbar = () => {
     };
 
     // handle signout
-    const handleSignout = () => {
-        axios.post('https://goodknight.xri.com.bd/api/logout', {
+    const handleSignout = async () => {
+        // axios.post('https://goodknight.xri.com.bd/api/logout', {
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        // localStorage.removeItem('token');
+        // window.location.reload();
+        // window.location.href = "/signin";
+
+        // fetch('https://goodknight.xri.com.bd/api/logout', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         localStorage.removeItem('token');
+        //         window.location.reload();
+        //         window.location.href = "/signin";
+        //     })
+
+        // post request using capacitor http request
+        const options = {
+            url: 'https://goodknight.xri.com.bd/api/logout',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-        })
-            .then(res => {
-                console.log(res.data);
-            })
-        localStorage.removeItem('token');
-        window.location.reload();
-        window.location.href = "/signin";
+        };
+        const response = await CapacitorHttp.post(options);
+        if (response.status == 200) {
+            localStorage.removeItem('token');
+            window.location.reload();
+            window.location.href = "/signin";
+        }
     }
 
     // handle home

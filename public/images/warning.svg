@@ -1,0 +1,28 @@
+<svg
+  width="96"
+  height="85"
+  viewBox="0 0 96 85"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+    <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M47.8478 4.96869L3.9873 80.7278H91.7083L47.8478 4.96869Z"
+    fill="#890000"
+    stroke="white"
+    stroke-width="7.97464"
+    stroke-linejoin="round"
+  />
+    <path
+    d="M47.8479 64.7784V66.7721"
+    stroke="white"
+    stroke-width="7.97464"
+    stroke-linecap="round"
+  />
+    <path
+    d="M47.8479 32.881L47.8644 52.8166"
+    stroke="white"
+    stroke-width="7.97464"
+    stroke-linecap="round"
+  />
+    </svg>

@@ -17,7 +17,7 @@ const ConsumedProductName = () => {
   }
 
   return (
-    <>
+    <div className="bg-[#890000] h-screen">
       <Navbar></Navbar>
       <div className="container">
         <div className="pr-12 relative">
@@ -47,7 +47,7 @@ const ConsumedProductName = () => {
               Audi
             </option>
           </select>
-          
+
         </div>
         <div className="arrow">
           <select
@@ -83,7 +83,7 @@ const ConsumedProductName = () => {
           ></input>
         </div>
         {previous_used_brand?.length === 0 ? <div className="my-12">
-          
+
           <Link to="">
             <Button title={"NEXT"}></Button>
           </Link>
@@ -91,7 +91,7 @@ const ConsumedProductName = () => {
           <p className="text-white text-center p-2">Please select</p>
 
         </div> : <div className="my-12">
-          
+
           <Link to="/consumerform">
             <Button title={"NEXT"}></Button>
           </Link>
@@ -99,9 +99,9 @@ const ConsumedProductName = () => {
           <p className="text-white text-center p-2">Please select</p>
 
         </div>}
-        
+
       </div>
-    </>
+    </div>
   );
 };
 

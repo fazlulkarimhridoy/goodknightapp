@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Geolocation } from '@capacitor/geolocation';
 import { DataContext } from "../context/DataProvider";
-import axios from "axios";
+import { CapacitorHttp } from '@capacitor/core';
 
 
 const BuyProductStart = () => {
@@ -26,7 +26,7 @@ const BuyProductStart = () => {
     const latitude = position?.coords?.latitude.toString();
     const longitude = position?.coords?.longitude.toString();
 
-    const data = {
+    const customerInfo = {
       name,
       age,
       gender,
@@ -38,18 +38,48 @@ const BuyProductStart = () => {
       interested: "no"
     };
 
-    await axios.post('https://goodknight.xri.com.bd/api/store-customer-info', data, {
+    // await axios.post('https://goodknight.xri.com.bd/api/store-customer-info', data, {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then(res => {
+    //     console.log(res.data);
+    //     window.location.href = '/homePage';
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   })
+
+    // fetch('https://goodknight.xri.com.bd/api/store-customer-info', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${token}`
+    //   },
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log(data);
+    //     window.location.href = '/homePage';
+    //   })
+
+    const options = {
+      url: 'https://goodknight.xri.com.bd/api/store-customer-info',
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
-    })
-      .then(res => {
-        console.log(res.data);
-        window.location.href = '/homePage';
-      })
-      .catch(error => {
-        console.log(error);
-      })
+      data: customerInfo
+    };
+    const response = await CapacitorHttp.post(options);
+    if (response.status === 200) {
+      window.location.href = '/homePage';
+    }
+    else {
+      console.log(response.data.message);
+    }
 
   }
 
