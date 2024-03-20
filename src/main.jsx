@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import VideoPlay from "./Pages/VideoPlay";
 import { DataProvider } from "./context/DataProvider";
 import OCRApp from "./Pages/CodeScanner";
+import PhotoCaptureComponent from "./Pages/PhotoCapture";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         path:"/ocr",
         element: <OCRApp></OCRApp>
       },
+      {
+        path:"/takeImage",
+        element: <PhotoCaptureComponent></PhotoCaptureComponent>
+      }
     ],
   },
 ]);

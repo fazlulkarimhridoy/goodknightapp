@@ -4,11 +4,11 @@
 
 @layer components {
     .btn-primary {
-      @apply w-[220px] text-center text-black shadow-slate-300 shadow-inner px-4  py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9] focus:bg-[#393939] focus:text-white;
+      @apply w-[220px] text-center text-black shadow-slate-300 shadow-inner px-4  py-2 text-xl font-semibold rounded-xl outline-none bg-[#D9D9D9] focus:bg-[#393939] focus:text-white;
     }
 
     .container{
-      @apply bg-[#890000] w-full flex flex-col items-center pt-[50px] h-dvh gap-4
+      @apply bg-[#890000] w-full flex flex-col items-center pt-[50px] gap-4
     }
   }
 
@@ -16,72 +16,80 @@
   position: relative;
 }
 
-video{
-  max-width: none;
-  height: none;
 
-}
 
-.video-container {
+/* .video-container {
   position: relative;
   width: 100%;
-  padding-top: 177.77%; /* 9:16 aspect ratio (16 / 9 * 100%) */
-}
+ 
+  padding-top: 177.77%; 
+} */
 
 .video-player {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   width: 100%;
   height: 100%;
 }
 
 
-.camera-feed-container {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
 .camera-feed {
   width: 100%;
   height: auto;
-  /* filter: blur(5px); Apply blur effect */
+  max-width: 400px; /* Adjust the max-width as needed */
+  margin: 20px 0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.camera-feed-off {
-  display: none; /* Hide the video element when camera is off */
+.camera-feed video {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.camera-feed-mask {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50%;
-  background: rgba(255, 255, 255, 0); /* Use transparent background */
-  border-radius: 50%;
-  border: 1000px solid rgba(255, 255, 255, 0.5); /* Adjust border size and color for blur intensity */
-  z-index: 1;
+.font-poppins{
+  font-family: "Poppins", sans-serif;
 }
 
 
 
 
-/* .arrow::after{
-  content: 	"\2193";
-  color: black;
-  font-size: 30px;
+
+
+
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
   font-weight: 800;
-  position: absolute;
-  right: 40px;
-  
+  font-style: normal;
 }
-
-.arrow select{
-  appearance: none;
-} */
-
 

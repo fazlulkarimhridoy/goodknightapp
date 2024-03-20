@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRef } from "react";
-import video from "../assets/GoodNight.mp4"
+import video from "/video/GoodNight.mp4"
 
 const VideoPlay = () => {
   const videoEl = useRef(null);
@@ -18,7 +18,7 @@ const VideoPlay = () => {
   }, []);
 
   return (
-    <div className="video-container ">
+    <div className="h-dvh">
       <video
         
         className="video-player"
