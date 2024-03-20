@@ -94,9 +94,6 @@ const ConsumedProductName = () => {
           <Link to="/buyproductstart">
             <Button title={"NEXT"}></Button>
           </Link>
-
-          <p className="text-white text-center p-2">Please select</p>
-
         </div>}
         
       </div>
