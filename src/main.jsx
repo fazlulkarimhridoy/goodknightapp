@@ -17,6 +17,7 @@ import OtpVerification from "./Pages/OtpVerification";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import VideoPlay from "./Pages/VideoPlay";
 import { DataProvider } from "./context/DataProvider";
+import OCRApp from "./Pages/CodeScanner";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/video",
         element: <VideoPlay></VideoPlay>,
+      },
+      {
+        path:"/ocr",
+        element: <OCRApp></OCRApp>
       },
     ],
   },

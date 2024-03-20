@@ -9,7 +9,9 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   // Define state or any other data you want to manage
   const [theme, setTheme] = useState('light');
-
+  const [photoURL, setPhotoURL] = useState(null);
+  const [text, setText] = useState("");
+  
   const [customerData, setCustomerData] = useState({
     name: "",
     age: "",
@@ -39,7 +41,7 @@ export const DataProvider = ({ children }) => {
 
   // Provide the context value to its children
   return (
-    <DataContext.Provider value={{ theme, toggleTheme, customerData,setCustomerData,handleChange }}>
+    <DataContext.Provider value={{ theme, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL }}>
       {children}
     </DataContext.Provider>
   );

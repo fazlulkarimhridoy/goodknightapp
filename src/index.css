@@ -8,7 +8,7 @@
     }
 
     .container{
-      @apply bg-[#890000] w-full flex flex-col items-center pt-[50px] h-auto gap-4
+      @apply bg-[#890000] w-full flex flex-col items-center pt-[50px] h-dvh gap-4
     }
   }
 
@@ -34,6 +34,37 @@ video{
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+
+.camera-feed-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.camera-feed {
+  width: 100%;
+  height: auto;
+  /* filter: blur(5px); Apply blur effect */
+}
+
+.camera-feed-off {
+  display: none; /* Hide the video element when camera is off */
+}
+
+.camera-feed-mask {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background: rgba(255, 255, 255, 0); /* Use transparent background */
+  border-radius: 50%;
+  border: 1000px solid rgba(255, 255, 255, 0.5); /* Adjust border size and color for blur intensity */
+  z-index: 1;
 }
 
 
