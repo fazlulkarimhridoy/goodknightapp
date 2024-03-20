@@ -1,9 +1,14 @@
 import { Drawer } from "antd";
+import axios from "axios";
 import { useState } from "react";
 import { FaArrowLeft, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        return (window.location.href = "/signin");
+    }
     const [open, setOpen] = useState(false);
     const [placement] = useState('right');
     const showDrawer = () => {
@@ -15,6 +20,14 @@ const Navbar = () => {
 
     // handle signout
     const handleSignout = () => {
+        axios.post('https://goodknight.xri.com.bd/api/logout', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
         localStorage.removeItem('token');
         window.location.reload();
         window.location.href = "/signin";
