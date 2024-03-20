@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 
 const OtpVerification = () => {
 
+
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
@@ -44,7 +45,7 @@ const OtpVerification = () => {
                 </div>
 
                 <div className="my-32">
-                    <Link>
+                    <Link to="/successPage">
                         <Button title={'NEXT'}></Button>
                     </Link>
                 </div>

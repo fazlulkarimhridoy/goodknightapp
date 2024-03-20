@@ -1,7 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../assets/goodKnight.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Drawer, Spin } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -11,7 +11,6 @@ import { useQuery } from "@tanstack/react-query";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const HomePage = () => {
-
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
@@ -28,6 +27,14 @@ const HomePage = () => {
 
     // handle signout
     const handleSignout = () => {
+        axios.post('https://goodknight.xri.com.bd/api/logout', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
         localStorage.removeItem('token');
         window.location.reload();
         window.location.href = "/signin";

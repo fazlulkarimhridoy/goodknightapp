@@ -9,6 +9,7 @@ const ConsumedProductName = () => {
   const { customerData, handleChange } = useContext(DataContext);
 
   const { previous_used_brand } = customerData;
+  console.log(customerData);
 
   const token = localStorage.getItem("token");
   if (!token) {
@@ -91,7 +92,7 @@ const ConsumedProductName = () => {
             </div>
           ) : (
             <div className="my-12">
-              <Link to="/buyproductstart">
+              <Link to="/consumerform">
                 <Button title={"NEXT"}></Button>
               </Link>
             </div>
