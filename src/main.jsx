@@ -17,6 +17,8 @@ import OtpVerification from "./Pages/OtpVerification";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import VideoPlay from "./Pages/VideoPlay";
 import { DataProvider } from "./context/DataProvider";
+import ExistedConsumerError from "./Pages/ExistedConsumerError"
+import SuccessPage from "./Pages/SuccessPage"
 
 const router = createBrowserRouter([
   {
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
         path: "/video",
         element: <VideoPlay></VideoPlay>,
       },
+      {
+        path: "/duplicateCustomer",
+        element: <ExistedConsumerError></ExistedConsumerError>
+      },
+      {
+        path: "successPage",
+        element: <SuccessPage></SuccessPage>
+      }
     ],
   },
 ]);

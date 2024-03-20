@@ -13,7 +13,7 @@ const ExistedConsumerError = () => {
       <div className="text-center mt-14 space-y-4 flex flex-col  items-center">
         <img width={120} src="/images/caution.svg"></img>
         <p className=" max-w-56 text-2xl text-white max">This consumer is
-already registered</p>
+          already registered</p>
       </div>
       <div className="mt-20">
         <Link to={"/consumerform"}>

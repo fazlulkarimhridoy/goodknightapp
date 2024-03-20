@@ -3,37 +3,22 @@ import Logo from "../components/Logo";
 import Button from "../components/Button";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import { Geolocation } from '@capacitor/geolocation';
-
+import { useNavigate } from 'react-router-dom';
 import { DataContext } from "../context/DataProvider";
 
 const ConsumerForm = () => {
 
-  const location = async () => {
-    // get the users current position
-    const position = await Geolocation?.getCurrentPosition();
-
-    // grab latitude & longitude
-    const latitude = position?.coords?.latitude;
-    const longitude = position?.coords?.longitude;
-  };
-
-
+  const navigate = useNavigate();
   const { customerData, setCustomerData, handleChange } =
     useContext(DataContext);
   const { name, age, gender, phone_number } = customerData;
+  console.log(customerData);
 
   const token = localStorage.getItem("token");
   if (!token) {
     return (window.location.href = "/signin");
   }
 
-  // const [number, setNumber] = useState(null);
-
-  // const handleNumber = (e) => {
-  //   const number = e.target.value;
-  //   setNumber(number);
-  // };
 
   const handleNumberCheck = () => {
     const token = localStorage.getItem("token");
@@ -50,10 +35,10 @@ const ConsumerForm = () => {
       )
       .then((res) => {
         if (res.data.new_customer) {
-          window.location.href = '/buyproductstart';
+          navigate('/buyproductstart');
         }
         else if (!res.data.new_customer) {
-          window.location.href = '/homePage';
+          navigate('/duplicateCustomer');
         }
         else {
           console.log(res.data.message);
@@ -140,15 +125,15 @@ const ConsumerForm = () => {
         </form>
         {
           (name?.length === 0 || age?.length === 0 || gender?.length === 0 || phone_number?.length === 0) ? <div className="my-8">
-          <Button  title={"NEXT"}></Button>
-        </div> : <div onClick={handleNumberCheck}  className="my-8">
-          <Button  title={"NEXT"}></Button>
-        </div>
+            <Button title={"NEXT"}></Button>
+          </div>
+            :
+            <div onClick={handleNumberCheck} className="my-8">
+              <Button title={"NEXT"}></Button>
+            </div>
         }
-        {/* <div onClick={handleNumberCheck}  className="my-8">
-          <Button  title={"NEXT"}></Button>
-        </div> */}
-      </div>
+
+      </div >
     </>
   );
 };
