@@ -16,7 +16,7 @@ const MobileNumber = () => {
     return (
         <>
             <Navbar></Navbar>
-            <div className="container">
+            <div className="container h-dvh">
                 <div className="pr-12 relative">
                     <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
                 </div>

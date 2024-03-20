@@ -19,6 +19,8 @@ import VideoPlay from "./Pages/VideoPlay";
 import { DataProvider } from "./context/DataProvider";
 import ExistedConsumerError from "./Pages/ExistedConsumerError"
 import SuccessPage from "./Pages/SuccessPage"
+import OCRApp from "./Pages/CodeScanner";
+import PhotoCaptureComponent from "./Pages/PhotoCapture";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +79,14 @@ const router = createBrowserRouter([
       {
         path: "successPage",
         element: <SuccessPage></SuccessPage>
+      },
+      {
+        path:"/ocr",
+        element: <OCRApp></OCRApp>
+      },
+      {
+        path:"/takeImage",
+        element: <PhotoCaptureComponent></PhotoCaptureComponent>
       }
     ],
   },
