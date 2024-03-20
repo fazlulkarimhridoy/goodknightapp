@@ -79,7 +79,7 @@ const router = createBrowserRouter([
       {
         path: "successPage",
         element: <SuccessPage></SuccessPage>
-      }
+      },
       {
         path:"/ocr",
         element: <OCRApp></OCRApp>
