@@ -87,7 +87,7 @@ const BuyProductStart = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="container px-4 h-dvh font-poppins">
+      <div className="container px-4 font-poppins">
         <div className="pr-12 relative">
           <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
         </div>

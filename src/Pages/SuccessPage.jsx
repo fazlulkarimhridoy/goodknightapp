@@ -6,7 +6,7 @@ import successIcon from "../../public/images/successIcon.svg"
 
 const SuccessPage = () => {
   return (
-    <div className="container bg-[#890000] h-screen">
+    <div className="container bg-[#890000]">
       <div className="pr-14 relative mt-16">
         <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
       </div>

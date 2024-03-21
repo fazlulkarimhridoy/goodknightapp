@@ -67,7 +67,6 @@ const HomePage = () => {
         console.log(response);
         if (response.status === 201 || 200) {
             localStorage.removeItem('token');
-            window.location.reload();
             window.location.href = "/signin";
         }
         else {
@@ -106,7 +105,7 @@ const HomePage = () => {
                         <LoadingOutlined
                             style={{
                                 fontSize: 35,
-                                color: "#890000",
+                                color: "white",
                             }}
                             spin
                         />

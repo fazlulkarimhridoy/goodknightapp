@@ -29,7 +29,7 @@ const AmountCalculation = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="h-dvh bg-[#890000]">
+      <div className="bg-[#890000]">
         <div className="container">
           <div className="pr-12 relative">
             <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
