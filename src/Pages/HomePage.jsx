@@ -1,7 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
-import logo from "../assets/goodKnight.png"
-import { Link, useNavigate } from "react-router-dom";
+import logo from "../../public/images/profilegoodknigtlogo.svg"
+import { Link } from "react-router-dom";
 import { Drawer, Spin } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -9,6 +9,8 @@ import '../CSS/Navbar.css'
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { LoadingOutlined } from "@ant-design/icons";
+import { CapacitorHttp } from '@capacitor/core';
+
 
 const HomePage = () => {
     const token = localStorage.getItem('token');
@@ -26,18 +28,50 @@ const HomePage = () => {
     };
 
     // handle signout
-    const handleSignout = () => {
-        axios.post('https://goodknight.xri.com.bd/api/logout', {
+    const handleSignout = async () => {
+        // axios.post('https://goodknight.xri.com.bd/api/logout', {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        // localStorage.removeItem('token');
+        // window.location.reload();
+        // window.location.href = "/signin";
+
+        // fetch('https://goodknight.xri.com.bd/api/logout', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         localStorage.removeItem('token');
+        //         window.location.reload();
+        //         window.location.href = "/signin";
+        //     })
+
+        const options = {
+            url: 'https://goodknight.xri.com.bd/api/logout',
             headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             }
-        })
-            .then(res => {
-                console.log(res.data);
-            })
-        localStorage.removeItem('token');
-        window.location.reload();
-        window.location.href = "/signin";
+        };
+        const response = await CapacitorHttp.post(options);
+        console.log(response);
+        if (response.status === 201 || 200) {
+            localStorage.removeItem('token');
+            window.location.href = "/signin";
+        }
+        else {
+            console.log(response);
+        }
     }
 
     // handle home
@@ -67,12 +101,11 @@ const HomePage = () => {
         return (
             <div className="h-dvh flex items-center justify-center">
                 <Spin
-                    // fullscreen={isLoading || isFetching || isPending}
                     indicator={
                         <LoadingOutlined
                             style={{
                                 fontSize: 35,
-                                color: "#890000",
+                                color: "white",
                             }}
                             spin
                         />
@@ -88,8 +121,8 @@ const HomePage = () => {
     return (
         <div className="h-dvh bg-white">
             {/* hamburger menu */}
-            <div className="flex justify-end px-4 py-2">
-                <GiHamburgerMenu onClick={showDrawer} size={25} color="#890000" />
+            <div className="bg-[#BA0012] flex justify-end px-6 py-3.5">
+                <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
                 <Drawer
                     closeIcon={true}
                     width={250}
@@ -113,28 +146,25 @@ const HomePage = () => {
             </div>
 
             {/* profile information */}
-            <div className="flex items-center justify-between mt-3 px-4">
+            <div className="bg-[#BA0012] text-white flex items-center justify-between py-4 px-6">
                 <div className="flex items-start gap-1">
                     <img
-                        className="w-28 rounded-full"
+                        className="w-20 rounded-full"
                         src={profile}
                         alt="profile_picture"
                     />
                     <div>
-                        <h3 className="font-bold text-lg truncate overflow-hidden">Welcome !</h3>
-                        <h4 className="text-sm font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
-                        <h4 className="text-sm font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
+                        <h3 className="font-bold truncate overflow-hidden">Welcome !</h3>
+                        <h4 className="text-xs font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
+                        <h4 className="text-xs font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
                     </div>
                 </div>
-                <div>
-                    <img
-                        className="w-24"
-                        src={logo}
-                        alt="logo"
-                    />
-                </div>
+                <img
+                    src={logo}
+                    alt="logo"
+                />
             </div>
-            <hr className="border border-solid border-[#FF283D] shadow-black shadow-2xl my-5"></hr>
+            <hr className="border border-solid border-[#FF283D] shadow-black shadow-2xl mb-5"></hr>
 
             {/* summery section */}
             <div className="flex items-center justify-around pl-10 pr-4">
@@ -156,7 +186,7 @@ const HomePage = () => {
                             </filter>
                         </defs>
                     </svg>
-                    <h3 className="text-2xl font-bold">Today’s
+                    <h3 className="text-xl font-bold">Today’s
                         <br />
                         Summery
                     </h3>
@@ -204,7 +234,7 @@ const HomePage = () => {
             </div>
 
             {/* total history */}
-            <div className="mt-10 mx-8 p-4 rounded-xl shadow-gray-400 shadow-inner bg-[#FFE2E2]">
+            <div className="mt-10 mx-8 py-6 rounded-xl shadow-gray-400 shadow-inner bg-[#FFE2E2]">
                 <h2 className="font-bold text-center">Total History</h2>
                 <div className="flex items-center justify-between px-5 mt-5">
                     <div className="px-5">
@@ -229,36 +259,36 @@ const HomePage = () => {
             </div>
 
             {/* activity */}
-            <div className="mx-8 mt-10">
+            <div className="px-8 mt-10">
                 <h2 className="text-sm font-bold">Activity KPI</h2>
-                <div className="flex items-center gap-3 justify-between mt-3">
-                    <div className="bg-[#FFC5C5] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
-                        <h4 className="text-xs font-bold text-center">
+                <div className="flex items-center justify-between mt-3 gap-3">
+                    <div className="bg-[#FFC5C5] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
+                        <h4 className="text-[10px] font-bold text-center">
                             Avg. Visit
                             <br />
                             Per Day
                         </h4>
-                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
                             27
                         </h2>
                     </div>
-                    <div className="bg-[#49FFC8] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
-                        <h4 className="text-xs font-bold text-center">
+                    <div className="bg-[#49FFC8] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
+                        <h4 className="text-[10px] font-bold text-center">
                             Total Field
                             <br />
                             Days
                         </h4>
-                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
                             12
                         </h2>
                     </div>
-                    <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-4 rounded-xl w-full">
-                        <h4 className="text-xs font-bold text-center">
+                    <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
+                        <h4 className="text-[10px] font-bold text-center">
                             Non Field
                             <br />
                             Days
                         </h4>
-                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-5 py-3 rounded-lg w-full text-center">
+                        <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
                             5
                         </h2>
                     </div>
@@ -267,7 +297,7 @@ const HomePage = () => {
 
             <div className="mt-10 pb-10 mx-8">
                 <Link to="/usedproduct">
-                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
+                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold py-2.5 rounded-xl shadow-xl">
                         Add Consumer
                     </button>
                 </Link>

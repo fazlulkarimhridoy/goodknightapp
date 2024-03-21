@@ -35,6 +35,13 @@
   height: 100%;
 }
 
+.skip-button{
+  rotate: 90deg;
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+}
+
 
 .camera-feed {
   width: 100%;

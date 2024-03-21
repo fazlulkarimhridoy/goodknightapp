@@ -17,9 +17,9 @@ const ConsumedProductName = () => {
   }
 
   return (
-    <>
+    <div className="bg-[#890000]">
       <Navbar></Navbar>
-      <div className="h-dvh bg-[#890000]">
+      <div className="bg-[#890000]">
         <div className="container">
           <div className="pr-12 relative">
             <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
@@ -92,14 +92,14 @@ const ConsumedProductName = () => {
             </div>
           ) : (
             <div className="my-12">
-              <Link to="/consumerform">
+              <Link to="/video">
                 <Button title={"NEXT"}></Button>
               </Link>
             </div>
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

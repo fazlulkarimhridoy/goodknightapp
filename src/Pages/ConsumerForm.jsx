@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from "../context/DataProvider";
+import { CapacitorHttp } from '@capacitor/core';
 
 const ConsumerForm = () => {
 
@@ -20,36 +20,74 @@ const ConsumerForm = () => {
   }
 
 
-  const handleNumberCheck = () => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    axios
-      .post(
-        "https://goodknight.xri.com.bd/api/check-customer-number",
-        { phone_number: phone_number },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.data.new_customer) {
-          navigate('/buyproductstart');
-        }
-        else if (!res.data.new_customer) {
-          navigate('/duplicateCustomer');
-        }
-        else {
-          console.log(res.data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const handleNumberCheck = async () => {
+
+    // axios.post("https://goodknight.xri.com.bd/api/check-customer-number",{ 
+    //     phone_number: phone_number },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     if (res.data.new_customer) {
+    //       navigate('/buyproductstart');
+    //     }
+    //     else if (!res.data.new_customer) {
+    //       navigate('/duplicateCustomer');
+    //     }
+    //     else {
+    //       console.log(res.data.message);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // post request using capacitor http request
+    const options = {
+      url: 'https://goodknight.xri.com.bd/api/check-customer-number',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      data: { phone_number: phone_number }
+    };
+    const response = await CapacitorHttp.post(options);
+    const newCustomer = response.data.new_customer;
+    if (newCustomer) {
+      navigate('/buyproductstart');
+    }
+    else if (!newCustomer) {
+      navigate('/duplicateCustomer');
+    }
+    else {
+      console.log(response.data.message);
+    }
+
+    // fetch('https://goodknight.xri.com.bd/api/check-customer-number', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${token}`,
+    //   },
+    //   body: JSON.stringify({ phone_number: phone_number })
+    // })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     if (data.new_customer) {
+    //       navigate('/buyproductstart');
+    //     }
+    //     else if (!data.new_customer) {
+    //       navigate('/duplicateCustomer');
+    //     }
+    //     else {
+    //       console.log(data.message);
+    //     }
+    //   })
   };
   return (
-    <>
+    <div className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="container">
         <div className="pr-12 relative">
@@ -134,7 +172,7 @@ const ConsumerForm = () => {
         }
 
       </div >
-    </>
+    </div>
   );
 };
 
