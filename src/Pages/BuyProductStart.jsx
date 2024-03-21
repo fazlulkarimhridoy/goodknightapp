@@ -74,11 +74,12 @@ const BuyProductStart = () => {
       data: customerInfo
     };
     const response = await CapacitorHttp.post(options);
-    if (response.status === 200) {
+    console.log(response);
+    if (response.status === 201 || 200) {
       window.location.href = '/homePage';
     }
     else {
-      console.log(response.data.message);
+      console.log(response);
     }
 
   }
