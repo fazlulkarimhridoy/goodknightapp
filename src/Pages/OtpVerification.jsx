@@ -21,7 +21,7 @@ const OtpVerification = () => {
     return (
         <div className="bg-[#890000] h-screen">
             <Navbar></Navbar>
-            <div className="container ">
+            <div className="container h-dvh">
                 <div className="pr-12 relative">
                     <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
                 </div>
