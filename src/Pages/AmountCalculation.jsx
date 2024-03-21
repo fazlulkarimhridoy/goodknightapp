@@ -6,22 +6,25 @@ import Navbar from "../components/Navbar";
 
 const AmountCalculation = () => {
 
-    const [amount, setAmount] = useState(0);
-    const token = localStorage.getItem('token');
-    if (!token) {
-        return window.location.href = "/signin";
-    }
+  const [amount, setAmount] = useState(0);
+  const [saving, setSaving] = useState(null);
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
 
-    // handle quantity 1
-    const handleQuantity1 = () => {
-        const price = 115;
-        setAmount(price);
-    }
-    // handle quantity 2
-    const handleQuantity2 = () => {
-        const price = 115*2;
-        setAmount(price);
-    }
+  // handle quantity 1
+  const handleQuantity1 = () => {
+    const price = 115;
+    setAmount(price);
+    setSaving(34)
+  }
+  // handle quantity 2
+  const handleQuantity2 = () => {
+    const price = 115 * 2;
+    setAmount(price);
+    setSaving(34 * 2);
+  }
 
   return (
     <>
@@ -35,15 +38,16 @@ const AmountCalculation = () => {
             <h1 className="text-white mt-2 text-2xl p-2">Select quantity</h1>
           </div>
 
-                <div className="flex items-center justify-center gap-3">
-                    <button className="btn-primary w-14 h-14">1</button>
-                    <h1 className="text-white text-2xl">or</h1>
-                    <button className="btn-primary w-14 h-14">2</button>
-                </div>
+          <div className="flex items-center justify-center gap-3">
+            <button onClick={handleQuantity1} className="btn-primary w-14 h-14">1</button>
+            <h1 className="text-white text-2xl">or</h1>
+            <button onClick={handleQuantity2} className="btn-primary w-14 h-14">2</button>
+          </div>
 
           <div className="mt-3">
             <h1 className="text-white text-2xl text-center">Total savings</h1>
             <input
+              value={saving}
               disabled
               placeholder="Auto Calculation"
               type="number"
@@ -58,9 +62,9 @@ const AmountCalculation = () => {
             </h4>
           </div>
 
-                <h2 className="text-white text-4xl font-bold">
-                    BDT {amount}/-
-                </h2>
+          <h2 className="text-white text-4xl font-bold">
+            BDT {amount}/-
+          </h2>
 
           <div className="my-4">
             <Link to="/number">

@@ -2,9 +2,9 @@ import { Outlet } from "react-router-dom";
 
 const Root = () => {
     return (
-        <div className="bg-[#890000] font-poppins">
+        <div className="font-poppins">
             <Outlet />
-        </>
+        </div>
     );
 };
 
