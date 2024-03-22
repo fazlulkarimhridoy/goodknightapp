@@ -158,7 +158,7 @@ const ConsumerForm = () => {
           </div>
         </form>
         {
-          (name?.length === 0 || age?.length === 0 || gender?.length === 0 || phone_number?.length === 0) ? <div className="my-8">
+          (name?.length === 0 || age?.length === 0 || gender?.length === 0 || phone_number?.length === 0) ? <div className="mt-8">
             <Button title={"NEXT"}></Button>
           </div>
             :
