@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 import successIcon from "../../public/images/successIcon.svg"
 
 const SuccessPage = () => {
+
+  // redirect to home page
+  const redirectHome = () => {
+    window.location.href = "/homePage";
+  };
+
   return (
     <div className="container bg-[#890000]">
       <div className="pr-14 relative mt-16">
@@ -14,10 +20,8 @@ const SuccessPage = () => {
         <img width={120} src={successIcon}></img>
         <p className="text-2xl text-white">Successful</p>
       </div>
-      <div className="mt-20">
-        <Link to={"/homePage"}>
+      <div onClick={redirectHome} className="mt-20">
           <Button title={"HOME"}></Button>
-        </Link>
       </div>
     </div>
   );

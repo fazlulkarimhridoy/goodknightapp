@@ -5,11 +5,13 @@ import PhotoCaptureComponent from "./PhotoCapture";
 import { DataContext } from "../context/DataProvider";
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 const OCRApp = () => {
-  const { photoURL, setPhotoURL,text,setText } = useContext(DataContext);
+  const { photoURL, setPhotoURL, text, setText, customerData } = useContext(DataContext);
   const [imageURL, setImageURL] = useState("");
-//   const [text, setText] = useState("");
+  console.log(customerData);
+  //   const [text, setText] = useState("");
 
   //   const handleImageInputChange = event => {
   //     const file = event.target.files[0];
@@ -44,6 +46,11 @@ const OCRApp = () => {
         <button className="bg-[#D9D9D9] px-4 py-2 rounded-lg">
           <img src="/images/cameraIcon.svg"></img>
         </button>
+      </div>
+      <div className="mt-20">
+        <Link to="/successPage">
+          <Button title={"SUBMIT"}></Button>
+        </Link>
       </div>
       {/* <input type="file" onChange={handleImageInputChange} accept="image/*" /> */}
       {/* <button onClick={extractTextFromImage}>Extract Text</button>
