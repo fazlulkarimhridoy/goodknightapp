@@ -44,7 +44,7 @@ const VideoPlay = () => {
         className="video-player"
         playsInline
         loop
-        muted={true}
+        muted={false}
         controls={false}
         alt="video"
         src={video}
@@ -54,7 +54,8 @@ const VideoPlay = () => {
         <button onClick={handleSkip} className="skip-button text-white font-semibold">
           Skip {'>'}{'>'}
         </button>
-      )}    </div>
+      )}
+    </div>
   );
 };
 

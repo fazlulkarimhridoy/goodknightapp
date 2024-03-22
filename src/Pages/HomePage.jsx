@@ -81,7 +81,7 @@ const HomePage = () => {
     }
 
     // handle bp info
-    const { data: bpInfo = {}, isLoading, isFetching, isPending } = useQuery({
+    const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
             const res = await axios.get('https://goodknight.xri.com.bd/api/bp_info', {

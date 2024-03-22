@@ -41,13 +41,13 @@ const SignIn = () => {
 
     return (
         <div className='bg-[#890000]'>
-            <div className='text-white flex flex-col gap-4 mt-10 w-5/6 mx-auto'>
+            <div className='text-white flex flex-col gap-4 mt-10 w-3/4 mx-auto'>
 
-                <input onChange={handleBpId} name='bp_id' required placeholder='BP ID' type='number' className=' text-center text-black shadow-slate-300 shadow-inner p-3 text-xl font-bold rounded-xl outline-none'></input>
-                <input onChange={handlePassword} name='password' required placeholder='PASSWORD' type='password' className='text-center text-black shadow-slate-300 shadow-inner p-3 text-xl font-bold rounded-xl outline-none'></input>
+                <input onChange={handleBpId} name='bp_id' required placeholder='BP ID' type='number' className=' text-center text-black shadow-gray-600 shadow-inner p-2.5 text-xl font-bold rounded-xl outline-none'></input>
+                <input onChange={handlePassword} name='password' required placeholder='PASSWORD' type='password' className='text-center text-black shadow-gray-600 shadow-inner p-2.5 text-xl font-bold rounded-xl outline-none'></input>
 
             </div>
-            <div className='w-5/6 mx-auto'>
+            <div className='w-3/4 mx-auto'>
                 <button
                     onClick={userLogIn}
                     className='mt-5 btn-primary w-full text-white text-xl font-semibold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-2.5 rounded-xl outline-none'>
