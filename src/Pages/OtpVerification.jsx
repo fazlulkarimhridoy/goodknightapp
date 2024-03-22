@@ -8,14 +8,14 @@ import Navbar from "../components/Navbar";
 
 
 const OtpVerification = () => {
-
+    const [otp, setOtp] = useState(null);
 
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
     }
 
-    const [otp, setOtp] = useState(null);
+    
 
 
     return (

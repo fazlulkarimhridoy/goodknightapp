@@ -1,17 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { CapacitorHttp } from '@capacitor/core';
+import { DataContext } from "../context/DataProvider";
 
 
 
 const MobileNumber = () => {
+    const { otp, setOtp } = useContext(DataContext);
 
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
     }
+
+    // generate otp
+    const handleOtpVerification = async () => {
+        const numberString = '01634468473'
+        const number = parseInt(numberString)
+        console.log('number', number);
+        const options = {
+            url: 'https://goodknight.xri.com.bd/api/send-otp',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            data: { phone_number: numberString }
+        };
+        const response = await CapacitorHttp.post(options);
+        console.log(response.data.otp);
+        const otp = response.data.otp;
+        // if (otp) {
+        //     setOtp(otp)
+        // }
+        // if (response.status === 201 || 200) {
+        //     localStorage.removeItem('token');
+        //     window.location.href = "/signin";
+        // }
+        // else {
+        //     console.log(response);
+        // }
+    }
+    console.log(otp);
 
     return (
         <div className="bg-[#890000]">
@@ -33,6 +65,10 @@ const MobileNumber = () => {
                     <Link to="/otp">
                         <Button title={'NEXT'}></Button>
                     </Link>
+                </div>
+
+                <div onClick={handleOtpVerification}>
+                    <Button title={'Send Otp'} />
                 </div>
 
 

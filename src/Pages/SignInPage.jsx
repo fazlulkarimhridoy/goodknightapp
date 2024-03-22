@@ -4,7 +4,7 @@ import SignIn from '../components/SignIn';
 
 const SignInPage = () => {
     return (
-        <div className='bg-[#890000] flex flex-col items-center pt-[50px] h-dvh font-poppins'>
+        <div className='bg-[#890000] flex flex-col items-center pt-[50px] font-poppins'>
             <div className='pr-8 relative'>
                 <img src="/images/LargeLogo.svg"></img>
             </div>

@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const [photoURL, setPhotoURL] = useState(null);
   const [text, setText] = useState("");
-  
+  const [otp, setOTP] = useState(null);
   const [customerData, setCustomerData] = useState({
     name: "",
     age: "",
@@ -41,7 +41,7 @@ export const DataProvider = ({ children }) => {
 
   // Provide the context value to its children
   return (
-    <DataContext.Provider value={{ theme, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL,text, setText }}>
+    <DataContext.Provider value={{ otp, setOTP, theme, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL,text, setText }}>
       {children}
     </DataContext.Provider>
   );

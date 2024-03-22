@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import Navbar from "../components/Navbar";
@@ -112,7 +112,6 @@ const ConsumerForm = () => {
                 type="text"
                 className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
               ></input>
-              {name?.length === 0 && <div className="text-white">name is required</div>}
             </div>
             <div>
               <input
@@ -124,7 +123,6 @@ const ConsumerForm = () => {
                 type="number"
                 className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
               ></input>
-              {age?.length === 0 && <div className="text-white">age is required</div>}
             </div>
             <div className="arrow">
               <select
@@ -145,7 +143,6 @@ const ConsumerForm = () => {
                   Female
                 </option>
               </select>
-              {gender?.length === 0 && <div className="text-white">gender is required</div>}
             </div>
             <div>
               <input
@@ -157,18 +154,20 @@ const ConsumerForm = () => {
                 type="number"
                 className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
               ></input>
-              {phone_number?.length === 0 && <div className="text-white">mobile number is required</div>}
             </div>
           </div>
         </form>
         {
-          (name?.length === 0 || age?.length === 0 || gender?.length === 0 || phone_number?.length === 0) ? <div className="my-8">
+          (name?.length === 0 || age?.length === 0 || gender?.length === 0 || phone_number?.length === 0) ? <div className="mt-8">
             <Button title={"NEXT"}></Button>
           </div>
             :
             <div onClick={handleNumberCheck} className="my-8">
               <Button title={"NEXT"}></Button>
             </div>
+        }
+        {
+          (name?.length === 0 && <div className="text-white">name is required</div>) || (age?.length === 0 && <div className="text-white">age is required</div> || (gender?.length === 0 && <div className="text-white">gender is required</div>) || (name?.phone_number && <div className="text-white">number is required</div>))
         }
 
       </div >
