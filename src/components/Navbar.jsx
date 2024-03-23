@@ -1,9 +1,17 @@
 import { Drawer } from "antd";
+import { CapacitorHttp } from '@capacitor/core';
 import { useState } from "react";
 import { FaArrowLeft, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    if (!token) {
+        return (window.location.href = "/signin");
+    }
     const [open, setOpen] = useState(false);
     const [placement] = useState('right');
     const showDrawer = () => {
@@ -14,10 +22,48 @@ const Navbar = () => {
     };
 
     // handle signout
-    const handleSignout = () => {
-        localStorage.removeItem('token');
-        window.location.reload();
-        window.location.href = "/signin";
+    const handleSignout = async () => {
+        // axios.post('https://goodknight.xri.com.bd/api/logout', {
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => {
+        //         console.log(res.data);
+        //     })
+        // localStorage.removeItem('token');
+        // window.location.reload();
+        // window.location.href = "/signin";
+
+        // fetch('https://goodknight.xri.com.bd/api/logout', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${token}`
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data);
+        //         localStorage.removeItem('token');
+        //         window.location.reload();
+        //         window.location.href = "/signin";
+        //     })
+
+        // post request using capacitor http request
+        const options = {
+            url: 'https://goodknight.xri.com.bd/api/logout',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        const response = await CapacitorHttp.post(options);
+        if (response.status == 201) {
+            toast.success('Successfully logged out!')
+            localStorage.removeItem('token');
+            navigate("/signin");
+        }
     }
 
     // handle home
@@ -29,7 +75,7 @@ const Navbar = () => {
     return (
         <div className="bg-[#890000] flex items-center justify-between px-6 pt-5">
             {/* back button */}
-            <FaArrowLeft size={25} color="white" />
+            <FaArrowLeft size={25} color="white" onClick={() => window.history.back()} />
 
             {/* hamburger menu */}
             <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
