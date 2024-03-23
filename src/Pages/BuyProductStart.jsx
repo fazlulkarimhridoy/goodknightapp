@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import Logo from "../components/Logo";
 import { ImCross } from "react-icons/im";
 import { TiTick } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Geolocation } from '@capacitor/geolocation';
 import { DataContext } from "../context/DataProvider";
 import { CapacitorHttp } from '@capacitor/core';
+import toast from "react-hot-toast";
 
 
 const BuyProductStart = () => {
+  const navigate = useNavigate()
   const { customerData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
   console.log(customerData);
@@ -76,10 +78,12 @@ const BuyProductStart = () => {
     const response = await CapacitorHttp.post(options);
     console.log(response);
     if (response.status === 201) {
-      window.location.href = '/homePage';
+      navigate("/homePage");
+      toast.success('User data stored successfully!')
+
     }
     else {
-      console.log(response);
+      toast.error('User data is not stored!')
     }
 
   }

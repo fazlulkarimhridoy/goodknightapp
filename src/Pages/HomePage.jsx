@@ -1,7 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
 import logo from "../../public/images/profilegoodknigtlogo.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Drawer, Spin } from "antd";
 import { useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -10,9 +10,11 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CapacitorHttp } from '@capacitor/core';
+import toast from "react-hot-toast";
 
 
 const HomePage = () => {
+    const navigate = useNavigate();
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
@@ -65,9 +67,11 @@ const HomePage = () => {
         };
         const response = await CapacitorHttp.post(options);
         console.log(response);
-        if (response.status === 201 || 200) {
+        if (response.status === 201) {
             localStorage.removeItem('token');
-            window.location.href = "/signin";
+            navigate("/signin");
+            toast.success('Successfully logged out!')
+
         }
         else {
             console.log(response);

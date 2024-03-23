@@ -39,9 +39,9 @@ const VideoPlay = () => {
   }
 
   return (
-    <div>
+    <div className="!bg-black ">
       <video
-        className="video-player"
+        className="video-player !bg-black"
         playsInline
         loop
         muted={false}

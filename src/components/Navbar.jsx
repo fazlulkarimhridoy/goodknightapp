@@ -3,8 +3,11 @@ import { CapacitorHttp } from '@capacitor/core';
 import { useState } from "react";
 import { FaArrowLeft, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const token = localStorage.getItem("token");
     if (!token) {
         return (window.location.href = "/signin");
@@ -56,10 +59,10 @@ const Navbar = () => {
             }
         };
         const response = await CapacitorHttp.post(options);
-        if (response.status == 200) {
+        if (response.status == 201) {
+            toast.success('Successfully logged out!')
             localStorage.removeItem('token');
-            window.location.reload();
-            window.location.href = "/signin";
+            navigate("/signin");
         }
     }
 
