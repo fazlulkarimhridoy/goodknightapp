@@ -75,7 +75,7 @@ const BuyProductStart = () => {
     };
     const response = await CapacitorHttp.post(options);
     console.log(response);
-    if (response.status === 201 || 200) {
+    if (response.status === 201) {
       window.location.href = '/homePage';
     }
     else {
