@@ -37,7 +37,7 @@ const AddConsumerUse = () => {
               value={previous_used_product}
               name="previous_used_product"
               id="product"
-              className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+              className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
             >
               <option disabled className="text-xl" value="coil">
                 Coil{" "}
@@ -60,7 +60,7 @@ const AddConsumerUse = () => {
               name="previous_used_product"
               value={"Liquid Vaporizer"}
               onClick={handleChange}
-              className={`btn-primary mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none ${previous_used_product === "Liquid Vaporizer" ? "bg-[#393939] text-white" : ""
+              className={`btn-primary mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none ${previous_used_product === "Liquid Vaporizer" ? "bg-[#393939] text-white" : ""
                 }`}
             >
               Liquid Vaporizer
@@ -72,7 +72,7 @@ const AddConsumerUse = () => {
               name="previous_used_product"
               value={"others"}
               onClick={handleChange}
-              className={`btn-primary mt-2 w-[300px] text-black  text-2xl  py-1  font-normal  px-0  shadow-inner shadow-[#00000080] ${previous_used_product === "others" ? "bg-[#393939] text-white" : ""
+              className={`btn-primary mt-2 w-[300px] text-black  text-2xl  py-1.5  font-normal  px-0  shadow-inner shadow-[#00000080] ${previous_used_product === "others" ? "bg-[#393939] text-white" : ""
                 }`}
             >
               Others

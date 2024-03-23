@@ -25,7 +25,7 @@ const ConsumedProductName = () => {
             <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
           </div>
           <div className=" space-y-4 text-center">
-            <h1 className="text-white mt-4 text-xl p-2">Brand name ?</h1>
+            <h1 className="text-white mt-4 text-2xl p-2">Brand name ?</h1>
           </div>
           <div className="arrow">
             <label className="text-white" for="product-list">Product List</label> <br />
@@ -34,7 +34,7 @@ const ConsumedProductName = () => {
               value={previous_used_brand}
               name="previous_used_brand"
               id="product"
-              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
+              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
               <option disabled className="text-xl" value="coil">
                 Product List
@@ -57,7 +57,7 @@ const ConsumedProductName = () => {
               value={previous_used_brand}
               name="previous_used_brand"
               id="product"
-              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
+              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
               <option disabled className="text-xl" value="coil">
                 Others
@@ -81,7 +81,7 @@ const ConsumedProductName = () => {
               name="previous_used_brand"
               placeholder="Type here"
               type="text"
-              className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner p-2 py-1 text-2xl font-normal rounded-xl outline-none"
+              className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
             ></input>
           </div>
           {previous_used_brand?.length === 0 ? (
