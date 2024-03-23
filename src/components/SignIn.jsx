@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { CapacitorHttp } from '@capacitor/core';
+import { Geolocation } from '@capacitor/geolocation';
+
 
 
 const SignIn = () => {
@@ -18,18 +20,39 @@ const SignIn = () => {
         setPassword(e.target.value);
     }
 
+    // // handle location
+    // const handleLocation = async () => {
+    //     // track latitude and longitude
+    //     const position = await Geolocation?.getCurrentPosition();
+    //     const latitude = position?.coords?.latitude.toString();
+    //     const longitude = position?.coords?.longitude.toString();
+    //     const geoLocation = {latitude, longitude}
+    //     return geoLocation;
+    // }
+
     // handle login
     const userLogIn = async () => {
+
+        const position = await Geolocation?.getCurrentPosition();
+            const latitude = position?.coords?.latitude.toString();
+            const longitude = position?.coords?.longitude.toString();
+
+        const customerData = {
+            bp_id: bpId,
+            password: password,
+            latitude: latitude,
+            longitude: longitude
+        }
 
         // post request using capacitor http request
         const options = {
             url: 'https://goodknight.xri.com.bd/api/login',
             headers: { 'Content-Type': 'application/json' },
-            data: { bp_id: bpId, password: password }
+            data: customerData
         };
         const response = await CapacitorHttp.post(options);
         const token = response.data.token;
-        if (token) {
+        if (token && response.status === 200) {
             localStorage.setItem('token', token);
             window.location.href = '/homePage';
         }
