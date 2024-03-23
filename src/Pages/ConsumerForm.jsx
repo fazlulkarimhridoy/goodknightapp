@@ -94,7 +94,7 @@ const ConsumerForm = () => {
           <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
         </div>
         <div className=" space-y-4 text-center">
-          <h1 className="text-white mt-4 text-xl p-2">
+          <h1 className="text-white mt-4 text-2xl p-2">
             Consumer’s information
           </h1>
         </div>
@@ -111,7 +111,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="name"
                 type="text"
-                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div>
@@ -123,7 +123,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="age"
                 type="number"
-                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div className="arrow">
@@ -134,7 +134,7 @@ const ConsumerForm = () => {
                 name="gender"
                 required
                 id="product"
-                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               >
 
                 <option disabled className="text-xl" value="coil">
@@ -157,7 +157,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="mobile"
                 type="number"
-                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
           </div>

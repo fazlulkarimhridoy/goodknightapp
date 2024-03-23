@@ -301,7 +301,7 @@ const HomePage = () => {
 
             <div className="mt-10 pb-10 mx-8">
                 <Link to="/usedproduct">
-                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold py-2.5 rounded-xl shadow-xl">
+                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold py-3 rounded-xl shadow-xl">
                         Add Consumer
                     </button>
                 </Link>
