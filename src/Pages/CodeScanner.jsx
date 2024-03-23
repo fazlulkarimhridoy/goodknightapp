@@ -4,10 +4,12 @@ import CameraComponent from "./Camera";
 import PhotoCaptureComponent from "./PhotoCapture";
 import { DataContext } from "../context/DataProvider";
 import Logo from "../components/Logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import toast from "react-hot-toast";
 
 const OCRApp = () => {
+  const navigate = useNavigate()
   const { photoURL, setPhotoURL, text, setText, customerData } = useContext(DataContext);
   const [imageURL, setImageURL] = useState("");
   console.log(customerData);
@@ -18,6 +20,11 @@ const OCRApp = () => {
   //     const imageURL = URL.createObjectURL(file);
   //     setImageURL(imageURL);
   //   };
+
+  const handleSubmit = () => {
+    navigate("/homePage")
+    toast.success('Successfully data stored!')
+  }
 
   return (
     <div className="container">
@@ -47,10 +54,8 @@ const OCRApp = () => {
           <img src="/images/cameraIcon.svg"></img>
         </button>
       </div>
-      <div className="mt-20">
-        <Link to="/successPage">
-          <Button title={"SUBMIT"}></Button>
-        </Link>
+      <div onClick={handleSubmit} className="mt-20">
+        <Button title={"SUBMIT"}></Button>
       </div>
       {/* <input type="file" onChange={handleImageInputChange} accept="image/*" /> */}
       {/* <button onClick={extractTextFromImage}>Extract Text</button>

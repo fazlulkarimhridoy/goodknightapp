@@ -94,7 +94,7 @@ const ConsumerForm = () => {
           <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
         </div>
         <div className=" space-y-4 text-center">
-          <h1 className="text-white mt-4 text-2xl p-2">
+          <h1 className="text-white mt-4 text-xl p-2">
             Consumer’s information
           </h1>
         </div>
@@ -103,6 +103,7 @@ const ConsumerForm = () => {
         <form >
           <div className="flex flex-col gap-2">
             <div>
+              <label className="text-white" for="name">Name</label> <br />
               <input
                 value={name}
                 onChange={handleChange}
@@ -110,10 +111,11 @@ const ConsumerForm = () => {
                 required
                 placeholder="name"
                 type="text"
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
+                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div>
+              <label className="text-white" for="Age">Age</label> <br />
               <input
                 value={age}
                 onChange={handleChange}
@@ -121,18 +123,20 @@ const ConsumerForm = () => {
                 required
                 placeholder="age"
                 type="number"
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
+                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div className="arrow">
+              <label className="text-white" for="gender">Gender</label> <br />
               <select
                 value={gender}
                 onChange={handleChange}
                 name="gender"
                 required
                 id="product"
-                className=" w-[220px] text-center text-black shadow-slate-300 shadow-inner  py-2 text-2xl font-semibold rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               >
+
                 <option disabled className="text-xl" value="coil">
                   Gender
                 </option>
@@ -145,6 +149,7 @@ const ConsumerForm = () => {
               </select>
             </div>
             <div>
+              <label className="text-white" for="phone_number">Phone Number</label> <br />
               <input
                 value={phone_number}
                 onChange={handleChange}
@@ -152,7 +157,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="mobile"
                 type="number"
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-2xl font-bold rounded-xl outline-none"
+                className="mt-2 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
           </div>

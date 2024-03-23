@@ -4,19 +4,19 @@ import SignIn from '../components/SignIn';
 
 const SignInPage = () => {
     return (
-        <div className='bg-[#890000] flex flex-col items-center pt-[50px] font-poppins'>
-            <div className='pr-8 relative'>
-                <img src="/images/LargeLogo.svg"></img>
+        <div className="overflow-hidden bg-[#890000] flex flex-col items-center justify-center">
+            <div className="flex items-center justify-center flex-col mt-52 ">
+                <Logo />
             </div>
-            <div className=' space-y-4 text-center'>
-                <h1 className='text-white mt-4 text-2xl font-poppins'>POWER ACTIVE +</h1>
-                <h3 className='text-white text-base'>Door to door sales activation</h3>
-            </div>
+            <div className="text-center mt-5">
+                <h4 className="text-white text-base font-normal  ">
+                    Door to door sales activation
+                </h4>
+                <div className='mt-10'>
+                    <SignIn />
+                </div>
 
-            <div>
-                <SignIn></SignIn>
             </div>
-
         </div>
     );
 }

@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import OTPInput from "react-otp-input";
 import Navbar from "../components/Navbar";
+import toast from "react-hot-toast";
 
 
 
@@ -19,10 +20,16 @@ const OtpVerification = () => {
 
     // handle otp varification
     const handleVerification = () => {
+        if (otp === null) {
+            return toast.error('No otp found!')
+        }
         const otpFromLocalStorage = localStorage.getItem('otp');
         if (otpFromLocalStorage === otp) {
             localStorage.removeItem('otp')
             navigate('/ocr')
+        }
+        else {
+            toast.error('Invalid otp!')
         }
     }
 
@@ -54,7 +61,7 @@ const OtpVerification = () => {
                 </div>
 
                 <div onClick={handleVerification} className="my-32">
-                        <Button title={'NEXT'}></Button>
+                    <Button title={'NEXT'}></Button>
                 </div>
 
 

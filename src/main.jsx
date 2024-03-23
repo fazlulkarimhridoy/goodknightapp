@@ -21,6 +21,7 @@ import ExistedConsumerError from "./Pages/ExistedConsumerError"
 import SuccessPage from "./Pages/SuccessPage"
 import OCRApp from "./Pages/CodeScanner";
 import PhotoCaptureComponent from "./Pages/PhotoCapture";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -81,11 +82,11 @@ const router = createBrowserRouter([
         element: <SuccessPage></SuccessPage>
       },
       {
-        path:"/ocr",
+        path: "/ocr",
         element: <OCRApp></OCRApp>
       },
       {
-        path:"/takeImage",
+        path: "/takeImage",
         element: <PhotoCaptureComponent></PhotoCaptureComponent>
       }
     ],
@@ -98,6 +99,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <DataProvider>
+        <Toaster />
         <RouterProvider router={router} />
       </DataProvider>
     </QueryClientProvider>
