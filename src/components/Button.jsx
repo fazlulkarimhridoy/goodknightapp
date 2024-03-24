@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 
 const Button = ({ title, func }) => {
   return (
+    // animated button
     <motion.button
       whileTap={{ scale: 0.9 }}
       onClick={func}
