@@ -32,6 +32,7 @@ const ImageToText = () => {
         text += detection.text + "\n";
       }
       setDetectedText(text);
+      console.log(text)
     } catch (error) {
       console.error("Error processing image:", error);
     }

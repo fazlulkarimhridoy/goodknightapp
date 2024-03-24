@@ -28,38 +28,50 @@ const ConsumedProductName = () => {
             <h1 className="text-white mt-4 text-2xl p-2">Brand name ?</h1>
           </div>
           <div className="arrow">
-            <label className="text-white" for="product-list">Product List</label> <br />
+            <label className="text-white" for="product-list">
+              Product List
+            </label>{" "}
+            <br />
             <select
               onChange={handleChange}
-              value={previous_used_brand}
+              defaultValue={previous_used_brand ? previous_used_brand : "product list" }
               name="previous_used_brand"
               id="product"
               className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
-              <option disabled className="text-xl" value="coil">
+              <option disabled className="text-xl" value="product list">
                 Product List
               </option>
-              <option className="text-xl" value="saab">
-                Saab
+              <option className="text-xl" value="RAK">
+                RAK
               </option>
-              <option className="text-xl" value="mercedes">
-                Mercedes
+              <option className="text-xl" value="Baoma">
+                Baoma
               </option>
-              <option className="text-xl" value="audi">
-                Audi
+              <option className="text-xl" value="Magic">
+                Magic
+              </option>
+              <option className="text-xl" value="Magic">
+                Jonaki
+              </option>
+              <option className="text-xl" value="Magic">
+                Eagle
               </option>
             </select>
           </div>
           <div className="arrow">
-            <label className="text-white" for="others">Others</label> <br />
+            <label className="text-white" for="others">
+              Others
+            </label>{" "}
+            <br />
             <select
               onChange={handleChange}
-              value={previous_used_brand}
+              defaultValue={previous_used_brand ? previous_used_brand : "others" }
               name="previous_used_brand"
               id="product"
               className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
-              <option disabled className="text-xl" value="coil">
+              <option disabled className="text-xl" value="others">
                 Others
               </option>
               <option className="text-xl" value="saab">

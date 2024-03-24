@@ -34,7 +34,7 @@ const AddConsumerUse = () => {
             <label className="text-white" for="Coil">Coil</label> <br />
             <select
               onChange={handleChange}
-              value={previous_used_product}
+              defaultValue={previous_used_product ? previous_used_product : "coil" }
               name="previous_used_product"
               id="product"
               className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
