@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, } from "react-router-dom";
 import Root from "./Root";
 import ErrorPage from "../src/components/ErrorPage";
 import StartPage from "./Pages/StartPage";
@@ -22,6 +22,10 @@ import SuccessPage from "./Pages/SuccessPage"
 import OCRApp from "./Pages/CodeScanner";
 import PhotoCaptureComponent from "./Pages/PhotoCapture";
 import { Toaster } from "react-hot-toast";
+import ImageToText from "./Pages/ImageToText";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -87,7 +91,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/takeImage",
-        element: <PhotoCaptureComponent></PhotoCaptureComponent>
+        element: <ImageToText></ImageToText>
       }
     ],
   },

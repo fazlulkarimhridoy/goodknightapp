@@ -76,7 +76,7 @@ const SignIn = () => {
           name="bp_id"
           required
           placeholder="BP ID"
-          type="number"
+          type="text"
           className=" text-center font-light italic text-black shadow-slate-300 shadow-inner p-2 text-2xl  rounded-xl outline-none"
         ></input>
         <input

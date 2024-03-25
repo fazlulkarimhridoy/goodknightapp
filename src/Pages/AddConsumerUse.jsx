@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion";
 
 const AddConsumerUse = () => {
   const { customerData, setCustomerData, handleChange } =
@@ -31,10 +32,16 @@ const AddConsumerUse = () => {
           </div>
 
           <div className="arrow">
-            <label className="text-white" for="Coil">Coil</label> <br />
-            <select
+            <label className="text-white" for="Coil">
+              Coil
+            </label>{" "}
+            <br />
+            <motion.select
+             whileTap={{ scale: 0.9 }}
               onChange={handleChange}
-              value={previous_used_product}
+              defaultValue={
+                previous_used_product ? previous_used_product : "coil"
+              }
               name="previous_used_product"
               id="product"
               className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
@@ -51,32 +58,47 @@ const AddConsumerUse = () => {
               <option className="text-xl" value="audi">
                 Audi
               </option>
-            </select>
+            </motion.select>
           </div>
 
           <div>
-            <label className="text-white" for="vaporizer">Vaporizer</label> <br />
-            <button
+            <label className="text-white" for="vaporizer">
+              Vaporizer
+            </label>{" "}
+            <br />
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+    
               name="previous_used_product"
               value={"Liquid Vaporizer"}
               onClick={handleChange}
-              className={`btn-primary mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none ${previous_used_product === "Liquid Vaporizer" ? "bg-[#393939] text-white" : ""
-                }`}
+              className={`btn-primary mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none ${
+                previous_used_product === "Liquid Vaporizer"
+                  ? "bg-[#393939] text-white"
+                  : ""
+              }`}
             >
               Liquid Vaporizer
-            </button>
+            </motion.button>
           </div>
           <div>
-            <label className="text-white" for="others">Others</label> <br />
-            <button
+            <label className="text-white" for="others">
+              Others
+            </label>{" "}
+            <br />
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               name="previous_used_product"
               value={"others"}
               onClick={handleChange}
-              className={`btn-primary mt-2 w-[300px] text-black  text-2xl  py-1.5  font-normal  px-0  shadow-inner shadow-[#00000080] ${previous_used_product === "others" ? "bg-[#393939] text-white" : ""
-                }`}
+              className={`btn-primary mt-2 w-[300px] text-black  text-2xl  py-1.5  font-normal  px-0  shadow-inner shadow-[#00000080] ${
+                previous_used_product === "others"
+                  ? "bg-[#393939] text-white"
+                  : ""
+              }`}
             >
               Others
-            </button>
+            </motion.button>
           </div>
           {previous_used_product?.length === 0 ? (
             <div className="my-12">

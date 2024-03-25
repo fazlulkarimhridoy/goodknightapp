@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from 'react-router-dom';
 import { DataContext } from "../context/DataProvider";
 import { CapacitorHttp } from '@capacitor/core';
+import { motion } from "framer-motion";
 
 const ConsumerForm = () => {
 
@@ -129,7 +130,7 @@ const ConsumerForm = () => {
             <div className="arrow">
               <label className="text-white" for="gender">Gender</label> <br />
               <select
-                value={gender}
+                defaultValue={gender ? gender : "gender"}
                 onChange={handleChange}
                 name="gender"
                 required
@@ -137,7 +138,7 @@ const ConsumerForm = () => {
                 className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               >
 
-                <option disabled className="text-xl" value="coil">
+                <option disabled className="text-xl" value="gender">
                   Gender
                 </option>
                 <option className="text-xl" value="saab">

@@ -80,6 +80,7 @@ const BuyProductStart = () => {
     if (response.status === 201) {
       navigate("/homePage");
       toast.success('User data stored successfully!')
+      removeData()
 
     }
     else {
