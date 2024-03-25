@@ -28,7 +28,7 @@ const Root = () => {
         key={location.key}
         initial={{ x: 300, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -800, opacity: 0 }}
+        exit={{ x: -100, opacity: 0 }}
         className="font-poppins bg-[#890000] h-screen"
       >
         <Outlet />
