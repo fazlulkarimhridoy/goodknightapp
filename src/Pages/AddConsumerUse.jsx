@@ -36,7 +36,8 @@ const AddConsumerUse = () => {
               Coil
             </label>{" "}
             <br />
-            <select
+            <motion.select
+             whileTap={{ scale: 0.9 }}
               onChange={handleChange}
               defaultValue={
                 previous_used_product ? previous_used_product : "coil"
@@ -57,7 +58,7 @@ const AddConsumerUse = () => {
               <option className="text-xl" value="audi">
                 Audi
               </option>
-            </select>
+            </motion.select>
           </div>
 
           <div>
@@ -85,7 +86,8 @@ const AddConsumerUse = () => {
               Others
             </label>{" "}
             <br />
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               name="previous_used_product"
               value={"others"}
               onClick={handleChange}
@@ -96,7 +98,7 @@ const AddConsumerUse = () => {
               }`}
             >
               Others
-            </button>
+            </motion.button>
           </div>
           {previous_used_product?.length === 0 ? (
             <div className="my-12">
