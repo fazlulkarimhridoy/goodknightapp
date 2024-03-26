@@ -18,7 +18,7 @@ const AddConsumerUse = () => {
   }
 
   return (
-    <div className="bg-[#890000] overflow-hidden">
+    <motion.div   className="bg-[#890000] overflow-hidden">
       <Navbar></Navbar>
       <div className=" bg-[#890000]">
         <div className="container">
@@ -116,7 +116,7 @@ const AddConsumerUse = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

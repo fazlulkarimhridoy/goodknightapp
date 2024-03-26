@@ -8,7 +8,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { DataContext } from "../context/DataProvider";
 import { CapacitorHttp } from '@capacitor/core';
 import toast from "react-hot-toast";
-
+import { motion } from "framer-motion"
 
 const BuyProductStart = () => {
   const navigate = useNavigate()
@@ -103,9 +103,9 @@ const BuyProductStart = () => {
           <p className="text-white mt-4 text-4xl p-2 ">GoodKnight POWER ACTIV+ ?</p>
         </div>
         <div className="flex justify-between gap-10 pt-20">
-          <button onClick={handleNoClick} className="text-xl text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></button>
+          <motion.button whileTap={{ scale: 0.9}} onClick={handleNoClick} className="text-xl text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></motion.button>
           <Link to="/calculation">
-            <button className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></button>
+            <motion.button whileTap={{ scale: 0.9}} className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></motion.button>
           </Link>
         </div>
       </div>
