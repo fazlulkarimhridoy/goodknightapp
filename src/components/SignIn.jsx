@@ -22,15 +22,6 @@ const SignIn = () => {
     setPassword(e.target.value);
   };
 
-  // // handle location
-  // const handleLocation = async () => {
-  //     // track latitude and longitude
-  //     const position = await Geolocation?.getCurrentPosition();
-  //     const latitude = position?.coords?.latitude.toString();
-  //     const longitude = position?.coords?.longitude.toString();
-  //     const geoLocation = {latitude, longitude}
-  //     return geoLocation;
-  // }
 
   // handle login
   const userLogIn = async () => {
