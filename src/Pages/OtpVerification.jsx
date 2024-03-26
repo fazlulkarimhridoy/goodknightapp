@@ -26,7 +26,7 @@ const OtpVerification = () => {
         const otpFromLocalStorage = localStorage.getItem('otp');
         if (otpFromLocalStorage === otp) {
             localStorage.removeItem('otp')
-            navigate('/ocr')
+            navigate('/takeimage')
         }
         else {
             toast.error('Invalid otp!')

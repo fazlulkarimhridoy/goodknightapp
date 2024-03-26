@@ -5,6 +5,7 @@ import { FaArrowLeft, FaHome, FaSignOutAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion"
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -75,10 +76,11 @@ const Navbar = () => {
     return (
         <div className="bg-[#890000] flex items-center justify-between px-6 pt-5">
             {/* back button */}
-            <FaArrowLeft size={25} color="white" onClick={() => window.history.back()} />
+            <motion.span whileTap={{scale:0.9}}><FaArrowLeft  size={25} color="white" onClick={() => window.history.back()} /></motion.span>
 
             {/* hamburger menu */}
-            <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
+            <motion.span whileTap={{scale:0.9}}><GiHamburgerMenu onClick={showDrawer} size={25} color="white" /></motion.span>
+            
             <Drawer
                 closeIcon={true}
                 width={250}

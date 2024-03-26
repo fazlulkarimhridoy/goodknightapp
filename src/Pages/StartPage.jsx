@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo"
 import { useState } from "react";
+import Button from "../components/Button";
 const StartPage = () => {
     const [msg, setMsg] = useState(null)
 
@@ -22,9 +23,10 @@ const StartPage = () => {
             </div>
             <div className="text-center py-10">
                 <Link to='/signin'>
-                    <button onClick={handleButton} className="bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
+                    <Button func={handleButton} title={'ENTER'}></Button>
+                    {/* <button onClick={handleButton} className="bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold px-20 py-2 rounded-xl shadow-xl">
                         ENTER
-                    </button>
+                    </button> */}
                 </Link>
             </div>
         </div>

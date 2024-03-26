@@ -16,13 +16,16 @@
   position: relative;
 }
 
+body{
+  background-color: #890000;
+}
 
 
 /* .video-container {
   position: relative;
   width: 100%;
- 
-  padding-top: 177.77%; 
+
+  padding-top: 177.77%;
 } */
 
 .video-player {

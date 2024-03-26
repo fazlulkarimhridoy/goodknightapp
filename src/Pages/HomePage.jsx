@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CapacitorHttp } from '@capacitor/core';
 import toast from "react-hot-toast";
+import Button from "../components/Button";
 
 
 const HomePage = () => {
@@ -299,11 +300,9 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="mt-10 pb-10 mx-8">
+            <div className="p-10 bg-white">
                 <Link to="/usedproduct">
-                    <button className="w-full bg-gradient-to-r from-[#FF5454] to-[#E10000] text-white text-xl font-bold py-3 rounded-xl shadow-xl">
-                        Add Consumer
-                    </button>
+                    <Button title={"ADD CONSUMER"}></Button>
                 </Link>
             </div>
         </div>

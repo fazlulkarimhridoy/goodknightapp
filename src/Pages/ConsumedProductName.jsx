@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion";
 
 const ConsumedProductName = () => {
   const { customerData, handleChange } = useContext(DataContext);
@@ -28,38 +29,52 @@ const ConsumedProductName = () => {
             <h1 className="text-white mt-4 text-2xl p-2">Brand name ?</h1>
           </div>
           <div className="arrow">
-            <label className="text-white" for="product-list">Product List</label> <br />
-            <select
+            <label className="text-white" for="product-list">
+              Product List
+            </label>{" "}
+            <br />
+            <motion.select
+             whileTap={{ scale: 0.9 }}
               onChange={handleChange}
-              value={previous_used_brand}
+              defaultValue={previous_used_brand ? previous_used_brand : "product list" }
               name="previous_used_brand"
               id="product"
               className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
-              <option disabled className="text-xl" value="coil">
+              <option disabled className="text-xl" value="product list">
                 Product List
               </option>
-              <option className="text-xl" value="saab">
-                Saab
+              <option className="text-xl" value="RAK">
+                RAK
               </option>
-              <option className="text-xl" value="mercedes">
-                Mercedes
+              <option className="text-xl" value="Baoma">
+                Baoma
               </option>
-              <option className="text-xl" value="audi">
-                Audi
+              <option className="text-xl" value="Magic">
+                Magic
               </option>
-            </select>
+              <option className="text-xl" value="Magic">
+                Jonaki
+              </option>
+              <option className="text-xl" value="Magic">
+                Eagle
+              </option>
+            </motion.select>
           </div>
           <div className="arrow">
-            <label className="text-white" for="others">Others</label> <br />
-            <select
+            <label className="text-white" for="others">
+              Others
+            </label>{" "}
+            <br />
+            <motion.select
+               whileTap={{ scale: 0.9 }}
               onChange={handleChange}
-              value={previous_used_brand}
+              defaultValue={previous_used_brand ? previous_used_brand : "others" }
               name="previous_used_brand"
               id="product"
               className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
-              <option disabled className="text-xl" value="coil">
+              <option disabled className="text-xl" value="others">
                 Others
               </option>
               <option className="text-xl" value="saab">
@@ -71,18 +86,19 @@ const ConsumedProductName = () => {
               <option className="text-xl" value="audi">
                 Audi
               </option>
-            </select>
+            </motion.select>
           </div>
           <p className="text-white text-2xl">or</p>
           <div>
-            <input
+            <motion.input
+             whileTap={{ scale: 0.9 }}
               onChange={handleChange}
               value={previous_used_brand}
               name="previous_used_brand"
               placeholder="Type here"
               type="text"
               className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
-            ></input>
+            ></motion.input>
           </div>
           {previous_used_brand?.length === 0 ? (
             <div className="my-12">
