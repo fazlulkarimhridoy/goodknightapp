@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Logo from "../components/Logo"
 import { useState } from "react";
 import Button from "../components/Button";
+import { delay, motion} from "framer-motion";
+
 const StartPage = () => {
     const [msg, setMsg] = useState(null)
 
@@ -10,12 +12,12 @@ const StartPage = () => {
     }
 
     return (
-        <div className="h-dvh bg-[#890000] poppins-regular">
+        <motion.div initial={{opacity: 0}} animate={{opacity:1}} transition={{duration: 0.75 , ease:"easeOut"}} className="h-dvh bg-[#890000] poppins-regular">
             <div className="flex items-center justify-center pt-52 pr-5">
                 <img src="/images/LargeLogo.svg"></img>
             </div>
             <div className="text-center mt-10">
-                <h2 className="text-white text-2xl font-normal poppins-regular ">POWER ACTIV +</h2>
+               
                 <h4 className="text-white font-normal mt-5">
                     Door to door sales activation
                 </h4>
@@ -29,7 +31,7 @@ const StartPage = () => {
                     </button> */}
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

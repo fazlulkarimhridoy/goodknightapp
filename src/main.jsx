@@ -23,8 +23,7 @@ import OCRApp from "./Pages/CodeScanner";
 import PhotoCaptureComponent from "./Pages/PhotoCapture";
 import { Toaster } from "react-hot-toast";
 import ImageToText from "./Pages/ImageToText";
-
-
+import { motion, AnimatePresence } from "framer-motion";
 
 
 const router = createBrowserRouter([
@@ -104,8 +103,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <DataProvider>
         <Toaster />
-        <RouterProvider  router={router} />
+        <AnimatePresence initial={false}>
+           <RouterProvider router={router} />
+        </AnimatePresence>
+        
       </DataProvider>
-    </QueryClientProvider>
+    </QueryClientProvider>``
   </React.StrictMode>
 );
