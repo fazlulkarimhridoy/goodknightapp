@@ -39,7 +39,7 @@ const ImageToText = () => {
       const photo = await Camera.getPhoto({
         quality: 90,
         resultType: CameraResultType.Uri,
-        source: CameraSource.Photos
+        source: CameraSource.Camera
       });
 
       const data = handleDetectedText(photo.webPath);
