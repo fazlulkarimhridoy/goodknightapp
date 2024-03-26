@@ -4,31 +4,30 @@ import { useEffect, useState } from "react";
 
 const Root = () => {
   const location = useLocation();
-//   const [prevLocation, setPrevLocation] = useState();
-//   const [currentPath, setCurrentPath] = useState(location.pathname);
 
-//   const [show,setShow] = useState(true)
-
-//   useEffect(() => {
-//     if (location !== prevLocation) {
-//       // Location has changed
-//       console.log('Location changed:', location);
-//       setPrevLocation(location);
-//       setCurrentPath(location.pathname); // Update the state with the new path
-//     }
-//   }, [location, prevLocation]);
-
-//   console.log("previous location :", prevLocation);
-//   console.log("current loaction :", currentPath);
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity:1,
+    transition: {delay:1, duration: 0.5}
+  },
+  exit: {
+    x: '-100vw',
+    transition: {ease: 'easeInOut'}
+  }
+}
 
   return (
     <AnimatePresence>
    
       <motion.div
         key={location.key}
-        initial={{ x: 300, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: -100, opacity: 0 }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className="font-poppins bg-[#890000] h-screen"
       >
         <Outlet />

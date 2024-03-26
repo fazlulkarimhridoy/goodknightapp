@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { CapacitorHttp } from '@capacitor/core';
-// import { Geolocation } from '@capacitor/geolocation';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
-
-
+import React, { useState } from "react";
+import { CapacitorHttp } from "@capacitor/core";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import Button from "./Button";
+import { motion } from "framer-motion";
 
 const SignIn = () => {
   // states
@@ -16,12 +15,12 @@ const SignIn = () => {
   const handleBpId = (e) => {
     console.log(e.target.value);
     setBpId(e.target.value);
-  }
+  };
   // handle password
   const handlePassword = (e) => {
     console.log(e.target.value);
     setPassword(e.target.value);
-  }
+  };
 
   // // handle location
   // const handleLocation = async () => {
@@ -35,7 +34,6 @@ const SignIn = () => {
 
   // handle login
   const userLogIn = async () => {
-
     // const position = await Geolocation?.getCurrentPosition();
     // const latitude = position?.coords?.latitude.toString();
     // const longitude = position?.coords?.longitude.toString();
@@ -45,32 +43,28 @@ const SignIn = () => {
       password: password,
       // latitude: latitude,
       // longitude: longitude
-    }
+    };
 
     // post request using capacitor http request
     const options = {
-      url: 'https://goodknight.xri.com.bd/api/login',
-      headers: { 'Content-Type': 'application/json' },
-      data: customerData
+      url: "https://goodknight.xri.com.bd/api/login",
+      headers: { "Content-Type": "application/json" },
+      data: customerData,
     };
     const response = await CapacitorHttp.post(options);
     const token = response.data.token;
     if (token && response.status === 200) {
-      localStorage.setItem('token', token);
-      navigate("/homePage")
-      toast.success('Login successful!')
+      localStorage.setItem("token", token);
+      navigate("/homePage");
+      toast.success("Login successful!");
+    } else {
+      toast.error("Incorrect credentials!");
     }
-    else {
-      toast.error('Incorrect credentials!')
-    }
-  }
-
+  };
 
   return (
     <div>
-      <div
-        className="text-white flex flex-col gap-4 mt-2 w-3/4 mx-auto"
-      >
+      <div className="text-white flex flex-col gap-4 mt-2 w-3/4 mx-auto">
         <input
           onChange={handleBpId}
           name="bp_id"
@@ -88,15 +82,17 @@ const SignIn = () => {
           className="text-center italic font-light text-black shadow-slate-300 shadow-inner p-2 text-2xl font- rounded-xl outline-none"
         ></input>
 
-        <button
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+         
           onClick={userLogIn}
           className="btn mb-20 text-white text-xl font-bold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-3 rounded-xl outline-none"
         >
           LOG IN
-        </button>
+        </motion.button>
       </div>
     </div>
   );
-}
+};
 
 export default SignIn;
