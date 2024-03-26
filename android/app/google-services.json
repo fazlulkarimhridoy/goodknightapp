@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96655144508",
+    "project_id": "goodknightapp",
+    "storage_bucket": "goodknightapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96655144508:android:c53e68c331aec1e3e8f539",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA14iFhHmD25wln60-K_vZqKuxa9ru7CmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

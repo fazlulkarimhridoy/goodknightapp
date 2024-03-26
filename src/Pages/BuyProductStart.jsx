@@ -40,33 +40,6 @@ const BuyProductStart = () => {
       interested: "no"
     };
 
-    // await axios.post('https://goodknight.xri.com.bd/api/store-customer-info', data, {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then(res => {
-    //     console.log(res.data);
-    //     window.location.href = '/homePage';
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   })
-
-    // fetch('https://goodknight.xri.com.bd/api/store-customer-info', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${token}`
-    //   },
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     window.location.href = '/homePage';
-    //   })
-
     const options = {
       url: 'https://goodknight.xri.com.bd/api/store-customer-info',
       headers: {

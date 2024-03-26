@@ -60,7 +60,7 @@ const Navbar = () => {
             }
         };
         const response = await CapacitorHttp.post(options);
-        if (response.status == 201) {
+        if (response.status == 201 || 200) {
             toast.success('Successfully logged out!')
             localStorage.removeItem('token');
             navigate("/signin");

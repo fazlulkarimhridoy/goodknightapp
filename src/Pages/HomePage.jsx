@@ -68,7 +68,7 @@ const HomePage = () => {
         };
         const response = await CapacitorHttp.post(options);
         console.log(response);
-        if (response.status === 201) {
+        if (response.status === 201 || 200) {
             localStorage.removeItem('token');
             navigate("/signin");
             toast.success('Successfully logged out!')
