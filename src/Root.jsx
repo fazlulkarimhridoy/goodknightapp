@@ -53,14 +53,14 @@ const Root = () => {
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
 
       <motion.div
         key={location.key}
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+        // variants={containerVariants}
+        // initial="hidden"
+        // animate="visible"
+        // exit="exit"
         className="font-poppins bg-[#890000] h-screen"
       >
         <Outlet />

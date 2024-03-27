@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { Geolocation } from "@capacitor/geolocation";
+import { motion} from "framer-motion";
+
 
 const StartPage = () => {
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ const StartPage = () => {
     }
 
     return (
-        <div className="h-dvh bg-[#890000] poppins-regular py-40">
+        <motion.div initial={{opacity: 0}} animate={{opacity:1}} transition={{duration: 0.75 , ease:"easeOut"}} className="h-dvh bg-[#890000] poppins-regular py-40">
             <div className="flex items-center justify-center pr-5">
                 <img src="/images/LargeLogo.svg"></img>
             </div>
@@ -31,7 +33,7 @@ const StartPage = () => {
             <div onClick={handleLocation} className="text-center mt-5">
                 <Button title={'ENTER'}></Button>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

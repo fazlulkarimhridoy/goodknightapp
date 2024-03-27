@@ -18,7 +18,9 @@ const ConsumedProductName = () => {
   }
 
   return (
-    <div className="bg-[#890000]">
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}} className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="bg-[#890000]">
         <div className="container">
@@ -93,7 +95,7 @@ const ConsumedProductName = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

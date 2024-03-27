@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import Tesseract from "tesseract.js";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion"
 
 
 const ImageToText = () => {
@@ -12,11 +14,14 @@ const ImageToText = () => {
   const [detectedText2, setDetectedText2] = useState(null);
   const navigate = useNavigate();
 
-  //   const { setCustomerData, customerData,  handleChange } = useContext(DataContext);
+  const { setCustomerData, customerData, } = useContext(DataContext);
+
+  console.log(customerData)
 
   const handleSubmit = () => {
     if (detectedText1 && detectedText2 != null) {
       navigate("/successPage")
+      console.log(customerData);
     }
   }
 
@@ -44,6 +49,10 @@ const ImageToText = () => {
       const data = handleDetectedText(photo.webPath);
       console.log(data.then((result) => {
         setDetectedText1(result);
+        setCustomerData((prevData) => ({
+          ...prevData,
+          product_code1: result,
+        }))
       }));
 
 
@@ -66,6 +75,11 @@ const ImageToText = () => {
       const data = handleDetectedText(photo.webPath);
       console.log(data.then((result) => {
         setDetectedText2(result);
+        setCustomerData((prevData) => ({
+          ...prevData,
+          product_code2: result,
+        }))
+        console.log(customerData)
       }));
 
 
@@ -78,7 +92,10 @@ const ImageToText = () => {
 
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }}>
       <Navbar></Navbar>
       <div className="container font-poppins">
         <section className="flex flex-col justify-center items-center gap-4">
@@ -121,7 +138,7 @@ const ImageToText = () => {
           </div>
         </section>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

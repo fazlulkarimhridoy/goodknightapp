@@ -100,7 +100,10 @@ const HomePage = () => {
 
 
     return (
-        <div className="h-dvh bg-white">
+        <motion.div initial={{ opacity: 0, x: 400 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeIn" }}
+            exit={{ x: -400, ease: "easeInOut" }} className="h-dvh bg-white">
             {/* hamburger menu */}
             <div className="bg-[#BA0012] flex justify-end px-6 py-3.5">
                 <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
@@ -286,7 +289,7 @@ const HomePage = () => {
                     </motion.button>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 
 const BuyProductStart = () => {
   const navigate = useNavigate()
-  const { customerData } = useContext(DataContext)
+  const { customerData, removeData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
   console.log(customerData);
 
@@ -54,7 +54,6 @@ const BuyProductStart = () => {
       navigate("/homePage");
       toast.success('User data stored successfully!')
       removeData()
-
     }
     else {
       toast.error('User data is not stored!')
@@ -63,7 +62,9 @@ const BuyProductStart = () => {
   }
 
   return (
-    <>
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}}>
       <Navbar></Navbar>
       <div className="container px-4 font-poppins">
         <div className="pr-12 relative">
@@ -82,7 +83,7 @@ const BuyProductStart = () => {
           </Link>
         </div>
       </div>
-    </>
+    </motion.div>
 
   );
 };

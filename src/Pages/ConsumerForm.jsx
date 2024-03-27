@@ -46,7 +46,9 @@ const ConsumerForm = () => {
 
   };
   return (
-    <div className="bg-[#890000]">
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}} className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="container">
         <div className="pr-12 relative">
@@ -136,7 +138,7 @@ const ConsumerForm = () => {
         }
 
       </div >
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import successIcon from "../../public/images/successIcon.svg"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "antd";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion";
 
 const SuccessPage = () => {
 
@@ -14,6 +16,10 @@ const SuccessPage = () => {
   if (!token) {
     return window.location.href = "/signin";
   }
+
+  const { setCustomerData, customerData } = useContext(DataContext);
+
+  console.log(customerData);
 
   const [open, setOpen] = useState(false);
   const [placement] = useState('right');
@@ -61,7 +67,10 @@ const SuccessPage = () => {
   };
 
   return (
-    <div>
+    <motion.div initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }}>
       {/* hamburger menu */}
       <div className="bg-[#890000] flex justify-end px-6 py-3.5">
         <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
@@ -99,7 +108,7 @@ const SuccessPage = () => {
           <Button title={"HOME"}></Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

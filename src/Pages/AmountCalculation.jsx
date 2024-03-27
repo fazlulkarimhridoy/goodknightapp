@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
+import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion";
 
 const AmountCalculation = () => {
+  const { setCustomerData, customerData, handleChange } = useContext(DataContext);
+
+  console.log(customerData);
 
   const [amount, setAmount] = useState(0);
   const [saving, setSaving] = useState(null);
@@ -17,17 +22,28 @@ const AmountCalculation = () => {
   const handleQuantity1 = () => {
     const price = 115;
     setAmount(price);
-    setSaving(34)
+    setSaving(34);
+    setCustomerData((prevData) => ({
+      ...prevData,
+      quantity: 1,
+    }));
   }
   // handle quantity 2
   const handleQuantity2 = () => {
     const price = 115 * 2;
     setAmount(price);
     setSaving(34 * 2);
+    setCustomerData((prevData) => ({
+      ...prevData,
+      quantity: 2,
+    }));
   }
 
   return (
-    <>
+    <motion.div initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }}>
       <Navbar></Navbar>
       <div className="bg-[#890000]">
         <div className="container">
@@ -73,7 +89,7 @@ const AmountCalculation = () => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 
