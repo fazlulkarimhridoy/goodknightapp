@@ -16,7 +16,7 @@ const ExistedConsumerError = () => {
         <p className=" max-w-56 text-2xl text-white max">This consumer is
           already registered</p>
       </div>
-      <div className="mt-20">
+      <div className="mt-[138px]">
         <Link to={"/consumerform"}>
           <Button title={"Back"}></Button>
         </Link>

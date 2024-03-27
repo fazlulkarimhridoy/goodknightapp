@@ -58,7 +58,7 @@ const MobileNumber = () => {
                 </div>
 
                 
-                <div onClick={handleOtpVerification} className="my-8">
+                <div onClick={handleOtpVerification} className="mt-[176px]">
                     <Button title={'Send Otp'} />
                 </div>
 

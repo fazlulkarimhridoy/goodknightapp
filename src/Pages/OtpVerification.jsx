@@ -60,7 +60,7 @@ const OtpVerification = () => {
                     />
                 </div>
 
-                <div onClick={handleVerification} className="my-32">
+                <div onClick={handleVerification} className="mt-44">
                     <Button title={'NEXT'}></Button>
                 </div>
 

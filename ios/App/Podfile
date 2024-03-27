@@ -14,6 +14,8 @@ def capacitor_pods
   pod 'CapacitorCommunityImageToText', :path => '../../node_modules/@capacitor-community/image-to-text'
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorGeolocation', :path => '../../node_modules/@capacitor/geolocation'
+  pod 'CapacitorNetwork', :path => '../../node_modules/@capacitor/network'
+  pod 'CapacitorToast', :path => '../../node_modules/@capacitor/toast'
 end
 
 target 'App' do
