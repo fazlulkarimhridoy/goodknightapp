@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import successIcon from "../../public/images/successIcon.svg"
+import successIcon from "../../public/images/successIcon.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "antd";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { DataContext } from "../context/DataProvider";
+import { motion } from "framer-motion";
 
 const SuccessPage = () => {
-
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   if (!token) {
-    return window.location.href = "/signin";
+    return (window.location.href = "/signin");
   }
 
+  const { setCustomerData, customerData } = useContext(DataContext);
+
+  console.log(customerData);
+
   const [open, setOpen] = useState(false);
-  const [placement] = useState('right');
+  const [placement] = useState("right");
   const showDrawer = () => {
     setOpen(true);
   };
@@ -26,33 +31,29 @@ const SuccessPage = () => {
 
   // handle signout
   const handleSignout = async () => {
-
     const options = {
-      url: 'https://goodknight.xri.com.bd/api/logout',
+      url: "https://goodknight.xri.com.bd/api/logout",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
     const response = await CapacitorHttp.post(options);
     console.log(response);
     if (response.status === 201 || 200) {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
       navigate("/signin");
-      toast.success('Successfully logged out!')
-
-    }
-    else {
+      toast.success("Successfully logged out!");
+    } else {
       console.log(response);
     }
-  }
+  };
 
   // handle home
   const handleToHome = () => {
     window.location.reload();
     window.location.href = "/homePage";
-  }
-
+  };
 
   // redirect to home page
   const redirectHome = () => {
@@ -61,7 +62,12 @@ const SuccessPage = () => {
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }}
+    >
       {/* hamburger menu */}
       <div className="bg-[#890000] flex justify-end px-6 py-3.5">
         <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
@@ -74,12 +80,18 @@ const SuccessPage = () => {
           key={placement}
           style={{ backgroundColor: "#303030", opacity: "95%" }}
         >
-          <div onClick={handleToHome} className="flex items-center gap-4 text-xl">
+          <div
+            onClick={handleToHome}
+            className="flex items-center gap-4 text-xl"
+          >
             <FaHome color="white" />
             <p className="text-white">Home</p>
           </div>
           <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
-          <div onClick={handleSignout} className="flex items-center gap-4 text-xl">
+          <div
+            onClick={handleSignout}
+            className="flex items-center gap-4 text-xl"
+          >
             <FaSignOutAlt color="white" />
             <p className="text-white">Logout</p>
           </div>
@@ -99,7 +111,7 @@ const SuccessPage = () => {
           <Button title={"HOME"}></Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -103,7 +103,7 @@ const HomePage = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, ease: "easeIn" }}
       exit={{ x: -400, ease: "easeInOut" }}
-      className=" bg-white ]"
+      className=" bg-white "
     >
       {/* hamburger menu */}
       <div className="bg-[#BA0012] flex justify-end px-6 py-3.5 ">
@@ -296,7 +296,7 @@ const HomePage = () => {
                     </motion.button>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
