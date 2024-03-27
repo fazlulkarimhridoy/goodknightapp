@@ -61,6 +61,8 @@ const ImageToText = () => {
     }
   }
 
+  
+
   // handle product code 2
   const handleProductCode2 = async () => {
 
