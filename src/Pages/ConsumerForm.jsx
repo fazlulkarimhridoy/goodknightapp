@@ -23,28 +23,6 @@ const ConsumerForm = () => {
 
   const handleNumberCheck = async () => {
 
-    // axios.post("https://goodknight.xri.com.bd/api/check-customer-number",{ 
-    //     phone_number: phone_number },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     if (res.data.new_customer) {
-    //       navigate('/buyproductstart');
-    //     }
-    //     else if (!res.data.new_customer) {
-    //       navigate('/duplicateCustomer');
-    //     }
-    //     else {
-    //       console.log(res.data.message);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
     // post request using capacitor http request
     const options = {
       url: 'https://goodknight.xri.com.bd/api/check-customer-number',
@@ -66,26 +44,6 @@ const ConsumerForm = () => {
       console.log(response.data.message);
     }
 
-    // fetch('https://goodknight.xri.com.bd/api/check-customer-number', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${token}`,
-    //   },
-    //   body: JSON.stringify({ phone_number: phone_number })
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     if (data.new_customer) {
-    //       navigate('/buyproductstart');
-    //     }
-    //     else if (!data.new_customer) {
-    //       navigate('/duplicateCustomer');
-    //     }
-    //     else {
-    //       console.log(data.message);
-    //     }
-    //   })
   };
   return (
     <div className="bg-[#890000]">
@@ -94,8 +52,8 @@ const ConsumerForm = () => {
         <div className="pr-12 relative">
           <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
         </div>
-        <div className=" space-y-4 text-center">
-          <h1 className="text-white mt-4 text-2xl p-2">
+        <div className="text-center">
+          <h1 className="text-white text-xl">
             Consumer’s information
           </h1>
         </div>
@@ -112,7 +70,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="name"
                 type="text"
-                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-1 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div>
@@ -124,7 +82,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="age"
                 type="number"
-                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-1 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
             <div className="arrow">
@@ -135,16 +93,17 @@ const ConsumerForm = () => {
                 name="gender"
                 required
                 id="product"
-                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                placeholder="gender"
+                className="mt-1 w-[300px] truncate py-[2px] text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               >
 
                 <option disabled className="text-xl" value="gender">
-                  Gender
+                  gender
                 </option>
-                <option className="text-xl" value="saab">
+                <option className="text-xl" value="male">
                   Male
                 </option>
-                <option className="text-xl" value="mercedes">
+                <option className="text-xl" value="female">
                   Female
                 </option>
               </select>
@@ -158,7 +117,7 @@ const ConsumerForm = () => {
                 required
                 placeholder="mobile"
                 type="number"
-                className="mt-2 w-[300px] truncate py-1.5 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
+                className="mt-1 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none bg-[#D9D9D9]"
               ></input>
             </div>
           </div>
@@ -173,7 +132,7 @@ const ConsumerForm = () => {
             </div>
         }
         {
-          (name?.length === 0 && <div className="text-white">name is required</div>) || (age?.length === 0 && <div className="text-white">age is required</div> || (gender?.length === 0 && <div className="text-white">gender is required</div>) || (name?.phone_number && <div className="text-white">number is required</div>))
+          ((name?.length === 0 && <div className="text-white">name is required</div>)||(age?.length === 0 && <div className="text-white">age is required</div>)||(gender?.length === 0 && <div className="text-white">gender is required</div>)||((phone_number.length === 0 && phone_number.length !== 11)  && <div className="text-white">number is required</div>))
         }
 
       </div >
