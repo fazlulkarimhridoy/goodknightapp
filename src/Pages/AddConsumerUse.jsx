@@ -18,7 +18,9 @@ const AddConsumerUse = () => {
   }
 
   return (
-    <motion.div   className="bg-[#890000] overflow-hidden">
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}}  className="bg-[#890000] overflow-hidden">
       <Navbar></Navbar>
       <div className=" bg-[#890000]">
         <div className="container">

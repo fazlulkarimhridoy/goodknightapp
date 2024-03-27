@@ -13,7 +13,7 @@ const StartPage = () => {
 
     return (
         <motion.div initial={{opacity: 0}} animate={{opacity:1}} transition={{duration: 0.75 , ease:"easeOut"}} className="h-dvh bg-[#890000] poppins-regular">
-            <div className="flex items-center justify-center pt-52 pr-5">
+            <div className="flex items-center justify-center pt-52 ">
                 <img src="/images/LargeLogo.svg"></img>
             </div>
             <div className="text-center mt-10">

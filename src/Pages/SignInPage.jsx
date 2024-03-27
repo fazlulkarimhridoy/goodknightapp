@@ -19,8 +19,11 @@ const SignInPage = () => {
       }
   return (
     <motion.div
-     initial={{x: 400}} animate={{x:0}} transition={{duration: 0.5 , ease:"easeInOut"}}
-      className="overflow-hidden bg-[#890000] flex flex-col items-center justify-center"
+        initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }}
+      className="overflow-hidden bg-[#890000] flex flex-col items-center justify-center "
     >
       <div className="flex items-center justify-center flex-col mt-52 ">
         <Logo />
