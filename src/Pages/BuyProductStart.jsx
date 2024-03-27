@@ -71,14 +71,14 @@ const BuyProductStart = () => {
         </div>
         <div className="text-center">
           <p className="text-white mt-4 text-2xl p-2">
-            Are you interested to buy
+            Are you interested to <br /> buy
           </p>
           <p className="text-white mt-4 text-4xl p-2 ">GoodKnight POWER ACTIV+ ?</p>
         </div>
-        <div className="flex justify-between gap-10 pt-20">
-          <motion.button whileTap={{ scale: 0.9}} onClick={handleNoClick} className="text-xl text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></motion.button>
+        <div className="flex justify-between gap-8 mt-40">
+          <motion.button whileTap={{ scale: 0.9}} onClick={handleNoClick} className="text-xl rounded-lg text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></motion.button>
           <Link to="/calculation">
-            <motion.button whileTap={{ scale: 0.9}} className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></motion.button>
+            <motion.button whileTap={{ scale: 0.9}} className="text-2xl rounded-lg text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></motion.button>
           </Link>
         </div>
       </div>

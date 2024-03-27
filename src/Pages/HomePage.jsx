@@ -11,7 +11,9 @@ import { useQuery } from "@tanstack/react-query";
 import { LoadingOutlined } from "@ant-design/icons";
 import { CapacitorHttp } from '@capacitor/core';
 import toast from "react-hot-toast";
-import Button from "../components/Button";
+import { motion } from "framer-motion";
+
+
 
 
 const HomePage = () => {
@@ -20,7 +22,6 @@ const HomePage = () => {
     if (!token) {
         return window.location.href = "/signin";
     }
-
     const [open, setOpen] = useState(false);
     const [placement] = useState('right');
     const showDrawer = () => {
@@ -30,34 +31,9 @@ const HomePage = () => {
         setOpen(false);
     };
 
+
     // handle signout
     const handleSignout = async () => {
-        // axios.post('https://goodknight.xri.com.bd/api/logout', {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // })
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        // localStorage.removeItem('token');
-        // window.location.reload();
-        // window.location.href = "/signin";
-
-        // fetch('https://goodknight.xri.com.bd/api/logout', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         localStorage.removeItem('token');
-        //         window.location.reload();
-        //         window.location.href = "/signin";
-        //     })
 
         const options = {
             url: 'https://goodknight.xri.com.bd/api/logout',
@@ -169,12 +145,11 @@ const HomePage = () => {
                     alt="logo"
                 />
             </div>
-            <hr className="border border-solid border-[#FF283D] shadow-black shadow-2xl mb-5"></hr>
 
             {/* summery section */}
-            <div className="flex items-center justify-around pl-10 pr-4">
+            <div className="flex items-center justify-around mt-5">
                 <div className="flex flex-col items-center text-center">
-                    <svg width="40" height="64" viewBox="0 0 40 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="40" height="50" viewBox="0 0 40 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d_49_518)">
                             <path d="M25.4943 35.9514L25.4944 35.9514L34.7709 37.2994L34.6271 38.289L34.7709 37.2994C36.7308 37.5842 37.514 39.993 36.0952 41.3757L29.3828 47.9188L29.3827 47.9189C29.2909 48.0084 29.249 48.1373 29.2707 48.2636L29.2707 48.2638L30.8553 57.5028L29.8697 57.6719L30.8553 57.5028C31.1902 59.4552 29.1409 60.9436 27.3879 60.0221L27.3878 60.0221L19.0907 55.6599C18.9772 55.6003 18.8415 55.6002 18.728 55.6599C18.7279 55.6599 18.7279 55.6599 18.7278 55.6599L10.4307 60.0221L10.4306 60.0221C8.67767 60.9436 6.62837 59.4552 6.9632 57.5028L7.94881 57.6719L6.9632 57.5028L8.54782 48.2638L8.54786 48.2636C8.56953 48.1373 8.52768 48.0084 8.4358 47.9189L8.43571 47.9188L1.72332 41.3757C0.304574 39.993 1.08776 37.5842 3.04766 37.2994L3.04768 37.2994L12.3241 35.9514L12.3242 35.9514C12.451 35.933 12.5608 35.8533 12.6177 35.7381L25.4943 35.9514ZM25.4943 35.9514C25.3675 35.933 25.2577 35.8533 25.2008 35.7381L21.0522 27.3322C21.0522 27.3322 21.0522 27.3322 21.0522 27.3322C20.1756 25.5559 17.6429 25.5559 16.7663 27.3322C16.7663 27.3322 16.7663 27.3322 16.7663 27.3322L12.6177 35.7381L25.4943 35.9514Z" fill="#FFBD70" stroke="#EAEAEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M36.9999 2C36.9999 1.44772 36.5522 1 35.9999 1H2.1814C1.62911 1 1.1814 1.44772 1.1814 2V16.0911C1.1814 16.4948 1.42413 16.8589 1.79678 17.0141L18.706 24.0597C18.9522 24.1622 19.2291 24.1622 19.4753 24.0597L36.3845 17.0141C36.7572 16.8589 36.9999 16.4948 36.9999 16.0911V2Z" fill="#343434" stroke="#EAEAEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -191,14 +166,15 @@ const HomePage = () => {
                             </filter>
                         </defs>
                     </svg>
-                    <h3 className="text-xl font-bold">Today’s
+                    <h3 className="text-lg font-bold">
+                        Today’s
                         <br />
                         Summery
                     </h3>
                 </div>
                 <div className="flex flex-col gap-2 items-center">
-                    <div className="flex items-center bg-[#FF283D] p-2 gap-2 rounded-xl w-full">
-                        <div className="bg-white p-2 rounded-lg">
+                    <div className="flex items-center bg-[#FF283D] px-2 py-1 gap-2 rounded-lg w-full">
+                        <div className="bg-white p-1 rounded-md">
                             <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.641846 0H28.7509V28.109H0.641846V0Z" fill="white" fill-opacity="0.01" />
                                 <path d="M0.641846 0H28.7509V28.109H0.641846V0Z" fill="white" fill-opacity="0.01" />
@@ -217,8 +193,8 @@ const HomePage = () => {
                             </span>
                         </p>
                     </div>
-                    <div className="flex items-center bg-[#890000] p-2 gap-2 rounded-xl w-full">
-                        <div className="bg-white p-[11px] rounded-lg">
+                    <div className="flex items-center bg-[#890000] px-2 py-1 gap-2 rounded-lg w-full">
+                        <div className="bg-white p-2 rounded-md">
                             <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 12C17.6568 12 19.1568 11.3284 20.2426 10.2426C21.3284 9.15685 22 7.65685 22 6.00001C22 4.34317 21.3284 2.84317 20.2426 1.75737C19.1568 0.671582 17.6568 7.62939e-06 16 7.62939e-06C14.3432 7.62939e-06 12.8432 0.671582 11.7574 1.75737C10.6716 2.84317 10 4.34317 10 6.00001C10 7.65685 10.6716 9.15685 11.7574 10.2426C12.8432 11.3284 14.3432 12 16 12Z" fill="#890000" />
                                 <path d="M13 6.00001L15 8.00001L19 4.00001" stroke="white" stroke-width="1.78435" stroke-linecap="round" stroke-linejoin="round" />
@@ -239,10 +215,10 @@ const HomePage = () => {
             </div>
 
             {/* total history */}
-            <div className="mt-10 mx-8 py-6 rounded-xl shadow-gray-400 shadow-inner bg-[#FFE2E2]">
+            <div className="mt-5 mx-8 py-4 rounded-xl shadow-gray-400 shadow-inner bg-[#FFE2E2]">
                 <h2 className="font-bold text-center">Total History</h2>
-                <div className="flex items-center justify-between px-5 mt-5">
-                    <div className="px-5">
+                <div className="flex items-center justify-between px-4 mt-3">
+                    <div className="px-4">
                         <div className="border-l-8 border-[#D50015]">
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Contact</span>
@@ -251,7 +227,7 @@ const HomePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="px-5">
+                    <div className="px-4">
                         <div className="border-l-8 border-[#D50015]">
                             <div className="pl-2 truncate overflow-hidden">
                                 <span>Pro. Call</span>
@@ -264,7 +240,7 @@ const HomePage = () => {
             </div>
 
             {/* activity */}
-            <div className="px-8 mt-10">
+            <div className="px-8 mt-5">
                 <h2 className="text-sm font-bold">Activity KPI</h2>
                 <div className="flex items-center justify-between mt-3 gap-3">
                     <div className="bg-[#FFC5C5] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
@@ -274,7 +250,7 @@ const HomePage = () => {
                             Per Day
                         </h4>
                         <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
-                            27
+                            {bpInfo?.activity_kpi?.avg_visits_per_day.toFixed(1)}
                         </h2>
                     </div>
                     <div className="bg-[#49FFC8] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
@@ -284,7 +260,7 @@ const HomePage = () => {
                             Days
                         </h4>
                         <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
-                            12
+                            {bpInfo?.activity_kpi?.total_field_day}
                         </h2>
                     </div>
                     <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
@@ -294,15 +270,20 @@ const HomePage = () => {
                             Days
                         </h4>
                         <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
-                            5
+                            {bpInfo?.activity_kpi?.non_field_day}
                         </h2>
                     </div>
                 </div>
             </div>
 
-            <div className="p-10 bg-white">
+            <div className="px-8 mt-3 bg-white">
                 <Link to="/usedproduct">
-                    <Button title={"ADD CONSUMER"}></Button>
+                    <motion.button
+                        whileTap={{ scale: 0.9 }}
+                        className="w-full uppercase text-white text-xl font-bold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-2.5 rounded-xl outline-none"
+                    >
+                        Start Contact
+                    </motion.button>
                 </Link>
             </div>
         </div>

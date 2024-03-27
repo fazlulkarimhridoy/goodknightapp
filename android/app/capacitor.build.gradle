@@ -12,6 +12,8 @@ dependencies {
     implementation project(':capacitor-community-image-to-text')
     implementation project(':capacitor-camera')
     implementation project(':capacitor-geolocation')
+    implementation project(':capacitor-network')
+    implementation project(':capacitor-toast')
 
 }
 

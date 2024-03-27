@@ -8,7 +8,7 @@ const Button = ({ title, func }) => {
       whileTap={{ scale: 0.9}}
      
       onClick={func}
-      className="btn w-[300px] text-white text-xl font-bold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-3 rounded-xl outline-none"
+      className="btn w-[300px] text-white text-xl font-bold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-2.5 rounded-xl outline-none"
     >
       {title}
     </motion.button>
