@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 
 const BuyProductStart = () => {
   const navigate = useNavigate()
-  const { customerData } = useContext(DataContext)
+  const { customerData,removeData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
   console.log(customerData);
 
