@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 
 const BuyProductStart = () => {
   const navigate = useNavigate()
-  const { customerData } = useContext(DataContext)
+  const { customerData, removeData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
   console.log(customerData);
 
@@ -54,7 +54,6 @@ const BuyProductStart = () => {
       navigate("/homePage");
       toast.success('User data stored successfully!')
       removeData()
-
     }
     else {
       toast.error('User data is not stored!')
@@ -63,7 +62,9 @@ const BuyProductStart = () => {
   }
 
   return (
-    <>
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}}>
       <Navbar></Navbar>
       <div className="container px-4 font-poppins">
         <div className="pr-12 relative">
@@ -71,18 +72,18 @@ const BuyProductStart = () => {
         </div>
         <div className="text-center">
           <p className="text-white mt-4 text-2xl p-2">
-            Are you interested to buy
+            Are you interested to <br /> buy
           </p>
           <p className="text-white mt-4 text-4xl p-2 ">GoodKnight POWER ACTIV+ ?</p>
         </div>
-        <div className="flex justify-between gap-10 pt-20">
-          <motion.button whileTap={{ scale: 0.9}} onClick={handleNoClick} className="text-xl text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></motion.button>
+        <div className="flex justify-between gap-8 mt-40">
+          <motion.button whileTap={{ scale: 0.9}} onClick={handleNoClick} className="text-xl rounded-lg text-white bg-[#303030] px-8 py-2 flex justify-center items-center gap-2"> <ImCross /><span className="text-2xl">NO</span></motion.button>
           <Link to="/calculation">
-            <motion.button whileTap={{ scale: 0.9}} className="text-3xl text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></motion.button>
+            <motion.button whileTap={{ scale: 0.9}} className="text-2xl rounded-lg text-white bg-[#2C9A1A] px-8 py-2 flex justify-center items-center gap-2"> <TiTick /><span className="text-2xl">YES</span></motion.button>
           </Link>
         </div>
       </div>
-    </>
+    </motion.div>
 
   );
 };

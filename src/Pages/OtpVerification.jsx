@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import OTPInput from "react-otp-input";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
-
-
+import { motion } from "framer-motion";
 
 const OtpVerification = () => {
     const [otp, setOtp] = useState(null);
@@ -35,7 +34,10 @@ const OtpVerification = () => {
 
 
     return (
-        <div className="bg-[#890000]">
+        <motion.div initial={{ opacity: 0, x: 400 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeIn" }}
+            exit={{ x: -400, ease: "easeInOut" }} className="bg-[#890000]">
             <Navbar></Navbar>
             <div className="container">
                 <div className="pr-12 relative">
@@ -60,13 +62,13 @@ const OtpVerification = () => {
                     />
                 </div>
 
-                <div onClick={handleVerification} className="my-32">
+                <div onClick={handleVerification} className="mt-44">
                     <Button title={'NEXT'}></Button>
                 </div>
 
 
             </div>
-        </div>
+        </motion.div>
     );
 };
 

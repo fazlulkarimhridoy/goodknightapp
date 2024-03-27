@@ -5,8 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { CapacitorHttp } from '@capacitor/core';
 import { DataContext } from "../context/DataProvider";
-
-
+import { motion } from "framer-motion";
 
 const MobileNumber = () => {
     const { customerData } = useContext(DataContext);
@@ -42,7 +41,10 @@ const MobileNumber = () => {
     }
 
     return (
-        <div className="bg-[#890000]">
+        <motion.div initial={{ opacity: 0, x: 400 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeIn" }}
+            exit={{ x: -400, ease: "easeInOut" }} className="bg-[#890000]">
             <Navbar></Navbar>
             <div className="container">
                 <div className="pr-12 relative">
@@ -57,14 +59,14 @@ const MobileNumber = () => {
                     </h1>
                 </div>
 
-                
-                <div onClick={handleOtpVerification} className="my-8">
+
+                <div onClick={handleOtpVerification} className="mt-[176px]">
                     <Button title={'Send Otp'} />
                 </div>
 
 
             </div>
-        </div>
+        </motion.div>
 
     );
 };

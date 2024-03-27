@@ -18,7 +18,9 @@ const ConsumedProductName = () => {
   }
 
   return (
-    <div className="bg-[#890000]">
+    <motion.div initial={{ opacity:0, x: 400 }}
+    animate={{ opacity:1, x: 0 }}
+    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}} className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="bg-[#890000]">
         <div className="container">
@@ -34,12 +36,12 @@ const ConsumedProductName = () => {
             </label>{" "}
             <br />
             <motion.select
-             whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.9 }}
               onChange={handleChange}
-              defaultValue={previous_used_brand ? previous_used_brand : "product list" }
+              defaultValue={previous_used_brand ? previous_used_brand : "product list"}
               name="previous_used_brand"
               id="product"
-              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
+              className="mt-1 w-[300px]  shadow-inner shadow-[#00000080] py-1 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
               <option disabled className="text-xl" value="product list">
                 Product List
@@ -66,42 +68,18 @@ const ConsumedProductName = () => {
               Others
             </label>{" "}
             <br />
-            <motion.select
-               whileTap={{ scale: 0.9 }}
-              onChange={handleChange}
-              defaultValue={previous_used_brand ? previous_used_brand : "others" }
-              name="previous_used_brand"
-              id="product"
-              className="mt-2 w-[300px]  shadow-inner shadow-[#00000080] py-1.5 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
-            >
-              <option disabled className="text-xl" value="others">
-                Others
-              </option>
-              <option className="text-xl" value="saab">
-                Saab
-              </option>
-              <option className="text-xl" value="mercedes">
-                Mercedes
-              </option>
-              <option className="text-xl" value="audi">
-                Audi
-              </option>
-            </motion.select>
-          </div>
-          <p className="text-white text-2xl">or</p>
-          <div>
             <motion.input
-             whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.9 }}
               onChange={handleChange}
-              value={previous_used_brand}
               name="previous_used_brand"
               placeholder="Type here"
               type="text"
               className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
             ></motion.input>
           </div>
+          
           {previous_used_brand?.length === 0 ? (
-            <div className="my-12">
+            <div className="mt-28">
               <Link to="">
                 <Button title={"NEXT"}></Button>
               </Link>
@@ -109,7 +87,7 @@ const ConsumedProductName = () => {
               <p className="text-white text-center p-2">Please select</p>
             </div>
           ) : (
-            <div className="my-12">
+            <div className="mt-28">
               <Link to="/video">
                 <Button title={"NEXT"}></Button>
               </Link>
@@ -117,7 +95,7 @@ const ConsumedProductName = () => {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
