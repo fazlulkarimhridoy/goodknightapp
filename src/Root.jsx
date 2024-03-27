@@ -25,7 +25,7 @@ const Root = () => {
     // Set up interval to check network status every 30 seconds
     const interval = setInterval(() => {
       checkNetworkStatus();
-    }, 30000);
+    }, 15000);
 
     // Cleanup function to clear the interval when component unmounts
     return () => clearInterval(interval);
