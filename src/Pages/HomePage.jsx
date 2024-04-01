@@ -1,6 +1,6 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import profile from "../assets/profile.png"
-import logo from "../../public/images/profilegoodknigtlogo.svg"
+import logo from "/images/profilegoodknigtlogo.svg"
 import { Link, useNavigate } from "react-router-dom";
 import { Drawer, Spin } from "antd";
 import { useState } from "react";
@@ -73,7 +73,9 @@ const HomePage = () => {
             return res.data;
         },
         refetchOnWindowFocus: false,
-        retry: 2
+        retry: 2,
+        retryDelay: 1000,
+        enabled: token ? true : false
     })
 
 

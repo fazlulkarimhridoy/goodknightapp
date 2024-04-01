@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import warningImage from "../../public/images/warning.svg"
+import warningImage from "/images/warning.svg"
 import { motion } from "framer-motion";
 
 

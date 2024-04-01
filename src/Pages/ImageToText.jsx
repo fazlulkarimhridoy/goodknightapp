@@ -1,12 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import Tesseract from "tesseract.js";
+import Tesseract, { detect } from "tesseract.js";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion"
+import { Geolocation } from "@capacitor/geolocation";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 
 const ImageToText = () => {
@@ -14,15 +18,55 @@ const ImageToText = () => {
   const [detectedText2, setDetectedText2] = useState(null);
   const navigate = useNavigate();
 
-  const { setCustomerData, customerData, } = useContext(DataContext);
+  const { setCustomerData, customerData } = useContext(DataContext);
 
-  console.log(customerData)
+  // checking if token is valid
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return window.location.href = "/signin";
+  }
 
-  const handleSubmit = () => {
-    if (detectedText1 && detectedText2 != null) {
-      navigate("/successPage")
-      console.log(customerData);
+  // useEffect for location
+  useEffect(() => {
+    const getLocation = async () => {
+      const position = await Geolocation?.getCurrentPosition();
+      const latitude = position?.coords?.latitude.toString();
+      const longitude = position?.coords?.longitude.toString();
+      setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
     }
+    getLocation();
+  }, []);
+
+  // mutation post request
+  const customerInfoMutation = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post("https://goodknight.xri.com.bd/api/store-customer-info", customerData, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response.data;
+    },
+    onSuccess: (data) => {
+      console.log(data);
+      window.location.reload();
+      window.location.href = "/homePage"
+      toast.success("Customer Information successfully stored")
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+
+
+  const handleSubmit = async () => {
+    // if (detectedText1 && detectedText2 != null) {
+    //   navigate("/successPage")
+    //   console.log(customerData);
+    // }
+
+    customerInfoMutation.mutate()
   }
 
   const handleDetectedText = async (img) => {
@@ -61,7 +105,7 @@ const ImageToText = () => {
     }
   }
 
-  
+
 
   // handle product code 2
   const handleProductCode2 = async () => {
