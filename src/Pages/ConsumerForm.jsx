@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { DataContext } from "../context/DataProvider";
 import { CapacitorHttp } from '@capacitor/core';
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const ConsumerForm = () => {
 
@@ -33,12 +34,16 @@ const ConsumerForm = () => {
       data: { phone_number: phone_number }
     };
     const response = await CapacitorHttp.post(options);
-    const newCustomer = response.data.new_customer;
-    if (newCustomer) {
+    const newCustomer = response?.data.new_customer;
+    console.log(typeof(newCustomer));
+    if (newCustomer === true) {
       navigate('/buyproductstart');
     }
-    else if (!newCustomer) {
+    else if (newCustomer === false) {
       navigate('/duplicateCustomer');
+    }
+    else if (newCustomer === undefined) {
+      toast.error("The number must be of 11 digits.");
     }
     else {
       console.log(response.data.message);
@@ -46,9 +51,9 @@ const ConsumerForm = () => {
 
   };
   return (
-    <motion.div initial={{ opacity:0, x: 400 }}
-    animate={{ opacity:1, x: 0 }}
-    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}} className="bg-[#890000]">
+    <motion.div initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }} exit={{ x: -400, ease: "easeInOut" }} className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="container">
         <div className="pr-12 relative">
@@ -134,7 +139,7 @@ const ConsumerForm = () => {
             </div>
         }
         {
-          ((name?.length === 0 && <div className="text-white">name is required</div>)||(age?.length === 0 && <div className="text-white">age is required</div>)||(gender?.length === 0 && <div className="text-white">gender is required</div>)||((phone_number.length === 0 && phone_number.length !== 11)  && <div className="text-white">number is required</div>))
+          ((name?.length === 0 && <div className="text-white">name is required</div>) || (age?.length === 0 && <div className="text-white">age is required</div>) || (gender?.length === 0 && <div className="text-white">gender is required</div>) || ((phone_number.length === 0 && phone_number.length !== 11) && <div className="text-white">number is required</div>))
         }
 
       </div >
