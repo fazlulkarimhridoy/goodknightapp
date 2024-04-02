@@ -33,6 +33,7 @@ const OtpVerification = () => {
     }
 
 
+
     return (
         <motion.div initial={{ opacity: 0, x: 400 }}
             animate={{ opacity: 1, x: 0 }}
@@ -56,6 +57,7 @@ const OtpVerification = () => {
                         inputType="number"
                         value={otp}
                         onChange={setOtp}
+                       
                         numInputs={4}
                         renderSeparator={<span></span>}
                         renderInput={(props) => <input {...props} />}
