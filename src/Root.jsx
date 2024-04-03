@@ -1,7 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Network } from '@capacitor/network';
+import { Network } from "@capacitor/network";
 import { useEffect, useState } from "react";
+
 
 const Root = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const Root = () => {
         const status = await Network.getStatus();
         setIsConnected(status.connected);
       } catch (error) {
-        console.error('Error checking network status:', error);
+        console.error("Error checking network status:", error);
       }
     };
 
@@ -37,35 +38,39 @@ const Root = () => {
     },
     visible: {
       opacity: 1,
-      transition: { delay: 1, duration: 0.5 }
+      transition: { delay: 1, duration: 0.5 },
     },
     exit: {
-      x: '-100vw',
-      transition: { ease: 'easeInOut' }
-    }
-  }
+      x: "-100vw",
+      transition: { ease: "easeInOut" },
+    },
+  };
 
   // if not connected to network show error message
   if (!isConnected) {
-    return <div className="text-white flex items-center justify-center text-xl font-bold mt-52">
-      <h3>Network Error</h3>
-    </div>
+    return (
+      <div className="text-white flex items-center justify-center text-xl font-bold mt-52">
+        <h3>Network Error</h3>
+      </div>
+    );
   }
 
   return (
-    <AnimatePresence mode="wait">
-
-      <motion.div
-        key={location.key}
-        // variants={containerVariants}
-        // initial="hidden"
-        // animate="visible"
-        // exit="exit"
-        className="font-poppins bg-[#890000] h-screen"
-      >
-        <Outlet />
-      </motion.div>
-    </AnimatePresence>
+    <div>
+ 
+      <AnimatePresence>
+        <motion.div
+          key={location.key}
+          // variants={containerVariants}
+          // initial="hidden"
+          // animate="visible"
+          // exit="exit"
+          className="font-poppins bg-[#890000] h-screen"
+        >
+          <Outlet />
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 };
 

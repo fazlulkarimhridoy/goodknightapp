@@ -47,8 +47,9 @@ const SignIn = () => {
       localStorage.setItem("token", token);
       localStorage.removeItem("latitude");
       localStorage.removeItem("longitude");
-      navigate("/homePage");
       toast.success("Login successful!");
+      navigate("/homePage");
+     
     } else {
       toast.error("Incorrect credentials!");
     }

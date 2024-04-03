@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { RouterProvider, createBrowserRouter, } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./Root";
 import ErrorPage from "../src/components/ErrorPage";
 import StartPage from "./Pages/StartPage";
@@ -17,14 +17,11 @@ import OtpVerification from "./Pages/OtpVerification";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import VideoPlay from "./Pages/VideoPlay";
 import { DataProvider } from "./context/DataProvider";
-import ExistedConsumerError from "./Pages/ExistedConsumerError"
-import SuccessPage from "./Pages/SuccessPage"
+import ExistedConsumerError from "./Pages/ExistedConsumerError";
+import SuccessPage from "./Pages/SuccessPage";
 import { Toaster } from "react-hot-toast";
 import ImageToText from "./Pages/ImageToText";
 import { motion, AnimatePresence } from "framer-motion";
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -78,16 +75,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/duplicateCustomer",
-        element: <ExistedConsumerError></ExistedConsumerError>
+        element: <ExistedConsumerError></ExistedConsumerError>,
       },
       {
         path: "successPage",
-        element: <SuccessPage></SuccessPage>
+        element: <SuccessPage></SuccessPage>,
       },
       {
         path: "/takeImage",
-        element: <ImageToText></ImageToText>
-      }
+        element: <ImageToText></ImageToText>,
+      },
     ],
   },
 ]);
@@ -98,10 +95,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <DataProvider>
-        <Toaster />
-        <AnimatePresence initial={false}>
-          <RouterProvider router={router} />
-        </AnimatePresence>
+        <Toaster position="top-left" reverseOrder={true} />
+        <RouterProvider router={router} />
       </DataProvider>
     </QueryClientProvider>
   </React.StrictMode>

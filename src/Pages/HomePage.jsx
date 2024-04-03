@@ -22,6 +22,7 @@ const HomePage = () => {
     if (!token) {
         return window.location.href = "/signin";
     }
+    
     const [open, setOpen] = useState(false);
     const [placement] = useState('right');
     const showDrawer = () => {
