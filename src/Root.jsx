@@ -5,31 +5,6 @@ import { useEffect, useState } from "react";
 
 const Root = () => {
   const location = useLocation();
-  const [isConnected, setIsConnected] = useState(true);
-
-  // checking network
-  useEffect(() => {
-    // Function to check network status
-    const checkNetworkStatus = async () => {
-      try {
-        const status = await Network.getStatus();
-        setIsConnected(status.connected);
-      } catch (error) {
-        console.error('Error checking network status:', error);
-      }
-    };
-
-    // Initial check
-    checkNetworkStatus();
-
-    // Set up interval to check network status every 30 seconds
-    const interval = setInterval(() => {
-      checkNetworkStatus();
-    }, 15000);
-
-    // Cleanup function to clear the interval when component unmounts
-    return () => clearInterval(interval);
-  }, []);
 
   const containerVariants = {
     hidden: {
@@ -45,12 +20,6 @@ const Root = () => {
     }
   }
 
-  // if not connected to network show error message
-  if (!isConnected) {
-    return <div className="text-white flex items-center justify-center text-xl font-bold mt-52">
-      <h3>Network Error</h3>
-    </div>
-  }
 
   return (
     <AnimatePresence mode="wait">
@@ -61,7 +30,7 @@ const Root = () => {
         // initial="hidden"
         // animate="visible"
         // exit="exit"
-        className="font-poppins bg-[#890000] h-screen"
+        className="font-poppins bg-[#890000] h-screen select-none"
       >
         <Outlet />
       </motion.div>

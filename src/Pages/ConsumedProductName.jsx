@@ -17,10 +17,48 @@ const ConsumedProductName = () => {
     return (window.location.href = "/signin");
   }
 
+  const styles = {
+    select: {
+      // Remove default arrow from select tag
+      WebkitAppearance: 'none',
+      MozAppearance: 'none',
+      appearance: 'none',
+      // Add custom arrow background
+      backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 20 20\' fill=\'%23333333\'%3E%3Cpath d=\'M7 7l3-3 3 3m0 6l-3 3-3-3\'/%3E%3C/svg%3E")',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'right 15px top 50%',
+      backgroundSize: '14px',
+      paddingRight: '15px', // Ensure enough space for the custom arrow
+    },
+  };
+
+  const coilBrands = [
+    "Eagle Max",
+    "Eagle Shooter",
+    "Express",
+    "RAK",
+    "Baoma",
+    "Baoma (lemon)",
+    "Baoma No Smoke",
+    "Jonaki Black",
+    "Jonaki Red",
+    "Finis Max jumbo",
+    "Night Guard",
+    "Super fighter King Red",
+    "Super fighter King Violet",
+    "Reco",
+    "Titash",
+    "Obhijan",
+    "Magic Black",
+    "Magic Red",
+    "SMC Super King",
+    "Kite"
+  ];
+
   return (
-    <motion.div initial={{ opacity:0, x: 400 }}
-    animate={{ opacity:1, x: 0 }}
-    transition={{ duration: 0.5, ease: "easeIn" }} exit={{x:-400 , ease: "easeInOut"}} className="bg-[#890000]">
+    <motion.div initial={{ opacity: 0, x: 400 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5, ease: "easeIn" }} exit={{ x: -400, ease: "easeInOut" }} className="bg-[#890000]">
       <Navbar></Navbar>
       <div className="bg-[#890000]">
         <div className="container">
@@ -36,6 +74,7 @@ const ConsumedProductName = () => {
             </label>{" "}
             <br />
             <motion.select
+              style={styles.select}
               whileTap={{ scale: 0.9 }}
               onChange={handleChange}
               defaultValue={previous_used_brand ? previous_used_brand : "product list"}
@@ -46,21 +85,13 @@ const ConsumedProductName = () => {
               <option disabled className="text-xl" value="product list">
                 Product List
               </option>
-              <option className="text-xl" value="RAK">
-                RAK
-              </option>
-              <option className="text-xl" value="Baoma">
-                Baoma
-              </option>
-              <option className="text-xl" value="Magic">
-                Magic
-              </option>
-              <option className="text-xl" value="Magic">
-                Jonaki
-              </option>
-              <option className="text-xl" value="Magic">
-                Eagle
-              </option>
+              {
+                coilBrands.map((brand) => (
+                  <option className="text-xl" value={brand}>
+                    {brand}
+                  </option>
+                ))
+              }
             </motion.select>
           </div>
           <div className="arrow">
@@ -77,7 +108,7 @@ const ConsumedProductName = () => {
               className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
             ></motion.input>
           </div>
-          
+
           {previous_used_brand?.length === 0 ? (
             <div className="mt-28">
               <Link to="">

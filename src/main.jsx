@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         element: <ExistedConsumerError></ExistedConsumerError>
       },
       {
-        path: "successPage",
+        path: "/successPage",
         element: <SuccessPage></SuccessPage>
       },
       {
@@ -98,7 +98,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <DataProvider>
-        <Toaster />
+        <Toaster position="top-left" />
         <AnimatePresence initial={false}>
           <RouterProvider router={router} />
         </AnimatePresence>

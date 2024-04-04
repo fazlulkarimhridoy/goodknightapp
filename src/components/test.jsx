@@ -6,41 +6,31 @@ import OTPInput from "react-otp-input";
 import Navbar from "../components/Navbar";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-import { Spin } from "antd";
-import "../CSS/otp.css"
+
 
 const OtpVerification = () => {
-    const [loading, setLoading] = useState(false);
     const [otp, setOtp] = useState(null);
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-        return window.location.href = "/signin";
+        return (window.location.href = "/signin");
     }
-
 
     // handle otp varification
     const handleVerification = (e) => {
         e.preventDefault();
-        setLoading(true);
-
         if (otp === null) {
-            setLoading(false);
-            return toast.error("Please enter OTP");
+            return toast.error("No otp found!");
         }
-
-        const otpFromLocalStorage = localStorage.getItem('otp');
+        const otpFromLocalStorage = localStorage.getItem("otp");
         if (otpFromLocalStorage === otp) {
-            setLoading(false)
-            localStorage.removeItem('otp')
-            navigate('/takeimage')
+            localStorage.removeItem("otp");
+            navigate("/takeimage");
+        } else {
+            toast.error("Invalid otp!");
         }
-        else {
-            setLoading(false)
-            toast.error('Invalid otp!')
-        }
-    }
+    };
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
@@ -49,22 +39,21 @@ const OtpVerification = () => {
         }
     };
 
-
     return (
-        <motion.div initial={{ opacity: 0, x: 400 }}
+        <motion.div
+            initial={{ opacity: 0, x: 400 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: "easeIn" }}
-            exit={{ x: -400, ease: "easeInOut" }} className="bg-[#890000] select-none">
+            exit={{ x: -400, ease: "easeInOut" }}
+            className="bg-[#890000]"
+        >
             <Navbar></Navbar>
             <div className="container">
                 <div className="pr-12 relative">
                     <Logo width={"w-[136px]"} height={"h-[200px]"}></Logo>
                 </div>
                 <div className=" space-y-4 text-center mt-16">
-                    <h1 className="text-white mt-4 text-2xl p-2">
-                        Verification Code
-                    </h1>
-
+                    <h1 className="text-white mt-4 text-2xl p-2">Verification Code</h1>
                 </div>
                 <form onSubmit={handleVerification} className="w-3/4 mx-auto">
                     <OTPInput
@@ -84,14 +73,7 @@ const OtpVerification = () => {
                         renderSeparator={<span></span>}
                         renderInput={(props) => <input {...props} />}
                     />
-                    <div className="mt-4">
-                        {
-                            loading ? <Spin
-                                size="small"
-                            /> : <></>
-                        }
-                    </div>
-                    <div onClick={handleVerification} className="mt-40">
+                    <div onClick={handleVerification} className="mt-44">
                         {/* <Button  title={"NEXT"}></Button> */}
                         <motion.button whileTap={{ scale: 0.9 }} type="submit" className="btn w-[300px] text-white text-xl font-bold border-none bg-gradient-to-r from-[#FF5454] to-[#E10000] py-2.5 rounded-xl outline-none">NEXT</motion.button>
                     </div>

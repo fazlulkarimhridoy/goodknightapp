@@ -8,11 +8,10 @@ import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import '../CSS/Navbar.css'
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { LoadingOutlined } from "@ant-design/icons";
 import { CapacitorHttp } from '@capacitor/core';
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-
+import "../CSS/homepage.css"
 
 
 
@@ -36,7 +35,7 @@ const HomePage = () => {
     const handleSignout = async () => {
 
         const options = {
-            url: 'https://goodknight.xri.com.bd/api/logout',
+            url: 'https://expactivation.app/api/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -65,7 +64,7 @@ const HomePage = () => {
     const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
-            const res = await axios.get('https://goodknight.xri.com.bd/api/bp_info', {
+            const res = await axios.get('https://expactivation.app/api/bp_info', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -78,21 +77,15 @@ const HomePage = () => {
         enabled: token ? true : false
     })
 
-
     // show loader
     if (isLoading || isFetching || isPending) {
         return (
             <div className="h-dvh flex items-center justify-center">
                 <Spin
-                    indicator={
-                        <LoadingOutlined
-                            style={{
-                                fontSize: 35,
-                                color: "white",
-                            }}
-                            spin
-                        />
-                    }
+                    style={{
+                        fontSize: 35,
+                        color: "white",
+                    }}
                 />
             </div>
         )
