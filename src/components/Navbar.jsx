@@ -24,36 +24,11 @@ const Navbar = () => {
 
     // handle signout
     const handleSignout = async () => {
-        // axios.post('https://goodknight.xri.com.bd/api/logout', {
-        //     headers: {
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // })
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        // localStorage.removeItem('token');
-        // window.location.reload();
-        // window.location.href = "/signin";
-
-        // fetch('https://goodknight.xri.com.bd/api/logout', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         localStorage.removeItem('token');
-        //         window.location.reload();
-        //         window.location.href = "/signin";
-        //     })
+        
 
         // post request using capacitor http request
         const options = {
-            url: 'https://goodknight.xri.com.bd/api/logout',
+            url: 'https://expactivation.app/api/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

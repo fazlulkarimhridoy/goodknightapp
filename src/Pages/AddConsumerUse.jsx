@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion";
@@ -9,12 +9,17 @@ import { motion } from "framer-motion";
 const AddConsumerUse = () => {
   const { customerData, setCustomerData, handleChange } =
     useContext(DataContext);
-
+  const navigate = useNavigate();
   const { previous_used_product } = customerData;
 
   const token = localStorage.getItem("token");
   if (!token) {
     return (window.location.href = "/signin");
+  }
+
+  const handleVaporizer = (e) => {
+    handleChange(e);
+    navigate("/video")
   }
 
   return (
@@ -65,7 +70,7 @@ const AddConsumerUse = () => {
 
               name="previous_used_product"
               value={"Liquid Vaporizer"}
-              onClick={handleChange}
+              onClick={handleVaporizer}
               className={`btn-primary mt-1 w-[300px] truncate py-1 text-center  text-black  shadow-inner shadow-[#00000080]  px-12 text-2xl font-normal rounded-xl outline-none ${previous_used_product === "Liquid Vaporizer"
                 ? "bg-[#393939] text-white"
                 : ""
