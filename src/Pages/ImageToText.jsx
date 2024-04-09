@@ -11,14 +11,19 @@ import { Geolocation } from "@capacitor/geolocation";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Spin } from "antd";
+import "../CSS/imagetotext.css"
+import { Network } from '@capacitor/network';
+
 
 
 const ImageToText = () => {
+  const [loading, setLoading] = useState(false);
   const [detectedText1, setDetectedText1] = useState(null);
   const [detectedText2, setDetectedText2] = useState(null);
   const navigate = useNavigate();
 
-  const { setCustomerData, customerData } = useContext(DataContext);
+  const { setCustomerData, customerData, removeData } = useContext(DataContext);
 
   // checking if token is valid
   const token = localStorage.getItem('token');
@@ -37,10 +42,34 @@ const ImageToText = () => {
     getLocation();
   }, []);
 
+  // handle manual input code1
+  const handleManualInput1 = (e) => {
+    const updatedValue = e.target.value;
+    setDetectedText1(updatedValue);
+    setCustomerData((prevData) => ({
+      ...prevData,
+      product_code1: updatedValue,
+    }));
+    console.log(customerData);
+  };
+
+  // handle manual input code2
+  const handleManualInput2 = (e) => {
+    const updatedValue = e.target.value;
+    setDetectedText2(updatedValue);
+    setCustomerData((prevData) => ({
+      ...prevData,
+      product_code2: updatedValue,
+    }));
+    console.log(customerData);
+  };
+
+
+
   // mutation post request
   const customerInfoMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("https://goodknight.xri.com.bd/api/store-customer-info", customerData, {
+      const response = await axios.post("https://expactivation.app/api/store-customer-info", customerData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -50,23 +79,32 @@ const ImageToText = () => {
     },
     onSuccess: (data) => {
       console.log(data);
-      window.location.reload();
-      window.location.href = "/homePage"
+      setLoading(false)
+      removeData();
+      navigate("/successPage")
       toast.success("Customer Information successfully stored")
     },
     onError: (error) => {
-      console.log(error);
+      setLoading(false)
+      if (error.response.status === 422) {
+        toast.error("Missing Customer Information")
+      };
     }
   });
 
 
   const handleSubmit = async () => {
-    // if (detectedText1 && detectedText2 != null) {
-    //   navigate("/successPage")
-    //   console.log(customerData);
-    // }
-
-    customerInfoMutation.mutate()
+    setLoading(true);
+    const status = await Network.getStatus();
+    if(status.connected){
+      customerInfoMutation.mutate();
+    }
+    else{
+      setLoading(false);
+      toast.error("Please check your internet connection")
+    }
+    
+    // customerInfoMutation.mutate()
   }
 
   const handleDetectedText = async (img) => {
@@ -81,6 +119,7 @@ const ImageToText = () => {
 
   // handle product code 1
   const handleProductCode1 = async () => {
+    setLoading(true)
 
     try {
       // Capture photo
@@ -92,15 +131,18 @@ const ImageToText = () => {
 
       const data = handleDetectedText(photo.webPath);
       console.log(data.then((result) => {
-        setDetectedText1(result);
+        const resultNumber = parseInt(result);
+        setDetectedText1(resultNumber);
+        setLoading(false);
         setCustomerData((prevData) => ({
           ...prevData,
-          product_code1: result,
+          product_code1: resultNumber,
         }))
       }));
 
 
     } catch (error) {
+      setLoading(false);
       console.error('Error capturing image', error);
     }
   }
@@ -109,6 +151,7 @@ const ImageToText = () => {
 
   // handle product code 2
   const handleProductCode2 = async () => {
+    setLoading(true);
 
     try {
       // Capture photo
@@ -120,16 +163,19 @@ const ImageToText = () => {
 
       const data = handleDetectedText(photo.webPath);
       console.log(data.then((result) => {
-        setDetectedText2(result);
+        const resultNumber = parseInt(result);
+        setDetectedText2(resultNumber);
+        setLoading(false)
         setCustomerData((prevData) => ({
           ...prevData,
-          product_code2: result,
+          product_code2: resultNumber,
         }))
         console.log(customerData)
       }));
 
 
     } catch (error) {
+      setLoading(false)
       console.error('Error capturing image', error);
     }
   }
@@ -155,9 +201,12 @@ const ImageToText = () => {
 
             {/* product 01 */}
             <div className=" flex  space-x-5 ">
-              <p className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none">
-                {detectedText1}
-              </p>
+              <input
+                name="code1"
+                onChange={handleManualInput1}
+                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                value={detectedText1}
+                type="number" />
               <button
                 onClick={handleProductCode1}
                 className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
@@ -167,9 +216,12 @@ const ImageToText = () => {
             </div>
             {/* product 02 */}
             <div className=" flex  space-x-5">
-              <p className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none">
-                {detectedText2}
-              </p>
+              <input
+                name="code1"
+                onChange={handleManualInput2}
+                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                value={detectedText2}
+                type="number" />
               <button
                 onClick={handleProductCode2}
                 className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
@@ -179,7 +231,14 @@ const ImageToText = () => {
             </div>
 
           </div>
-          <div onClick={handleSubmit} className="mt-32">
+          <div className="mt-4">
+            {
+              loading ? <Spin
+                size="small"
+              /> : <></>
+            }
+          </div>
+          <div onClick={handleSubmit} className={`${loading ? "mt-28" : "mt-32"}`}>
             <Button title={"SUBMIT"}></Button>
           </div>
         </section>

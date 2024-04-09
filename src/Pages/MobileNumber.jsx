@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,8 +6,11 @@ import Navbar from "../components/Navbar";
 import { CapacitorHttp } from '@capacitor/core';
 import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion";
+import { Spin } from "antd";
+import "../CSS/mobilenumber.css"
 
 const MobileNumber = () => {
+    const [loading, setLoading] = useState(false);
     const { customerData } = useContext(DataContext);
     const { phone_number } = customerData;
     const navigate = useNavigate();
@@ -20,8 +23,9 @@ const MobileNumber = () => {
 
     // generate otp
     const handleOtpVerification = async () => {
+        setLoading(true)
         const options = {
-            url: 'https://goodknight.xri.com.bd/api/send-otp',
+            url: 'https://expactivation.app/api/send-otp',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -32,10 +36,12 @@ const MobileNumber = () => {
         console.log(response.data.otp);
         const otp = response.data.otp;
         if (otp) {
+            setLoading(false)
             localStorage.setItem('otp', otp);
             navigate('/otp')
         }
         else {
+            setLoading(false);
             console.log(response);
         }
     }
@@ -59,8 +65,15 @@ const MobileNumber = () => {
                     </h1>
                 </div>
 
+                <div>
+                    {
+                        loading ? <Spin
+                            size="small"
+                        /> : <></>
+                    }
+                </div>
 
-                <div onClick={handleOtpVerification} className="mt-[176px]">
+                <div onClick={handleOtpVerification} className={`${loading ? "mt-[150px]": "mt-[176px]"}`}>
                     <Button title={'Send Otp'} />
                 </div>
 

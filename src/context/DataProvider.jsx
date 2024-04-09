@@ -57,7 +57,7 @@ export const DataProvider = ({ children }) => {
 
   // Provide the context value to its children
   return (
-    <DataContext.Provider value={{ theme, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL,text, setText }}>
+    <DataContext.Provider value={{ theme, removeData, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL,text, setText }}>
       {children}
     </DataContext.Provider>
   );

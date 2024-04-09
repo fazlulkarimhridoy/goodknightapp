@@ -3,12 +3,15 @@ import { CapacitorHttp } from "@capacitor/core";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import { Spin } from "antd";
+import "../CSS/signin.css"
 
 const SignIn = () => {
   // states
   const [bpId, setBpId] = useState(null);
   const [password, setPassword] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // handle bp id
   const handleBpId = (e) => {
@@ -24,6 +27,7 @@ const SignIn = () => {
 
   // handle login
   const userLogIn = async () => {
+    setLoading(true);
 
     const latitude = localStorage.getItem("latitude");
     const longitude = localStorage.getItem("longitude");
@@ -37,19 +41,21 @@ const SignIn = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://goodknight.xri.com.bd/api/login",
+      url: "https://expactivation.app/api/login",
       headers: { "Content-Type": "application/json" },
       data: customerData,
     };
     const response = await CapacitorHttp.post(options);
     const token = response.data.token;
     if (token && response.status === 200) {
+      setLoading(false);
       localStorage.setItem("token", token);
       localStorage.removeItem("latitude");
       localStorage.removeItem("longitude");
       navigate("/homePage");
       toast.success("Login successful!");
     } else {
+      setLoading(false);
       toast.error("Incorrect credentials!");
     }
   };
@@ -82,6 +88,13 @@ const SignIn = () => {
         >
           LOG IN
         </motion.button>
+      </div>
+      <div>
+        {
+          loading ? <Spin className="text-white font-thin" tip="Signing in..." size="small">
+            <div className="content" />
+          </Spin> : <></>
+        }
       </div>
     </div>
   );

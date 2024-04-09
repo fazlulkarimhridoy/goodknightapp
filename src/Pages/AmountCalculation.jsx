@@ -20,9 +20,9 @@ const AmountCalculation = () => {
 
   // handle quantity 1
   const handleQuantity1 = () => {
-    const price = 115;
+    const price = 120;
     setAmount(price);
-    setSaving(34);
+    setSaving(50);
     setCustomerData((prevData) => ({
       ...prevData,
       quantity: 1,
@@ -30,9 +30,9 @@ const AmountCalculation = () => {
   }
   // handle quantity 2
   const handleQuantity2 = () => {
-    const price = 115 * 2;
+    const price = 120 * 2;
     setAmount(price);
-    setSaving(34 * 2);
+    setSaving(50 * 2);
     setCustomerData((prevData) => ({
       ...prevData,
       quantity: 2,
@@ -73,8 +73,8 @@ const AmountCalculation = () => {
 
           <div>
             <h4 className="text-white text-xs">
-              • MRP. Per Unit BDT 149/-
-              <br />• Discounted MRP. BDT 115/-
+              • MRP. Per Unit BDT 170/-
+              <br />• Discounted MRP. BDT 120/-
             </h4>
           </div>
 

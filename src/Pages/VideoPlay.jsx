@@ -28,7 +28,7 @@ const VideoPlay = () => {
     // Step 3
     const timer = setTimeout(() => {
       setShowSkipButton(true);
-    }, 3000); // 5 minutes
+    }, 15000);
 
     // Cleanup function to clear the timeout when the component unmounts
     return () => clearTimeout(timer);
@@ -42,11 +42,11 @@ const VideoPlay = () => {
   return (
     <motion.div initial={{ opacity: 0, x: 400 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, ease: "easeIn" }} exit={{ x: -400, ease: "easeInOut" }} className="!bg-black ">
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      exit={{ x: -400, ease: "easeInOut" }} className="!bg-black ">
       <video
         className="video-player !bg-black"
         playsInline
-        loop
         muted={false}
         controls={false}
         alt="video"
