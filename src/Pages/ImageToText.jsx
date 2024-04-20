@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import Tesseract, { detect } from "tesseract.js";
+import Tesseract from "tesseract.js";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
@@ -95,16 +95,15 @@ const ImageToText = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
+    console.log("handleSubmit data", customerData);
     const status = await Network.getStatus();
-    if(status.connected){
+    if (status.connected) {
       customerInfoMutation.mutate();
     }
-    else{
+    else {
       setLoading(false);
       toast.error("Please check your internet connection")
     }
-    
-    // customerInfoMutation.mutate()
   }
 
   const handleDetectedText = async (img) => {
@@ -119,38 +118,7 @@ const ImageToText = () => {
 
   // handle product code 1
   const handleProductCode1 = async () => {
-    setLoading(true)
-
-    try {
-      // Capture photo
-      const photo = await Camera.getPhoto({
-        quality: 90,
-        resultType: CameraResultType.Uri,
-        source: CameraSource.Camera
-      });
-
-      const data = handleDetectedText(photo.webPath);
-      console.log(data.then((result) => {
-        const resultNumber = parseInt(result);
-        setDetectedText1(resultNumber);
-        setLoading(false);
-        setCustomerData((prevData) => ({
-          ...prevData,
-          product_code1: resultNumber,
-        }))
-      }));
-
-
-    } catch (error) {
-      setLoading(false);
-      console.error('Error capturing image', error);
-    }
-  }
-
-
-
-  // handle product code 2
-  const handleProductCode2 = async () => {
+    console.log("before initialize", customerData);
     setLoading(true);
 
     try {
@@ -158,25 +126,67 @@ const ImageToText = () => {
       const photo = await Camera.getPhoto({
         quality: 90,
         resultType: CameraResultType.Uri,
-        source: CameraSource.Camera
+        source: CameraSource.Camera,
       });
 
-      const data = handleDetectedText(photo.webPath);
-      console.log(data.then((result) => {
-        const resultNumber = parseInt(result);
-        setDetectedText2(resultNumber);
+      const result = await handleDetectedText(photo.webPath);
+      const resultNumber = parseInt(result);
+      console.log("resultNumber", resultNumber);
+      if (!isNaN(resultNumber)) {
         setLoading(false)
+        setDetectedText1(resultNumber);
+        setCustomerData((prevData) => ({
+          ...prevData,
+          product_code1: resultNumber,
+        }))
+        console.log(customerData);
+      }
+      else {
+        setLoading(false);
+        toast.error("No code found. Please try again")
+        console.log("No code found", customerData);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error('Error capturing image', error);
+    }
+  }
+
+
+
+  // handle product code 2
+  const handleProductCode2 = async () => {
+    console.log("before initialize", customerData);
+    setLoading(true);
+
+    try {
+      // Capture photo
+      const photo = await Camera.getPhoto({
+        quality: 90,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+      });
+
+      const result = await handleDetectedText(photo.webPath);
+      const resultNumber = parseInt(result);
+      console.log("resultNumber", resultNumber);
+      if (!isNaN(resultNumber)) {
+        setLoading(false)
+        setDetectedText2(resultNumber);
         setCustomerData((prevData) => ({
           ...prevData,
           product_code2: resultNumber,
         }))
-        console.log(customerData)
-      }));
-
-
+        console.log(customerData);
+      }
+      else {
+        setLoading(false);
+        toast.error("No code found. Please try again")
+        console.log("No code found", customerData);
+      }
     } catch (error) {
-      setLoading(false)
-      console.error('Error capturing image', error);
+      setLoading(false);
+      toast.error('Error capturing image', error);
     }
   }
 
@@ -205,14 +215,15 @@ const ImageToText = () => {
                 name="code1"
                 onChange={handleManualInput1}
                 className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText1}
+                value={detectedText1 || null}
                 type="number" />
-              <button
+              <motion.button
+                whileTap={{ scale: 0.9 }}
                 onClick={handleProductCode1}
                 className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
               >
                 <img src="/images/cameraIcon.svg"></img>
-              </button>
+              </motion.button>
             </div>
             {/* product 02 */}
             <div className=" flex  space-x-5">
@@ -220,14 +231,15 @@ const ImageToText = () => {
                 name="code1"
                 onChange={handleManualInput2}
                 className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText2}
+                value={detectedText2 || null}
                 type="number" />
-              <button
+              <motion.button
+                whileTap={{ scale: 0.9 }}
                 onClick={handleProductCode2}
                 className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
               >
                 <img src="/images/cameraIcon.svg"></img>
-              </button>
+              </motion.button>
             </div>
 
           </div>
