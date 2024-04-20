@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import video from "/video/GoodNight.mp4"
+import video from "/video/GoodNight.mp4";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -8,7 +8,6 @@ const VideoPlay = () => {
   const videoEl = useRef(null);
   const navigate = useNavigate();
   const [showSkipButton, setShowSkipButton] = useState(false);
-
 
   const attemptPlay = () => {
     videoEl &&
@@ -22,7 +21,6 @@ const VideoPlay = () => {
     attemptPlay();
   }, []);
 
-
   useEffect(() => {
     attemptPlay();
     // Step 3
@@ -34,17 +32,19 @@ const VideoPlay = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   const handleSkip = () => {
-    navigate("/consumerform")
-  }
+    navigate("/consumerform");
+  };
 
   return (
-    <motion.div initial={{ opacity: 0, x: 400 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, ease: "easeIn" }}
-      exit={{ x: -400, ease: "easeInOut" }} className="!bg-black ">
-      <video
+    <motion.div
+      className="bg-black "
+    >
+      <motion.video
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeIn" }}
+        exit={{ x: -400, ease: "easeInOut" }}
         className="video-player !bg-black"
         playsInline
         muted={false}
@@ -54,8 +54,12 @@ const VideoPlay = () => {
         ref={videoEl}
       />
       {showSkipButton && (
-        <button onClick={handleSkip} className="skip-button text-white font-semibold">
-          Skip {'>'}{'>'}
+        <button
+          onClick={handleSkip}
+          className="skip-button text-white font-semibold"
+        >
+          Skip {">"}
+          {">"}
         </button>
       )}
     </motion.div>
