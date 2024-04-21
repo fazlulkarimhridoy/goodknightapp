@@ -16,7 +16,6 @@ import "../CSS/imagetotext.css"
 import { Network } from '@capacitor/network';
 
 
-
 const ImageToText = () => {
   const [loading, setLoading] = useState(false);
   const [detectedText1, setDetectedText1] = useState(null);
@@ -24,6 +23,7 @@ const ImageToText = () => {
   const navigate = useNavigate();
 
   const { setCustomerData, customerData, removeData } = useContext(DataContext);
+  const { quantity } = customerData;
 
   // checking if token is valid
   const token = localStorage.getItem('token');
@@ -110,7 +110,23 @@ const ImageToText = () => {
     const { data: { text } } = await Tesseract.recognize(
       img,
       'eng', // language
-      { logger: m => console.log(m) }
+      { logger: m => console.log(m) },
+      {
+        minConfidence: 0.5,
+        psm: 3,
+        oem: 1,
+        tessedit_pageseg_mode: 3, // Fully automatic page segmentation, but no OSD
+        tessedit_char_whitelist: '0123456789', // Only recognize digits
+        tessedit_image_quality: 10, // Adjust image quality
+        tessedit_create_tsv: 1, // Output in TSV format
+        tessedit_create_hocr: 0, // Output in hOCR format (set to 0 to disable)
+        tessedit_create_pdf: 0, // Output in PDF format (set to 0 to disable)
+        tessedit_create_unlv: 0, // Output in UNLV format (set to 0 to disable)
+        tessedit_create_boxfile: 0, // Output bounding box coordinates (set to 0 to disable)
+        tessedit_char_blacklist: '', // No characters to blacklist
+        tessedit_enable_doc_dict: 1, // Use dictionary of words found in the document
+        tessedit_enable_bigram_correction: 1, // Use bigram correction
+      },
     );
     return text;
   }
@@ -129,29 +145,58 @@ const ImageToText = () => {
         source: CameraSource.Camera,
       });
 
-      const result = await handleDetectedText(photo.webPath);
-      const resultNumber = parseInt(result);
-      console.log("resultNumber", resultNumber);
-      if (!isNaN(resultNumber)) {
-        setLoading(false)
-        setDetectedText1(resultNumber);
-        setCustomerData((prevData) => ({
-          ...prevData,
-          product_code1: resultNumber,
-        }))
-        console.log(customerData);
-      }
-      else {
-        setLoading(false);
-        toast.error("No code found. Please try again")
-        console.log("No code found", customerData);
-      }
+      // Create an Image object
+      const image = new Image();
+
+      // Set the source of the image to the photo web path
+      image.src = photo.webPath;
+
+      // When the image is loaded, perform compression
+      image.onload = async () => {
+        try {
+          // Create a canvas element
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          // Set canvas dimensions to match the image
+          canvas.width = image.width;
+          canvas.height = image.height;
+
+          // Draw the image onto the canvas
+          ctx.drawImage(image, 0, 0);
+
+          // Convert the canvas to a data URI with compressed quality
+          const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
+
+          console.log("uri", compressedDataUri);
+
+          // Perform text detection on the compressed image
+          const result = await handleDetectedText(compressedDataUri);
+          const resultNumber = parseInt(result);
+          console.log("resultNumber", resultNumber);
+          if (!isNaN(resultNumber)) {
+            setLoading(false);
+            setDetectedText1(resultNumber);
+            setCustomerData((prevData) => ({
+              ...prevData,
+              product_code1: resultNumber,
+            }));
+            console.log(customerData);
+          } else {
+            setLoading(false);
+            toast.error("No code found. Please try again");
+            console.log("No code found", customerData);
+          }
+        } catch (error) {
+          setLoading(false);
+          toast.error('Error compressing image', error);
+        }
+      };
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
     }
   }
-
 
 
   // handle product code 2
@@ -167,23 +212,53 @@ const ImageToText = () => {
         source: CameraSource.Camera,
       });
 
-      const result = await handleDetectedText(photo.webPath);
-      const resultNumber = parseInt(result);
-      console.log("resultNumber", resultNumber);
-      if (!isNaN(resultNumber)) {
-        setLoading(false)
-        setDetectedText2(resultNumber);
-        setCustomerData((prevData) => ({
-          ...prevData,
-          product_code2: resultNumber,
-        }))
-        console.log(customerData);
-      }
-      else {
-        setLoading(false);
-        toast.error("No code found. Please try again")
-        console.log("No code found", customerData);
-      }
+      // Create an Image object
+      const image = new Image();
+
+      // Set the source of the image to the photo web path
+      image.src = photo.webPath;
+
+      // When the image is loaded, perform compression
+      image.onload = async () => {
+        try {
+          // Create a canvas element
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+
+          // Set canvas dimensions to match the image
+          canvas.width = image.width;
+          canvas.height = image.height;
+
+          // Draw the image onto the canvas
+          ctx.drawImage(image, 0, 0);
+
+          // Convert the canvas to a data URI with compressed quality
+          const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
+
+          console.log("uri", compressedDataUri);
+
+          // Perform text detection on the compressed image
+          const result = await handleDetectedText(compressedDataUri);
+          const resultNumber = parseInt(result);
+          console.log("resultNumber", resultNumber);
+          if (!isNaN(resultNumber)) {
+            setLoading(false);
+            setDetectedText2(resultNumber);
+            setCustomerData((prevData) => ({
+              ...prevData,
+              product_code2: resultNumber,
+            }));
+            console.log(customerData);
+          } else {
+            setLoading(false);
+            toast.error("No code found. Please try again");
+            console.log("No code found", customerData);
+          }
+        } catch (error) {
+          setLoading(false);
+          toast.error('Error compressing image', error);
+        }
+      };
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
@@ -209,38 +284,63 @@ const ImageToText = () => {
 
           <div className="flex flex-col gap-4 px-2 mt-2">
 
-            {/* product 01 */}
-            <div className=" flex  space-x-5 ">
-              <input
-                name="code1"
-                onChange={handleManualInput1}
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText1 || null}
-                type="number" />
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={handleProductCode1}
-                className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
-              >
-                <img src="/images/cameraIcon.svg"></img>
-              </motion.button>
-            </div>
-            {/* product 02 */}
-            <div className=" flex  space-x-5">
-              <input
-                name="code1"
-                onChange={handleManualInput2}
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText2 || null}
-                type="number" />
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={handleProductCode2}
-                className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
-              >
-                <img src="/images/cameraIcon.svg"></img>
-              </motion.button>
-            </div>
+            {
+              quantity === 2 ?
+                <>
+                  {/* product 01 */}
+                  <div className=" flex  space-x-5 ">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput1}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText1 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode1}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+
+                  {/* product 02 */}
+                  <div className=" flex  space-x-5">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput2}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText2 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode2}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+                </>
+                :
+                <>
+                  {/* product 01 */}
+                  <div className=" flex  space-x-5 ">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput1}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText1 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode1}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+                </>
+            }
 
           </div>
           <div className="mt-4">
