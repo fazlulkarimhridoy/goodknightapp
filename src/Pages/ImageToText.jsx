@@ -24,6 +24,7 @@ const ImageToText = () => {
   const navigate = useNavigate();
 
   const { setCustomerData, customerData, removeData } = useContext(DataContext);
+  const { quantity } = customerData;
 
   // checking if token is valid
   const token = localStorage.getItem('token');
@@ -126,7 +127,7 @@ const ImageToText = () => {
         tessedit_char_blacklist: '', // No characters to blacklist
         tessedit_enable_doc_dict: 1, // Use dictionary of words found in the document
         tessedit_enable_bigram_correction: 1, // Use bigram correction
-    },
+      },
     );
     return text;
   }
@@ -228,38 +229,63 @@ const ImageToText = () => {
 
           <div className="flex flex-col gap-4 px-2 mt-2">
 
-            {/* product 01 */}
-            <div className=" flex  space-x-5 ">
-              <input
-                name="code1"
-                onChange={handleManualInput1}
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText1 || null}
-                type="number" />
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={handleProductCode1}
-                className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
-              >
-                <img src="/images/cameraIcon.svg"></img>
-              </motion.button>
-            </div>
-            {/* product 02 */}
-            <div className=" flex  space-x-5">
-              <input
-                name="code1"
-                onChange={handleManualInput2}
-                className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
-                value={detectedText2 || null}
-                type="number" />
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={handleProductCode2}
-                className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
-              >
-                <img src="/images/cameraIcon.svg"></img>
-              </motion.button>
-            </div>
+            {
+              quantity === 2 ?
+                <>
+                  {/* product 01 */}
+                  <div className=" flex  space-x-5 ">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput1}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText1 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode1}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+
+                  {/* product 02 */}
+                  <div className=" flex  space-x-5">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput2}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText2 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode2}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+                </>
+                :
+                <>
+                  {/* product 01 */}
+                  <div className=" flex  space-x-5 ">
+                    <input
+                      name="code1"
+                      onChange={handleManualInput1}
+                      className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
+                      value={detectedText1 || null}
+                      type="number" />
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleProductCode1}
+                      className="bg-[#D9D9D9] px-4 py-2 rounded-lg"
+                    >
+                      <img src="/images/cameraIcon.svg"></img>
+                    </motion.button>
+                  </div>
+                </>
+            }
 
           </div>
           <div className="mt-4">
