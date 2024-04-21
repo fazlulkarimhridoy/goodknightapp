@@ -228,7 +228,7 @@ const ConsumerForm = () => {
             <div className="text-white">number is required</div>
           ))}
       </div>
-      <div className="mt-8">
+      <div className="">
         {
           loading ? <Spin className="text-white font-thin" tip="checking number..." size="small">
             <div className="content" />
