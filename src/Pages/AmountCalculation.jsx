@@ -9,8 +9,6 @@ import { motion } from "framer-motion";
 const AmountCalculation = () => {
   const { setCustomerData, customerData, handleChange } = useContext(DataContext);
 
-  console.log(customerData);
-
   const [amount, setAmount] = useState(0);
   const [saving, setSaving] = useState(null);
   const token = localStorage.getItem('token');

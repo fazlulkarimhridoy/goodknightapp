@@ -78,7 +78,6 @@ const ImageToText = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      console.log(data);
       setLoading(false)
       removeData();
       navigate("/successPage")
@@ -95,7 +94,6 @@ const ImageToText = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    console.log("handleSubmit data", customerData);
     const status = await Network.getStatus();
     if (status.connected) {
       customerInfoMutation.mutate();
@@ -105,97 +103,6 @@ const ImageToText = () => {
       toast.error("Please check your internet connection")
     }
   }
-
-  const handleDetectedText = async (img) => {
-    const { data: { text } } = await Tesseract.recognize(
-      img,
-      'eng', // language
-      { logger: m => console.log(m) },
-      {
-        minConfidence: 0.5,
-        psm: 3,
-        oem: 1,
-        tessedit_pageseg_mode: 3, // Fully automatic page segmentation, but no OSD
-        tessedit_char_whitelist: '0123456789', // Only recognize digits
-        tessedit_image_quality: 10, // Adjust image quality
-        tessedit_create_tsv: 1, // Output in TSV format
-        tessedit_create_hocr: 0, // Output in hOCR format (set to 0 to disable)
-        tessedit_create_pdf: 0, // Output in PDF format (set to 0 to disable)
-        tessedit_create_unlv: 0, // Output in UNLV format (set to 0 to disable)
-        tessedit_create_boxfile: 0, // Output bounding box coordinates (set to 0 to disable)
-        tessedit_char_blacklist: '', // No characters to blacklist
-        tessedit_enable_doc_dict: 1, // Use dictionary of words found in the document
-        tessedit_enable_bigram_correction: 1, // Use bigram correction
-      },
-    );
-    return text;
-  }
-
-
-  // handle product code 1
-  // const handleProductCode1 = async () => {
-  //   setLoading(true);
-
-  //   try {
-  //     // Capture photo
-  //     const photo = await Camera.getPhoto({
-  //       quality: 90,
-  //       resultType: CameraResultType.Uri,
-  //       source: CameraSource.Camera,
-  //     });
-
-  //     // Create an Image object
-  //     const image = new Image();
-
-  //     // Set the source of the image to the photo web path
-  //     image.src = photo.webPath;
-
-  //     // When the image is loaded, perform compression
-  //     image.onload = async () => {
-  //       try {
-  //         // Create a canvas element
-  //         const canvas = document.createElement('canvas');
-  //         const ctx = canvas.getContext('2d');
-
-  //         // Set canvas dimensions to match the image
-  //         canvas.width = image.width;
-  //         canvas.height = image.height;
-
-  //         // Draw the image onto the canvas
-  //         ctx.drawImage(image, 0, 0);
-
-  //         // Convert the canvas to a data URI with compressed quality
-  //         const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
-
-  //         console.log("uri", compressedDataUri);
-
-  //         // Perform text detection on the compressed image
-  //         const result = await handleDetectedText(compressedDataUri);
-  //         const resultNumber = parseInt(result);
-  //         console.log("resultNumber", resultNumber);
-  //         if (!isNaN(resultNumber)) {
-  //           setLoading(false);
-  //           setDetectedText1(resultNumber);
-  //           setCustomerData((prevData) => ({
-  //             ...prevData,
-  //             product_code1: resultNumber,
-  //           }));
-  //           console.log(customerData);
-  //         } else {
-  //           setLoading(false);
-  //           toast.error("No code found. Please try again");
-  //           console.log("No code found", customerData);
-  //         }
-  //       } catch (error) {
-  //         setLoading(false);
-  //         toast.error('Error compressing image', error);
-  //       }
-  //     };
-  //   } catch (error) {
-  //     setLoading(false);
-  //     toast.error('Error capturing image', error);
-  //   }
-  // }
 
   // handle product code 1
   const handleProductCode1 = async () => {

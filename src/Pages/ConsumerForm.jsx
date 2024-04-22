@@ -17,7 +17,6 @@ const ConsumerForm = () => {
   const { customerData, setCustomerData, handleChange } =
     useContext(DataContext);
   const { name, age, gender, phone_number } = customerData;
-  console.log(customerData);
 
 
 
@@ -64,7 +63,6 @@ const ConsumerForm = () => {
     };
     const response = await CapacitorHttp.post(options);
     const newCustomer = response?.data.new_customer;
-    console.log(typeof newCustomer);
     if (newCustomer === true) {
       setLoading(false);
       navigate("/buyproductstart");
@@ -76,7 +74,6 @@ const ConsumerForm = () => {
       toast.error("The number must be of 11 digits.");
     } else {
       setLoading(false);
-      console.log(response.data.message);
     }
   };
 

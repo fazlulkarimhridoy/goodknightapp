@@ -1,5 +1,5 @@
 body
-  > div:nth-child(3)
+  > div:nth-child(5)
   > div
   > div.ant-drawer-content-wrapper
   > div
@@ -7,7 +7,7 @@ body
   > div
   > button
   > span
-  > svg
-  > path {
+  > svg {
   color: white; /* Change this to the desired color */
+  font-size: 20px;
 }
