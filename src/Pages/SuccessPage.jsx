@@ -19,8 +19,6 @@ const SuccessPage = () => {
 
   const { setCustomerData, customerData } = useContext(DataContext);
 
-  console.log(customerData);
-
   const [open, setOpen] = useState(false);
   const [placement] = useState('right');
   const showDrawer = () => {
@@ -41,7 +39,6 @@ const SuccessPage = () => {
       }
     };
     const response = await CapacitorHttp.post(options);
-    console.log(response);
     if (response.status === 201 || 200) {
       localStorage.removeItem('token');
       navigate("/signin");

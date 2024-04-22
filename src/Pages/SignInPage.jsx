@@ -3,19 +3,7 @@ import SignIn from "../components/SignIn";
 import { motion } from "framer-motion";
 
 const SignInPage = () => {
-  // const containerVariants = {
-  //   hidden: {
-  //     opacity: 0,
-  //   },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: { delay: 0.5, duration: 0.5 }
-  //   },
-  //   exit: {
-  //     x: '-100vw',
-  //     transition: { ease: 'easeInOut' }
-  //   }
-  // }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 400 }}
