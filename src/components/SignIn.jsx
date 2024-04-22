@@ -15,12 +15,10 @@ const SignIn = () => {
 
   // handle bp id
   const handleBpId = (e) => {
-    console.log(e.target.value);
     setBpId(e.target.value);
   };
   // handle password
   const handlePassword = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
