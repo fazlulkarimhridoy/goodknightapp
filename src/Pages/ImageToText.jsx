@@ -95,13 +95,13 @@ const ImageToText = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const status = await Network.getStatus();
-    // if (status.connected) {
-    //   customerInfoMutation.mutate();
-    // }
-    // else {
-    //   setLoading(false);
-    //   toast.error("Please check your internet connection")
-    // }
+    if (status.connected) {
+      customerInfoMutation.mutate();
+    }
+    else {
+      setLoading(false);
+      toast.error("Please check your internet connection")
+    }
   }
 
   // handle product code 1
