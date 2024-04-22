@@ -14,6 +14,8 @@ import toast from "react-hot-toast";
 import { Spin } from "antd";
 import "../CSS/imagetotext.css"
 import { Network } from '@capacitor/network';
+import { Ocr } from '@capacitor-community/image-to-text';
+
 
 
 const ImageToText = () => {
@@ -50,7 +52,6 @@ const ImageToText = () => {
       ...prevData,
       product_code1: updatedValue,
     }));
-    console.log(customerData);
   };
 
   // handle manual input code2
@@ -61,7 +62,6 @@ const ImageToText = () => {
       ...prevData,
       product_code2: updatedValue,
     }));
-    console.log(customerData);
   };
 
 
@@ -133,10 +133,73 @@ const ImageToText = () => {
 
 
   // handle product code 1
-  const handleProductCode1 = async () => {
-    console.log("before initialize", customerData);
-    setLoading(true);
+  // const handleProductCode1 = async () => {
+  //   setLoading(true);
 
+  //   try {
+  //     // Capture photo
+  //     const photo = await Camera.getPhoto({
+  //       quality: 90,
+  //       resultType: CameraResultType.Uri,
+  //       source: CameraSource.Camera,
+  //     });
+
+  //     // Create an Image object
+  //     const image = new Image();
+
+  //     // Set the source of the image to the photo web path
+  //     image.src = photo.webPath;
+
+  //     // When the image is loaded, perform compression
+  //     image.onload = async () => {
+  //       try {
+  //         // Create a canvas element
+  //         const canvas = document.createElement('canvas');
+  //         const ctx = canvas.getContext('2d');
+
+  //         // Set canvas dimensions to match the image
+  //         canvas.width = image.width;
+  //         canvas.height = image.height;
+
+  //         // Draw the image onto the canvas
+  //         ctx.drawImage(image, 0, 0);
+
+  //         // Convert the canvas to a data URI with compressed quality
+  //         const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
+
+  //         console.log("uri", compressedDataUri);
+
+  //         // Perform text detection on the compressed image
+  //         const result = await handleDetectedText(compressedDataUri);
+  //         const resultNumber = parseInt(result);
+  //         console.log("resultNumber", resultNumber);
+  //         if (!isNaN(resultNumber)) {
+  //           setLoading(false);
+  //           setDetectedText1(resultNumber);
+  //           setCustomerData((prevData) => ({
+  //             ...prevData,
+  //             product_code1: resultNumber,
+  //           }));
+  //           console.log(customerData);
+  //         } else {
+  //           setLoading(false);
+  //           toast.error("No code found. Please try again");
+  //           console.log("No code found", customerData);
+  //         }
+  //       } catch (error) {
+  //         setLoading(false);
+  //         toast.error('Error compressing image', error);
+  //       }
+  //     };
+  //   } catch (error) {
+  //     setLoading(false);
+  //     toast.error('Error capturing image', error);
+  //   }
+  // }
+
+  // handle product code 1
+  const handleProductCode1 = async () => {
+    setLoading(true);
     try {
       // Capture photo
       const photo = await Camera.getPhoto({
@@ -144,66 +207,33 @@ const ImageToText = () => {
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
       });
-
-      // Create an Image object
-      const image = new Image();
-
-      // Set the source of the image to the photo web path
-      image.src = photo.webPath;
-
-      // When the image is loaded, perform compression
-      image.onload = async () => {
-        try {
-          // Create a canvas element
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-
-          // Set canvas dimensions to match the image
-          canvas.width = image.width;
-          canvas.height = image.height;
-
-          // Draw the image onto the canvas
-          ctx.drawImage(image, 0, 0);
-
-          // Convert the canvas to a data URI with compressed quality
-          const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
-
-          console.log("uri", compressedDataUri);
-
-          // Perform text detection on the compressed image
-          const result = await handleDetectedText(compressedDataUri);
-          const resultNumber = parseInt(result);
-          console.log("resultNumber", resultNumber);
-          if (!isNaN(resultNumber)) {
-            setLoading(false);
-            setDetectedText1(resultNumber);
-            setCustomerData((prevData) => ({
-              ...prevData,
-              product_code1: resultNumber,
-            }));
-            console.log(customerData);
-          } else {
-            setLoading(false);
-            toast.error("No code found. Please try again");
-            console.log("No code found", customerData);
-          }
-        } catch (error) {
+      // ocr with capacitor plugin
+      const data = await Ocr.detectText({ filename: photo.path });
+      // extracting ocr output
+      for (let detection of data.textDetections) {
+        const ocrTextNumber = parseInt(detection.text);
+        // if not number then proceed for result
+        if (!isNaN(ocrTextNumber)) {
           setLoading(false);
-          toast.error('Error compressing image', error);
+          setDetectedText1(ocrTextNumber);
+          setCustomerData((prevData) => ({
+            ...prevData,
+            product_code1: ocrTextNumber,
+          }));
+        } else {
+          setLoading(false);
+          toast.error("No code found. Please try again");
         }
-      };
+      }
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
     }
   }
 
-
   // handle product code 2
   const handleProductCode2 = async () => {
-    console.log("before initialize", customerData);
     setLoading(true);
-
     try {
       // Capture photo
       const photo = await Camera.getPhoto({
@@ -211,54 +241,24 @@ const ImageToText = () => {
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
       });
-
-      // Create an Image object
-      const image = new Image();
-
-      // Set the source of the image to the photo web path
-      image.src = photo.webPath;
-
-      // When the image is loaded, perform compression
-      image.onload = async () => {
-        try {
-          // Create a canvas element
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-
-          // Set canvas dimensions to match the image
-          canvas.width = image.width;
-          canvas.height = image.height;
-
-          // Draw the image onto the canvas
-          ctx.drawImage(image, 0, 0);
-
-          // Convert the canvas to a data URI with compressed quality
-          const compressedDataUri = canvas.toDataURL('image/jpeg', 0.6);
-
-          console.log("uri", compressedDataUri);
-
-          // Perform text detection on the compressed image
-          const result = await handleDetectedText(compressedDataUri);
-          const resultNumber = parseInt(result);
-          console.log("resultNumber", resultNumber);
-          if (!isNaN(resultNumber)) {
-            setLoading(false);
-            setDetectedText2(resultNumber);
-            setCustomerData((prevData) => ({
-              ...prevData,
-              product_code2: resultNumber,
-            }));
-            console.log(customerData);
-          } else {
-            setLoading(false);
-            toast.error("No code found. Please try again");
-            console.log("No code found", customerData);
-          }
-        } catch (error) {
+      // ocr with capacitor plugin
+      const data = await Ocr.detectText({ filename: photo.path });
+      // extracting ocr output
+      for (let detection of data.textDetections) {
+        const ocrTextNumber = parseInt(detection.text);
+        // if not number then proceed for result
+        if (!isNaN(ocrTextNumber)) {
           setLoading(false);
-          toast.error('Error compressing image', error);
+          setDetectedText2(ocrTextNumber);
+          setCustomerData((prevData) => ({
+            ...prevData,
+            product_code2: ocrTextNumber,
+          }));
+        } else {
+          setLoading(false);
+          toast.error("No code found. Please try again");
         }
-      };
+      }
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
