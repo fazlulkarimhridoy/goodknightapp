@@ -19,7 +19,6 @@ const BuyProductStart = () => {
   const navigate = useNavigate()
   const { customerData, removeData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
-  console.log(customerData);
 
   const token = localStorage.getItem('token');
   if (!token) {
@@ -57,7 +56,6 @@ const BuyProductStart = () => {
     };
     if (status.connected) {
       const response = await CapacitorHttp.post(options);
-      console.log(response);
       if (response.status === 200 || 201) {
         setLoading(false);
         navigate("/homePage");

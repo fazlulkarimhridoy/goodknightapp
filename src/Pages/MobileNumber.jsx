@@ -14,7 +14,6 @@ const MobileNumber = () => {
     const { customerData } = useContext(DataContext);
     const { phone_number } = customerData;
     const navigate = useNavigate();
-    console.log("phone", phone_number);
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -33,7 +32,6 @@ const MobileNumber = () => {
             data: { phone_number: phone_number }
         };
         const response = await CapacitorHttp.post(options);
-        console.log(response.data.otp);
         const otp = response.data.otp;
         if (otp) {
             setLoading(false)
@@ -42,7 +40,6 @@ const MobileNumber = () => {
         }
         else {
             setLoading(false);
-            console.log(response);
         }
     }
 

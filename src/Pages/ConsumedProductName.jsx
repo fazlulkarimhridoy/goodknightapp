@@ -10,7 +10,6 @@ const ConsumedProductName = () => {
   const { customerData, handleChange } = useContext(DataContext);
 
   const { previous_used_brand } = customerData;
-  console.log(customerData);
 
   const token = localStorage.getItem("token");
   if (!token) {

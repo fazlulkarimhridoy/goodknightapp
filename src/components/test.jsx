@@ -110,7 +110,23 @@ const ImageToText = () => {
         const { data: { text } } = await Tesseract.recognize(
             img,
             'eng', // language
-            { logger: m => console.log(m) }
+            { logger: m => console.log(m) },
+            {
+                minConfidence: 0.5,
+                psm: 3,
+                oem: 1,
+                tessedit_pageseg_mode: 3, // Fully automatic page segmentation, but no OSD
+                tessedit_char_whitelist: '0123456789', // Only recognize digits
+                tessedit_image_quality: 10, // Adjust image quality
+                tessedit_create_tsv: 1, // Output in TSV format
+                tessedit_create_hocr: 0, // Output in hOCR format (set to 0 to disable)
+                tessedit_create_pdf: 0, // Output in PDF format (set to 0 to disable)
+                tessedit_create_unlv: 0, // Output in UNLV format (set to 0 to disable)
+                tessedit_create_boxfile: 0, // Output bounding box coordinates (set to 0 to disable)
+                tessedit_char_blacklist: '', // No characters to blacklist
+                tessedit_enable_doc_dict: 1, // Use dictionary of words found in the document
+                tessedit_enable_bigram_correction: 1, // Use bigram correction
+            },
         );
         return text;
     }

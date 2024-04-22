@@ -22,8 +22,6 @@ import SuccessPage from "./Pages/SuccessPage"
 import { Toaster } from "react-hot-toast";
 import ImageToText from "./Pages/ImageToText";
 import { AnimatePresence } from "framer-motion";
-import ProductCode1 from "./Pages/ProductCode1";
-import ProductCode2 from "./Pages/ProductCode2";
 
 
 
@@ -89,14 +87,6 @@ const router = createBrowserRouter([
       {
         path: "/takeImage",
         element: <ImageToText></ImageToText>
-      },
-      {
-        path: "/productCode1",
-        element: <ProductCode1></ProductCode1>
-      },
-      {
-        path: "/productCode2",
-        element: <ProductCode2></ProductCode2>
       }
     ],
   },
