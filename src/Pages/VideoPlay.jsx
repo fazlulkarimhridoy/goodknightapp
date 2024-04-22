@@ -19,16 +19,30 @@ const VideoPlay = () => {
 
   useEffect(() => {
     attemptPlay();
-  }, []);
+
+    // Add event listener for the 'ended' event
+    const videoElement = videoEl.current;
+    const handleVideoEnd = () => {
+      navigate("/consumerform");
+    };
+
+    if (videoElement) {
+      videoElement.addEventListener("ended", handleVideoEnd);
+    }
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      if (videoElement) {
+        videoElement.removeEventListener("ended", handleVideoEnd);
+      }
+    };
+  }, [navigate]); // Add navigate to the dependency array to avoid stale closure
 
   useEffect(() => {
-    attemptPlay();
-    // Step 3
     const timer = setTimeout(() => {
       setShowSkipButton(true);
     }, 15000);
 
-    // Cleanup function to clear the timeout when the component unmounts
     return () => clearTimeout(timer);
   }, []);
 
@@ -37,9 +51,7 @@ const VideoPlay = () => {
   };
 
   return (
-    <motion.div
-      className="bg-black "
-    >
+    <motion.div className="bg-black ">
       <motion.video
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
