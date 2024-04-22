@@ -8,6 +8,7 @@ import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion";
 import { Spin } from "antd";
 import "../CSS/mobilenumber.css"
+import toast from "react-hot-toast";
 
 const MobileNumber = () => {
     const [loading, setLoading] = useState(false);
@@ -31,15 +32,20 @@ const MobileNumber = () => {
             },
             data: { phone_number: phone_number }
         };
-        const response = await CapacitorHttp.post(options);
-        const otp = response.data.otp;
-        if (otp) {
-            setLoading(false)
-            localStorage.setItem('otp', otp);
-            navigate('/otp')
-        }
-        else {
-            setLoading(false);
+        try {
+            const response = await CapacitorHttp.post(options);
+            const otp = response.data.otp;
+            if (otp) {
+                setLoading(false)
+                localStorage.setItem('otp', otp);
+                navigate('/otp')
+            }
+            else {
+                setLoading(false);
+                toast.error("Failed to send otp")
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -70,7 +76,7 @@ const MobileNumber = () => {
                     }
                 </div>
 
-                <div onClick={handleOtpVerification} className={`${loading ? "mt-[150px]": "mt-[176px]"}`}>
+                <div onClick={handleOtpVerification} className={`${loading ? "mt-[150px]" : "mt-[176px]"}`}>
                     <Button title={'Send Otp'} />
                 </div>
 

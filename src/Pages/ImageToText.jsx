@@ -95,13 +95,13 @@ const ImageToText = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const status = await Network.getStatus();
-    if (status.connected) {
-      customerInfoMutation.mutate();
-    }
-    else {
-      setLoading(false);
-      toast.error("Please check your internet connection")
-    }
+    // if (status.connected) {
+    //   customerInfoMutation.mutate();
+    // }
+    // else {
+    //   setLoading(false);
+    //   toast.error("Please check your internet connection")
+    // }
   }
 
   // handle product code 1
@@ -257,7 +257,7 @@ const ImageToText = () => {
               /> : <></>
             }
           </div>
-          <div onClick={handleSubmit} className={`${loading ? "mt-28" : "mt-32"}`}>
+          <div onClick={handleSubmit} className={`${loading ? "mt-[105px]" : "mt-32"}`}>
             <Button title={"SUBMIT"}></Button>
           </div>
         </section>
