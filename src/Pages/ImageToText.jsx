@@ -97,13 +97,35 @@ const ImageToText = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const status = await Network.getStatus();
-    if (status.connected && (detectedText1 || detectedText2)) {
-      customerInfoMutation.mutate();
+    if (quantity === 1) {
+      if (status.connected && detectedText1) {
+        customerInfoMutation.mutate();
+      }
+      else {
+        setLoading(false);
+        if (!status.connected) {
+          toast.error("Please check your internet connection")
+        } else {
+          toast.error("Please enter product code")
+        }
+      }
     }
-    else {
-      setLoading(false);
-      toast.error("Please check your internet connection")
+    else if (quantity === 2) {
+      if (status.connected && detectedText1 && detectedText2) {
+        customerInfoMutation.mutate();
+      }
+      else {
+        setLoading(false);
+        if (!status.connected) {
+          toast.error("Please check your internet connection")
+        } else {
+          toast.error("Please enter product code")
+        }
+      }
+    } else {
+      toast.error("Please select product quantity")
     }
+
   }
 
   // handle product code 1
