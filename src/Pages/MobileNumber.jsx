@@ -61,7 +61,7 @@ const MobileNumber = () => {
                 </div>
                 <div className=" space-y-4 text-center mt-16">
                     <h1 className="text-white mt-4 text-2xl p-2">
-                        Mobile no.
+                        Mobile No.
                     </h1>
                     <h1 className="text-white mt-4 text-2xl font-bold p-2">
                         {phone_number}
@@ -76,8 +76,8 @@ const MobileNumber = () => {
                     }
                 </div>
 
-                <div onClick={handleOtpVerification} className={`${loading ? "mt-[150px]" : "mt-[176px]"}`}>
-                    <Button title={'Send Otp'} />
+                <div onClick={handleOtpVerification} className={`${loading ? "mt-[152px]" : "mt-[176px]"}`}>
+                    <Button title={'Send Code'} />
                 </div>
 
 

@@ -1,16 +1,18 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const AmountCalculation = () => {
   const { setCustomerData, customerData, handleChange } = useContext(DataContext);
-
+  const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
   const [saving, setSaving] = useState(null);
+  const [quantity, setQuantity] = useState(null);
   const token = localStorage.getItem('token');
   if (!token) {
     return window.location.href = "/signin";
@@ -21,6 +23,7 @@ const AmountCalculation = () => {
     const price = 120;
     setAmount(price);
     setSaving(50);
+    setQuantity(1);
     setCustomerData((prevData) => ({
       ...prevData,
       quantity: 1,
@@ -31,10 +34,19 @@ const AmountCalculation = () => {
     const price = 120 * 2;
     setAmount(price);
     setSaving(50 * 2);
+    setQuantity(2);
     setCustomerData((prevData) => ({
       ...prevData,
       quantity: 2,
     }));
+  }
+
+  const handleSubmit = () => {
+    if (quantity === 1 || quantity === 2) {
+      navigate("/number")
+    } else {
+      toast.error("Please enter a quantity");
+    }
   }
 
   return (
@@ -80,10 +92,8 @@ const AmountCalculation = () => {
             BDT {amount}/-
           </h2>
 
-          <div className="my-4">
-            <Link to="/number">
-              <Button title={"NEXT"}></Button>
-            </Link>
+          <div onClick={handleSubmit} className="my-4">
+            <Button title={"NEXT"}></Button>
           </div>
         </div>
       </div>

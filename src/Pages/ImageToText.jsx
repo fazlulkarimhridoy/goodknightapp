@@ -22,6 +22,8 @@ const ImageToText = () => {
   const [loading, setLoading] = useState(false);
   const [detectedText1, setDetectedText1] = useState(null);
   const [detectedText2, setDetectedText2] = useState(null);
+  // const [ocr1, setOcr1] = useState(null);
+  // const [ocr2, setOcr2] = useState(null);
   const navigate = useNavigate();
 
   const { setCustomerData, customerData, removeData } = useContext(DataContext);
@@ -95,7 +97,7 @@ const ImageToText = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const status = await Network.getStatus();
-    if (status.connected) {
+    if (status.connected && (detectedText1 || detectedText2)) {
       customerInfoMutation.mutate();
     }
     else {
@@ -119,8 +121,9 @@ const ImageToText = () => {
       // extracting ocr output
       for (let detection of data.textDetections) {
         const ocrTextNumber = parseInt(detection.text);
+        // setOcr1(ocrTextNumber)
         // if not number then proceed for result
-        if (!isNaN(ocrTextNumber)) {
+        if (ocrTextNumber && !isNaN(ocrTextNumber)) {
           setLoading(false);
           setDetectedText1(ocrTextNumber);
           setCustomerData((prevData) => ({
@@ -129,9 +132,10 @@ const ImageToText = () => {
           }));
         } else {
           setLoading(false);
-          toast.error("No code found. Please try again");
+          toast.error("No code found! Try again");
         }
       }
+
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
@@ -153,8 +157,9 @@ const ImageToText = () => {
       // extracting ocr output
       for (let detection of data.textDetections) {
         const ocrTextNumber = parseInt(detection.text);
+        // setOcr2(ocrTextNumber)
         // if not number then proceed for result
-        if (!isNaN(ocrTextNumber)) {
+        if (ocrTextNumber && !isNaN(ocrTextNumber)) {
           setLoading(false);
           setDetectedText2(ocrTextNumber);
           setCustomerData((prevData) => ({
@@ -163,9 +168,10 @@ const ImageToText = () => {
           }));
         } else {
           setLoading(false);
-          toast.error("No code found. Please try again");
+          toast.error("No code found! Try again");
         }
       }
+
     } catch (error) {
       setLoading(false);
       toast.error('Error capturing image', error);
@@ -257,7 +263,7 @@ const ImageToText = () => {
               /> : <></>
             }
           </div>
-          <div onClick={handleSubmit} className={`${loading ? "mt-[105px]" : "mt-32"}`}>
+          <div onClick={handleSubmit} className={`${loading ? "mt-[104px]" : "mt-32"}`}>
             <Button title={"SUBMIT"}></Button>
           </div>
         </section>
