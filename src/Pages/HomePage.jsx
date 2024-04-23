@@ -260,7 +260,7 @@ const HomePage = () => {
                             {bpInfo?.activity_kpi?.total_field_day}
                         </h2>
                     </div>
-                    <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
+                    {/* <div className="bg-[#FFBD70] shadow-gray-400 shadow-inner flex flex-col items-center gap-2 p-3 rounded-xl w-full">
                         <h4 className="text-[10px] font-bold text-center">
                             Non Field
                             <br />
@@ -269,7 +269,7 @@ const HomePage = () => {
                         <h2 className="text-xl font-bold bg-white shadow-gray-400 shadow-md px-4 py-2 rounded-lg text-center">
                             {bpInfo?.activity_kpi?.non_field_day}
                         </h2>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
