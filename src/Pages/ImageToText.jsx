@@ -111,14 +111,18 @@ const ImageToText = () => {
       }
     }
     else if (quantity === 2) {
-      if (status.connected && detectedText1 && detectedText2) {
+      if (status.connected && detectedText1 && detectedText2 && (detectedText1 !== detectedText2)) {
         customerInfoMutation.mutate();
       }
       else {
         setLoading(false);
         if (!status.connected) {
           toast.error("Please check your internet connection")
-        } else {
+        }
+        else if(detectedText1 === detectedText2){
+          toast.error("Code shoudn't be same")
+        }
+        else {
           toast.error("Please enter product code")
         }
       }
