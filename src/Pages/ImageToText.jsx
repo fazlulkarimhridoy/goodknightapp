@@ -225,6 +225,7 @@ const ImageToText = () => {
                   {/* product 01 */}
                   <div className=" flex  space-x-5 ">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput1}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
@@ -242,6 +243,7 @@ const ImageToText = () => {
                   {/* product 02 */}
                   <div className=" flex  space-x-5">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput2}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
@@ -261,6 +263,7 @@ const ImageToText = () => {
                   {/* product 01 */}
                   <div className=" flex  space-x-5 ">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput1}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"

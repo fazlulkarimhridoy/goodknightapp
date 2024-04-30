@@ -54,3 +54,18 @@
   > i:nth-child(4) {
   background-color: white !important;
 }
+
+#root
+  > div.font-poppins.bg-\[\#890000\].h-screen.select-none
+  > div
+  > div.text-center.mt-10
+  > div
+  > div
+  > div.text-white.flex.flex-col.gap-4.mt-2.w-\[90\%\].mx-auto
+  > div
+  > div
+  > span
+  > svg
+  > path:nth-child(1) {
+  color: gray !important;
+}
