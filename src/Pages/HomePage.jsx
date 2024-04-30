@@ -166,7 +166,7 @@ const HomePage = () => {
                     <h3 className="text-lg font-bold">
                         Today’s
                         <br />
-                        Summery
+                        Summary
                     </h3>
                 </div>
                 <div className="flex flex-col gap-2 items-center">

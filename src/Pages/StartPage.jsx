@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Spin } from 'antd';
 import "../CSS/startpage.css"
+import toast from "react-hot-toast";
 
 
 const StartPage = () => {
@@ -17,18 +18,21 @@ const StartPage = () => {
         const longitude = position?.coords?.longitude.toString();
         localStorage.setItem("latitude", latitude);
         localStorage.setItem("longitude", longitude);
-        return { latitude, longitude };
+        return { position, latitude, longitude };
     }
 
     const handleLocation = async () => {
         setLoading(true);
-        const { latitude, longitude } = await getLocation();
-        if (latitude.length > 0 && longitude.length > 0) {
+        try {
+            const { latitude, longitude } = await getLocation();
+            if (latitude.length > 0 && longitude.length > 0) {
+                setLoading(false);
+                navigate("/signin");
+            }
+        } catch {
             setLoading(false);
-            navigate("/signin");
+            toast.error("Please turn on location and try again")
         }
-
-
     }
 
     return (

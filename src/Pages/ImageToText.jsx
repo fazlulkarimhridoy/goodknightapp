@@ -111,14 +111,18 @@ const ImageToText = () => {
       }
     }
     else if (quantity === 2) {
-      if (status.connected && detectedText1 && detectedText2) {
+      if (status.connected && detectedText1 && detectedText2 && (detectedText1 !== detectedText2)) {
         customerInfoMutation.mutate();
       }
       else {
         setLoading(false);
         if (!status.connected) {
           toast.error("Please check your internet connection")
-        } else {
+        }
+        else if(detectedText1 === detectedText2){
+          toast.error("Code shoudn't be same")
+        }
+        else {
           toast.error("Please enter product code")
         }
       }
@@ -225,6 +229,7 @@ const ImageToText = () => {
                   {/* product 01 */}
                   <div className=" flex  space-x-5 ">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput1}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
@@ -242,6 +247,7 @@ const ImageToText = () => {
                   {/* product 02 */}
                   <div className=" flex  space-x-5">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput2}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
@@ -261,6 +267,7 @@ const ImageToText = () => {
                   {/* product 01 */}
                   <div className=" flex  space-x-5 ">
                     <input
+                      required
                       name="code1"
                       onChange={handleManualInput1}
                       className="w-[220px] bg-[#D9D9D9] text-center text-black shadow-slate-300 shadow-inner p-2 text-xl font-bold rounded-xl outline-none"
