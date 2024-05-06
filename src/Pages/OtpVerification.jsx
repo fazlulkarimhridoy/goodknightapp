@@ -18,6 +18,7 @@ const OtpVerification = () => {
     if (!token) {
         return window.location.href = "/signin";
     }
+    // console.log(localStorage.getItem("otp"));
 
 
     // handle otp varification

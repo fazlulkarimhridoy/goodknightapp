@@ -47,7 +47,7 @@ const BuyProductStart = () => {
     };
 
     const options = {
-      url: 'https://expactivation.app/api/store-customer-info',
+      url: 'https://goodknight.xri.com.bd/api/v1/store-customer-info',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

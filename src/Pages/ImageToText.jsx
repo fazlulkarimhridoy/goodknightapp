@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import Tesseract from "tesseract.js";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { DataContext } from "../context/DataProvider";
@@ -71,7 +70,7 @@ const ImageToText = () => {
   // mutation post request
   const customerInfoMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("https://expactivation.app/api/store-customer-info", customerData, {
+      const response = await axios.post("https://goodknight.xri.com.bd/api/v1/store-customer-info", customerData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -80,15 +79,26 @@ const ImageToText = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      setLoading(false)
-      removeData();
-      navigate("/successPage")
-      toast.success("Customer Information successfully stored")
+      console.log("success", data);
+      if (data.success === false) {
+        for (const item in data.data) {
+          const msg = data.data[item];
+          toast.error(msg[0]);
+        }
+        setLoading(false);
+      } else if (data.success === true) {
+        setLoading(false);
+        removeData();
+        navigate("/successPage");
+        toast.success("Customer Information successfully stored");
+      }
+
     },
     onError: (error) => {
-      setLoading(false)
+      console.log("error", error);
+      setLoading(false);
       if (error.response.status === 422) {
-        toast.error("Missing Customer Information")
+        toast.error("Missing Customer Information");
       };
     }
   });
@@ -119,7 +129,7 @@ const ImageToText = () => {
         if (!status.connected) {
           toast.error("Please check your internet connection")
         }
-        else if(detectedText1 === detectedText2){
+        else if (detectedText1 && detectedText2 && (detectedText1 === detectedText2)) {
           toast.error("Code shoudn't be same")
         }
         else {
@@ -156,9 +166,10 @@ const ImageToText = () => {
             ...prevData,
             product_code1: ocrTextNumber,
           }));
-        } else {
+        }
+        else {
           setLoading(false);
-          toast.error("No code found! Try again");
+          // toast.error("No code found! Try again");
         }
       }
 
@@ -192,9 +203,10 @@ const ImageToText = () => {
             ...prevData,
             product_code2: ocrTextNumber,
           }));
-        } else {
+        }
+        else {
           setLoading(false);
-          toast.error("No code found! Try again");
+          // toast.error("No code found! Try again");
         }
       }
 

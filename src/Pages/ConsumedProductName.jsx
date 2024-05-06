@@ -51,7 +51,27 @@ const ConsumedProductName = () => {
     "Magic Black",
     "Magic Red",
     "SMC Super King",
-    "Kite"
+    "Kite",
+    "Patabahar",
+    "535",
+    "coil",
+    "Attack",
+    "king",
+    "Jonaki",
+    "Lock",
+    "Down",
+    "Master",
+    "Coil",
+    "Neam",
+    "Xtream",
+    "Boss",
+    "Super",
+    "New",
+    "Solar",
+    "Eagle",
+    "Max",
+    "Magic",
+    "Sonali"
   ];
 
   return (
@@ -79,7 +99,7 @@ const ConsumedProductName = () => {
               defaultValue={previous_used_brand ? previous_used_brand : "product list"}
               name="previous_used_brand"
               id="product"
-              className="mt-1 w-[300px]  shadow-inner shadow-[#00000080] py-1 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
+              className="mt-1 w-[300px] truncate shadow-inner shadow-[#00000080] py-1 px-2 font-normal text-center text-black   text-2xl  rounded-xl outline-none bg-[#D9D9D9]"
             >
               <option disabled className="text-xl" value="product list">
                 Product List
@@ -104,7 +124,7 @@ const ConsumedProductName = () => {
               name="previous_used_brand"
               placeholder="Type here"
               type="text"
-              className="w-[300px] placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
+              className="w-[300px] truncate placeholder:italic placeholder:font-normal bg-[#D9D9D9] placeholder:text-xl text-center pb-2 text-black shadow-slate-300 shadow-inner py-1.5 text-2xl font-normal rounded-xl outline-none"
             ></motion.input>
           </div>
 

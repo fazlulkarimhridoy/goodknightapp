@@ -14,7 +14,7 @@ const ConsumerForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const { customerData, setCustomerData, handleChange } =
+  const { customerData, handleChange } =
     useContext(DataContext);
   const { name, age, gender, phone_number } = customerData;
 
@@ -54,7 +54,7 @@ const ConsumerForm = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://expactivation.app/api/check-customer-number",
+      url: "https://goodknight.xri.com.bd/api/v1/check-customer-number",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -158,7 +158,7 @@ const ConsumerForm = () => {
               </label>{" "}
               <br />
               <select
-                defaultValue={gender ? gender : "gender"}
+                defaultValue="gender"
                 style={styles.select}
                 onChange={handleChange}
                 name="gender"

@@ -32,7 +32,7 @@ const SuccessPage = () => {
   const handleSignout = async () => {
 
     const options = {
-      url: 'https://expactivation.app/api/logout',
+      url: 'https://goodknight.xri.com.bd/api/v1/logout',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

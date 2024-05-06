@@ -69,7 +69,7 @@ const ImageToText = () => {
     // mutation post request
     const customerInfoMutation = useMutation({
         mutationFn: async () => {
-            const response = await axios.post("https://expactivation.app/api/store-customer-info", customerData, {
+            const response = await axios.post("https://goodknight.xri.com.bd/api/v1/store-customer-info", customerData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`

@@ -41,7 +41,7 @@ const VideoPlay = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSkipButton(true);
-    }, 15000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
