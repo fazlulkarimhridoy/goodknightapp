@@ -1,6 +1,7 @@
 // AppContext.js
 
 import React, { createContext, useState } from 'react';
+import toast from 'react-hot-toast';
 
 // Create a context object
 export const DataContext = createContext();
@@ -18,10 +19,10 @@ export const DataProvider = ({ children }) => {
     phone_number: "",
     previous_used_product: "",
     previous_used_brand: "",
-    latitude:"",
+    latitude: "",
     interested: "",
     quantity: "",
-    product_code1:"",
+    product_code1: "",
     product_code2: "",
   })
 
@@ -33,21 +34,37 @@ export const DataProvider = ({ children }) => {
       phone_number: "",
       previous_used_product: "",
       previous_used_brand: "",
-      latitude:"",
+      latitude: "",
       interested: "",
       quantity: "",
-      product_code1:"",
+      product_code1: "",
       product_code2: "",
     })
   }
 
-
+  const englishRegex = /^[a-zA-Z0-9 ]+$/;
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCustomerData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (value === '') {
+      // If the input field is empty, clear the specific field in the customerData state
+      setCustomerData((prevData) => ({
+        ...prevData,
+        [name]: '',
+      }));
+    } else if (englishRegex.test(value)) {
+      // If the input matches the regex, update the customerData
+      setCustomerData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    } else {
+      // If the input does not match the regex, clear the specific field in the customerData state and show an alert
+      setCustomerData((prevData) => ({
+        ...prevData,
+        [name]: '',
+      }));
+      toast.error("Type only english")
+    }
   };
 
   // Define any functions or actions related to the context
@@ -57,7 +74,7 @@ export const DataProvider = ({ children }) => {
 
   // Provide the context value to its children
   return (
-    <DataContext.Provider value={{ theme, removeData, toggleTheme, customerData,setCustomerData,handleChange, photoURL,setPhotoURL,text, setText }}>
+    <DataContext.Provider value={{ theme, removeData, toggleTheme, customerData, setCustomerData, handleChange, photoURL, setPhotoURL, text, setText }}>
       {children}
     </DataContext.Provider>
   );

@@ -3,7 +3,7 @@ import profile from "../assets/profile.png"
 import logo from "/images/profilegoodknigtlogo.svg"
 import { Link, useNavigate } from "react-router-dom";
 import { Drawer, Spin } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
 import '../CSS/Navbar.css'
 import axios from "axios";
@@ -12,11 +12,13 @@ import { CapacitorHttp } from '@capacitor/core';
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import "../CSS/homepage.css"
+import { DataContext } from "../context/DataProvider";
 
 
 
 const HomePage = () => {
     const navigate = useNavigate();
+    const { removeData } = useContext(DataContext);
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
@@ -35,7 +37,7 @@ const HomePage = () => {
     const handleSignout = async () => {
 
         const options = {
-            url: 'https://expactivation.app/api/logout',
+            url: 'https://expactivation.app/api/v1/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -44,6 +46,7 @@ const HomePage = () => {
         const response = await CapacitorHttp.post(options);
         if (response.status === 201 || 200) {
             localStorage.removeItem('token');
+            removeData();
             navigate("/signin");
             toast.success('Successfully logged out!')
 
@@ -63,7 +66,7 @@ const HomePage = () => {
     const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
-            const res = await axios.get('https://expactivation.app/api/bp_info', {
+            const res = await axios.get('https://expactivation.app/api/v1/bp_info', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -100,7 +103,9 @@ const HomePage = () => {
             exit={{ x: -400, ease: "easeInOut" }} className="h-dvh bg-white">
             {/* hamburger menu */}
             <div className="bg-[#BA0012] flex justify-end px-6 py-3.5">
-                <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
+                <motion.div whileTap={{ scale: 0.9 }}>
+                    <GiHamburgerMenu onClick={showDrawer} size={25} color="white" />
+                </motion.div>
                 <Drawer
                     closeIcon={true}
                     width={250}
@@ -110,15 +115,15 @@ const HomePage = () => {
                     key={placement}
                     style={{ backgroundColor: "#303030", opacity: "95%" }}
                 >
-                    <div onClick={handleToHome} className="flex items-center gap-4 text-xl">
+                    <motion.div whileTap={{ scale: 0.9 }} onClick={handleToHome} className="flex items-center gap-4 text-xl">
                         <FaHome color="white" />
                         <p className="text-white">Home</p>
-                    </div>
+                    </motion.div>
                     <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
-                    <div onClick={handleSignout} className="flex items-center gap-4 text-xl">
+                    <motion.div whileTap={{ scale: 0.9 }} onClick={handleSignout} className="flex items-center gap-4 text-xl">
                         <FaSignOutAlt color="white" />
                         <p className="text-white">Logout</p>
-                    </div>
+                    </motion.div>
                     <hr className="w-full border border-solid border-[#FF283D] shadow-black shadow-2xl my-2"></hr>
                 </Drawer>
             </div>
