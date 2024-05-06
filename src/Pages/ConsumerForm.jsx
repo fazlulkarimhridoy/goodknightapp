@@ -54,7 +54,7 @@ const ConsumerForm = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://goodknight.xri.com.bd/api/v1/check-customer-number",
+      url: "https://expactivation.app/api/v1/check-customer-number",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

@@ -70,7 +70,7 @@ const ImageToText = () => {
   // mutation post request
   const customerInfoMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("https://goodknight.xri.com.bd/api/v1/store-customer-info", customerData, {
+      const response = await axios.post("https://expactivation.app/api/v1/store-customer-info", customerData, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -130,7 +130,7 @@ const ImageToText = () => {
           toast.error("Please check your internet connection")
         }
         else if (detectedText1 && detectedText2 && (detectedText1 === detectedText2)) {
-          toast.error("Code shoudn't be same")
+          toast.error("Code can not be same")
         }
         else {
           toast.error("Please enter product code")
