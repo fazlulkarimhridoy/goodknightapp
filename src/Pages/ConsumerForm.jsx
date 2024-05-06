@@ -69,10 +69,12 @@ const ConsumerForm = () => {
     } else if (newCustomer === false) {
       setLoading(false);
       navigate("/duplicateCustomer");
-    } else if (newCustomer === undefined) {
-      setLoading(false);
-      toast.error("The number must be of 11 digits.");
-    } else {
+    }
+    // else if (newCustomer === undefined) {
+    //   setLoading(false);
+    //   toast.error("The number must be of 11 digits.");
+    // }
+    else {
       setLoading(false);
     }
   };
