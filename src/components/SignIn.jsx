@@ -47,7 +47,7 @@ const SignIn = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://expactivation.app/api/login",
+      url: "https://expactivation.app/api/v1/login",
       headers: { "Content-Type": "application/json" },
       data: customerData,
     };
