@@ -47,7 +47,7 @@ const BuyProductStart = () => {
     };
 
     const options = {
-      url: 'https://expactivation.app/api/v1/store-customer-info',
+      url: 'https://expactivation.app/api/v2/store-customer-info',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
