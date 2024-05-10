@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import successIcon from "../../public/images/successIcon.svg"
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "antd";
@@ -17,7 +17,7 @@ const SuccessPage = () => {
     return window.location.href = "/signin";
   }
 
-  const { setCustomerData, customerData } = useContext(DataContext);
+  const { customerData } = useContext(DataContext);
 
   const [open, setOpen] = useState(false);
   const [placement] = useState('right');
@@ -32,7 +32,7 @@ const SuccessPage = () => {
   const handleSignout = async () => {
 
     const options = {
-      url: 'https://expactivation.app/api/v2/logout',
+      url: 'https://expactivation.app/api/v4/logout',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`

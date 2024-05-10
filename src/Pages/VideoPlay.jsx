@@ -38,6 +38,7 @@ const VideoPlay = () => {
     };
   }, [navigate]); // Add navigate to the dependency array to avoid stale closure
 
+  // useEffect for skip button
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     setShowSkipButton(true);

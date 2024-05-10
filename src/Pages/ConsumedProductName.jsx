@@ -37,7 +37,7 @@ const ConsumedProductName = () => {
     "Express",
     "RAK",
     "Baoma",
-    "Baoma (lemon)",
+    "Baoma lemon",
     "Baoma No Smoke",
     "Jonaki Black",
     "Jonaki Red",

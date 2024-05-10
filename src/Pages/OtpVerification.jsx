@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
@@ -8,17 +8,19 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { Spin } from "antd";
 import "../CSS/otp.css"
+import { DataContext } from "../context/DataProvider";
 
 const OtpVerification = () => {
     const [loading, setLoading] = useState(false);
     const [otp, setOtp] = useState(null);
     const navigate = useNavigate();
+    const { customerData} = useContext(DataContext)
 
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
     }
-    // console.log(localStorage.getItem("otp"));
+    console.log(localStorage.getItem("otp"));
 
 
     // handle otp varification

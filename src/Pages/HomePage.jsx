@@ -18,7 +18,7 @@ import { DataContext } from "../context/DataProvider";
 
 const HomePage = () => {
     const navigate = useNavigate();
-    const { removeData } = useContext(DataContext);
+    const { customerData, removeData } = useContext(DataContext);
     const token = localStorage.getItem('token');
     if (!token) {
         return window.location.href = "/signin";
@@ -37,7 +37,7 @@ const HomePage = () => {
     const handleSignout = async () => {
 
         const options = {
-            url: 'https://expactivation.app/api/v2/logout',
+            url: 'https://expactivation.app/api/v4/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -59,6 +59,7 @@ const HomePage = () => {
     // handle home
     const handleToHome = () => {
         window.location.reload();
+        removeData();
         window.location.href = "/homePage";
     }
 
@@ -66,7 +67,7 @@ const HomePage = () => {
     const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
-            const res = await axios.get('https://expactivation.app/api/v2/bp_info', {
+            const res = await axios.get('https://expactivation.app/api/v4/bp_info', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
