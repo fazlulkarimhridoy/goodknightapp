@@ -47,7 +47,7 @@ const SignIn = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://goodknight.xri.com.bd/api/v4/login",
+      url: "https://expactivation.app/api/v4/login",
       headers: { "Content-Type": "application/json" },
       data: customerData,
     };

@@ -37,7 +37,7 @@ const HomePage = () => {
     const handleSignout = async () => {
 
         const options = {
-            url: 'https://goodknight.xri.com.bd/api/v4/logout',
+            url: 'https://expactivation.app/api/v4/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ const HomePage = () => {
     const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
-            const res = await axios.get('https://goodknight.xri.com.bd/api/v4/bp_info', {
+            const res = await axios.get('https://expactivation.app/api/v4/bp_info', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

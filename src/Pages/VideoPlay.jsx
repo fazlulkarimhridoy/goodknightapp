@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const VideoPlay = () => {
   const videoEl = useRef(null);
   const navigate = useNavigate();
-  const [showSkipButton, setShowSkipButton] = useState(false);
+  // const [showSkipButton, setShowSkipButton] = useState(false);
 
   const attemptPlay = () => {
     videoEl &&
@@ -38,17 +38,18 @@ const VideoPlay = () => {
     };
   }, [navigate]); // Add navigate to the dependency array to avoid stale closure
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSkipButton(true);
-    }, 3000);
+  // useEffect for skip button
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setShowSkipButton(true);
+  //   }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  const handleSkip = () => {
-    navigate("/consumerform");
-  };
+  // const handleSkip = () => {
+  //   navigate("/consumerform");
+  // };
 
   return (
     <motion.div className="bg-black ">
@@ -65,7 +66,7 @@ const VideoPlay = () => {
         src={video}
         ref={videoEl}
       />
-      {showSkipButton && (
+      {/* {showSkipButton && (
         <button
           onClick={handleSkip}
           className="skip-button text-white font-semibold"
@@ -73,7 +74,7 @@ const VideoPlay = () => {
           Skip {">"}
           {">"}
         </button>
-      )}
+      )} */}
     </motion.div>
   );
 };

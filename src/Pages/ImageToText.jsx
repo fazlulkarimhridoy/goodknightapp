@@ -107,7 +107,7 @@ const ImageToText = () => {
         interested: "yes"
       }
       console.log(customerInfo);
-      const response = await axios.post("https://goodknight.xri.com.bd/api/v4/store-customer-info", customerInfo, {
+      const response = await axios.post("https://expactivation.app/api/v4/store-customer-info", customerInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
