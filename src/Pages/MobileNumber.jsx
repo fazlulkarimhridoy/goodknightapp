@@ -25,7 +25,7 @@ const MobileNumber = () => {
     const handleOtpVerification = async () => {
         setLoading(true)
         const options = {
-            url: 'https://expactivation.app/api/v2/send-otp',
+            url: 'https://expactivation.app/api/v4/send-otp',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
