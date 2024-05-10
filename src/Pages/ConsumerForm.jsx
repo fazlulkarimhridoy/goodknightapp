@@ -14,11 +14,8 @@ const ConsumerForm = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-  const { customerData, handleChange } =
-    useContext(DataContext);
+  const { customerData, handleChange } = useContext(DataContext);
   const { name, age, gender, phone_number } = customerData;
-
-
 
   const token = localStorage.getItem("token");
   if (!token) {
@@ -54,7 +51,7 @@ const ConsumerForm = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://expactivation.app/api/v2/check-customer-number",
+      url: "https://goodknight.xri.com.bd/api/v4/check-customer-number",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -70,10 +67,6 @@ const ConsumerForm = () => {
       setLoading(false);
       navigate("/duplicateCustomer");
     }
-    // else if (newCustomer === undefined) {
-    //   setLoading(false);
-    //   toast.error("The number must be of 11 digits.");
-    // }
     else {
       setLoading(false);
     }

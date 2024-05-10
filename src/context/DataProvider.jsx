@@ -23,8 +23,8 @@ export const DataProvider = ({ children }) => {
     longitude: "",
     interested: "",
     quantity: "",
-    product_code1: "",
-    product_code2: "",
+    product_code1: null,
+    product_code2: null,
   })
 
   const removeData = () => {
@@ -39,8 +39,8 @@ export const DataProvider = ({ children }) => {
       longitude: "",
       interested: "",
       quantity: "",
-      product_code1: "",
-      product_code2: "",
+      product_code1: null,
+      product_code2: null,
     })
   }
 

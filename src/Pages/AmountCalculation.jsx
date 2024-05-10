@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 import Navbar from "../components/Navbar";
@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 
 const AmountCalculation = () => {
-  const { setCustomerData, customerData, handleChange } = useContext(DataContext);
+  const { setCustomerData, customerData } = useContext(DataContext);
   const navigate = useNavigate();
   const [amount, setAmount] = useState(0);
   const [saving, setSaving] = useState(null);

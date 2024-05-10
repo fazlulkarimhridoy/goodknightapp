@@ -22,62 +22,17 @@ const ImageToText = () => {
   const [loading, setLoading] = useState(false);
   const [detectedText1, setDetectedText1] = useState(null);
   const [detectedText2, setDetectedText2] = useState(null);
-  // const [toastShown, setToastShown] = useState(false);
+  const [geoLatitude, setGeoLatitude] = useState(null);
+  const [geoLongitude, setGeoLongitude] = useState(null);
   const navigate = useNavigate();
   const { setCustomerData, customerData, removeData } = useContext(DataContext);
-  const { quantity, latitude, longitude, interested } = customerData;
+  const { name, age, gender, phone_number, previous_used_product, previous_used_brand, product_code1, product_code2, quantity, latitude, longitude } = customerData;
 
   // checking if token is valid
   const token = localStorage.getItem('token');
   if (!token) {
     return window.location.href = "/signin";
   }
-
-  // useEffect for location
-  // useEffect(() => {
-  //   const getLocation = async () => {
-  //     const position = await Geolocation?.getCurrentPosition();
-  //     const latitude = position?.coords?.latitude.toString();
-  //     const longitude = position?.coords?.longitude.toString();
-  //     // if (!position) {
-  //     //   toast.error("Turn on location.");
-  //     //   // return navigate("/number");
-  //     // } else {
-  //     //   setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
-  //     // }
-  //     setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
-  //   }
-  //   getLocation();
-  // }, [latitude, longitude, interested]);
-
-  // useEffect(() => {
-  //   let watchId;
-
-  //   const getLocation = async () => {
-  //     try {
-  //       const position = await Geolocation.getCurrentPosition();
-  //       const latitude = position.coords.latitude.toString();
-  //       const longitude = position.coords.longitude.toString();
-  //       setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
-  //     } catch (error) {
-  //       // toast.error("Turn on location.");
-  //       watchId = Geolocation.watchPosition({}, (position) => {
-  //         const latitude = position.coords.latitude.toString();
-  //         const longitude = position.coords.longitude.toString();
-  //         setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
-  //       });
-  //     }
-  //   };
-
-  //   getLocation();
-
-  //   // Cleanup function to stop watching the position when the component unmounts
-  //   return () => {
-  //     if (watchId) {
-  //       Geolocation.clearWatch({ id: watchId });
-  //     }
-  //   };
-  // }, [latitude, longitude, interested, detectedText1, detectedText2, setCustomerData, customerData]);
 
 
   useEffect(() => {
@@ -91,14 +46,12 @@ const ImageToText = () => {
         watchId = Geolocation.watchPosition({}, (position) => {
           const latitude = position.coords.latitude.toString();
           const longitude = position.coords.longitude.toString();
-          setCustomerData({ ...customerData, latitude: latitude, longitude: longitude, product_code1: parseInt(detectedText1), product_code2: parseInt(detectedText2), interested: "yes" });
+          // setCustomerData({ latitude: latitude, longitude: longitude, interested: "yes" });
+          setGeoLatitude(latitude);
+          setGeoLongitude(longitude);
         });
       } catch (error) {
-        // if (!toastShown) {
-        //   toast.error("Please turn on location.");
-        //   setToastShown(true);
-        // }
-        console.log(error);
+        // console.log(error);
       }
     };
 
@@ -111,11 +64,12 @@ const ImageToText = () => {
         Geolocation.clearWatch({ id: watchId });
       }
     };
-  }, [latitude, longitude, interested, detectedText1, detectedText2, setCustomerData, customerData]);
+  }, [detectedText1, detectedText2]);
 
   // handle manual input code1
+
   const handleManualInput1 = (e) => {
-    const updatedValue = e.target.value;
+    const updatedValue = parseInt(e.target.value);
     setDetectedText1(updatedValue);
     setCustomerData((prevData) => ({
       ...prevData,
@@ -125,7 +79,7 @@ const ImageToText = () => {
 
   // handle manual input code2
   const handleManualInput2 = (e) => {
-    const updatedValue = e.target.value;
+    const updatedValue = parseInt(e.target.value);
     setDetectedText2(updatedValue);
     setCustomerData((prevData) => ({
       ...prevData,
@@ -138,7 +92,22 @@ const ImageToText = () => {
   // mutation post request
   const customerInfoMutation = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("https://expactivation.app/api/v2/store-customer-info", customerData, {
+      const customerInfo = {
+        name: name,
+        age: age,
+        gender: gender,
+        phone_number: phone_number,
+        previous_used_product: previous_used_product,
+        previous_used_brand: previous_used_brand,
+        product_code1: product_code1,
+        product_code2: product_code2,
+        quantity: quantity,
+        latitude: geoLatitude,
+        longitude: geoLongitude,
+        interested: "yes"
+      }
+      console.log(customerInfo);
+      const response = await axios.post("https://goodknight.xri.com.bd/api/v4/store-customer-info", customerInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -147,7 +116,6 @@ const ImageToText = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      console.log("success", data);
       if (data.success === false) {
         for (const item in data.data) {
           const msg = data.data[item];
@@ -160,10 +128,8 @@ const ImageToText = () => {
         navigate("/successPage");
         toast.success("Customer Information successfully stored.");
       }
-
     },
     onError: (error) => {
-      console.log(error);
       setLoading(false);
       if (error) {
         toast.error("Something went wrong.");
@@ -173,17 +139,22 @@ const ImageToText = () => {
 
 
   const handleSubmit = async () => {
+    // console.log("product codes", product_code1, product_code2);
+    // console.log("detected text", detectedText1, detectedText2);
+    // console.log(typeof (product_code1));
+    // console.log(typeof (detectedText1));
+    // console.log(name ,age, gender,phone_number, previous_used_product,previous_used_brand, product_code1, product_code2, quantity, latitude, longitude);
     setLoading(true);
     const status = await Network.getStatus();
-    if (quantity === 1 && latitude && longitude) {
-      if (status.connected && detectedText1 !== null && detectedText1.length === 6) {
+    if (quantity === 1 && geoLatitude && geoLongitude) {
+      if (status.connected && product_code1 !== null && product_code1.toString().length === 6) {
         customerInfoMutation.mutate();
       }
       else {
         setLoading(false);
         if (!status.connected) {
           toast.error("Please check your internet connection.")
-        } else if ((detectedText1 && detectedText1.length !== 6)) {
+        } else if ((product_code1 && product_code1.toString().length !== 6)) {
           toast.error("Please enter 6 digit code.")
         }
         else {
@@ -191,8 +162,8 @@ const ImageToText = () => {
         }
       }
     }
-    else if (quantity === 2 && latitude && longitude) {
-      if (status.connected && (detectedText1 !== null) && (detectedText2 !== null) && (detectedText1 !== detectedText2) && (detectedText1.length === 6 && detectedText2.length === 6)) {
+    else if (quantity === 2 && geoLatitude && geoLongitude) {
+      if (status.connected && (product_code1 !== null) && (product_code1 !== null) && (product_code1 !== product_code2) && (product_code1.toString().length === 6 && product_code2.toString().length === 6)) {
         customerInfoMutation.mutate();
       }
       else {
@@ -200,10 +171,10 @@ const ImageToText = () => {
         if (!status.connected) {
           toast.error("Please check your internet connection")
         }
-        else if ((detectedText1 !== null) && (detectedText2 !== null) && (detectedText1 === detectedText2)) {
+        else if ((product_code1 !== null) && (product_code2 !== null) && (product_code1 === product_code2)) {
           toast.error("Code can not be same")
         }
-        else if ((detectedText1 && detectedText1.length !== 6) || (detectedText2 && detectedText2.length !== 6)) {
+        else if ((product_code1 && product_code1.toString().length !== 6) || (product_code2 && product_code2.toString().length !== 6)) {
           toast.error("Please enter 6 digit code.")
         }
         else {
@@ -212,8 +183,8 @@ const ImageToText = () => {
       }
     } else {
       setLoading(false);
-      if (!latitude && !longitude) {
-        toast.error("Please turn on location.")
+      if (!geoLatitude && !geoLongitude) {
+        toast.error("Location problem!")
       } else {
         toast.error("Please select product quantity.")
       }

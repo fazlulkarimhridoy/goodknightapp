@@ -30,7 +30,7 @@ const Navbar = () => {
 
         // post request using capacitor http request
         const options = {
-            url: 'https://expactivation.app/api/v2/logout',
+            url: 'https://goodknight.xri.com.bd/api/v4/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -48,6 +48,7 @@ const Navbar = () => {
     // handle home
     const handleToHome = () => {
         window.location.reload();
+        removeData();
         window.location.href = "/homePage";
     }
 

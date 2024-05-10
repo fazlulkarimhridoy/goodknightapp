@@ -47,7 +47,7 @@ const BuyProductStart = () => {
     };
 
     const options = {
-      url: 'https://expactivation.app/api/v2/store-customer-info',
+      url: 'https://goodknight.xri.com.bd/api/v4/store-customer-info',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -56,11 +56,24 @@ const BuyProductStart = () => {
     };
     if (status.connected) {
       const response = await CapacitorHttp.post(options);
-      if (response.status === 200 || 201) {
+      console.log(response);
+      if (response.data.success === true) {
+        console.log("inside if");
         setLoading(false);
         navigate("/homePage");
         removeData()
         toast.success('User data stored successfully!')
+      }
+      else if (response.data.success === false) {
+        for (const item in response.data.data) {
+          const msg = response.data.data[item];
+          toast.error(msg[0]);
+        }
+        setLoading(false);
+      }
+      else if (response.status === 500) {
+        setLoading(false);
+        toast.error('Could not connect with server!')
       }
       else {
         setLoading(false);

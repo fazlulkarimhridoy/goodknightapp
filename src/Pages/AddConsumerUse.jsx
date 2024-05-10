@@ -7,8 +7,7 @@ import { DataContext } from "../context/DataProvider";
 import { motion } from "framer-motion";
 
 const AddConsumerUse = () => {
-  const { customerData, setCustomerData, handleChange } =
-    useContext(DataContext);
+  const { customerData, handleChange } = useContext(DataContext);
   const navigate = useNavigate();
   const { previous_used_product } = customerData;
 
