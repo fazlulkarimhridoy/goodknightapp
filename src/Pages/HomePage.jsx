@@ -149,8 +149,13 @@ const HomePage = () => {
                 />
             </div>
 
+            {/* notification */}
+            <div className="mt-1">
+                <marquee className="text-sm" direction="left" scrollamount = "4">{bpInfo?.notification}</marquee>
+            </div>
+
             {/* summery section */}
-            <div className="flex items-center justify-around mt-5">
+            <div className="flex items-center justify-around">
                 <div className="flex flex-col items-center text-center">
                     <svg width="40" height="50" viewBox="0 0 40 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d_49_518)">
