@@ -163,7 +163,7 @@ const ImageToText = () => {
       }
     }
     else if (quantity === 2 && geoLatitude && geoLongitude) {
-      if (status.connected && (product_code1 !== null) && (product_code1 !== null) && (product_code1 !== product_code2) && (product_code1.toString().length === 6 && product_code2.toString().length === 6)) {
+      if (status.connected && product_code1 && product_code2 && (product_code1 !== null) && (product_code1 !== null) && (product_code1 !== product_code2) && (product_code1.toString().length === 6 && product_code2.toString().length === 6)) {
         customerInfoMutation.mutate();
       }
       else {
