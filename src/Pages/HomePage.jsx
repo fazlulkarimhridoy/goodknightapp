@@ -141,6 +141,7 @@ const HomePage = () => {
                         <h3 className="font-bold truncate overflow-hidden">Welcome !</h3>
                         <h4 className="text-xs font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
                         <h4 className="text-xs font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
+                        <h4 className="text-[10px] font-medium mt-1 truncate overflow-hidden">Version-1.0.4</h4>
                     </div>
                 </div>
                 <img
