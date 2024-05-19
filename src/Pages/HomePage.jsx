@@ -37,7 +37,7 @@ const HomePage = () => {
     const handleSignout = async () => {
 
         const options = {
-            url: 'https://expactivation.app/api/v4/logout',
+            url: 'https://expactivation.app/api/v5/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ const HomePage = () => {
     const { data: bpInfo = {}, isLoading, isFetching, isPending, refetch } = useQuery({
         queryKey: ['bpInfo'],
         queryFn: async () => {
-            const res = await axios.get('https://expactivation.app/api/v4/bp_info', {
+            const res = await axios.get('https://expactivation.app/api/v5/bp_info', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -141,7 +141,7 @@ const HomePage = () => {
                         <h3 className="font-bold truncate overflow-hidden">Welcome !</h3>
                         <h4 className="text-xs font-medium mt-2 truncate overflow-hidden">{bpInfo?.name}</h4>
                         <h4 className="text-xs font-medium mt-1 truncate overflow-hidden">BP ID: {bpInfo?.bp_id}</h4>
-                        <h4 className="text-[10px] font-medium mt-1 truncate overflow-hidden">Version-1.0.4</h4>
+                        <h4 className="text-[10px] font-medium mt-1 truncate overflow-hidden">Version-1.0.5</h4>
                     </div>
                 </div>
                 <img

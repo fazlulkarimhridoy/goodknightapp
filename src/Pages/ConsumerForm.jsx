@@ -51,7 +51,7 @@ const ConsumerForm = () => {
 
     // post request using capacitor http request
     const options = {
-      url: "https://expactivation.app/api/v4/check-customer-number",
+      url: "https://expactivation.app/api/v5/check-customer-number",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

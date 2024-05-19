@@ -24,6 +24,7 @@ const ImageToText = () => {
   const [detectedText2, setDetectedText2] = useState(null);
   const [geoLatitude, setGeoLatitude] = useState(null);
   const [geoLongitude, setGeoLongitude] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const { setCustomerData, customerData, removeData } = useContext(DataContext);
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand, product_code1, product_code2, quantity, latitude, longitude } = customerData;
@@ -107,7 +108,7 @@ const ImageToText = () => {
         interested: "yes"
       }
       console.log(customerInfo);
-      const response = await axios.post("https://expactivation.app/api/v4/store-customer-info", customerInfo, {
+      const response = await axios.post("https://expactivation.app/api/v5/store-customer-info", customerInfo, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -122,8 +123,10 @@ const ImageToText = () => {
           toast.error(msg[0]);
         }
         setLoading(false);
+        setIsSubmitting(false);
       } else if (data.success === true) {
         setLoading(false);
+        setIsSubmitting(false);
         removeData();
         navigate("/successPage");
         toast.success("Customer Information successfully stored.");
@@ -131,19 +134,19 @@ const ImageToText = () => {
     },
     onError: (error) => {
       setLoading(false);
+      setIsSubmitting(false);
       if (error) {
         toast.error("Something went wrong.");
       };
-    }
+    },
   });
 
 
   const handleSubmit = async () => {
-    // console.log("product codes", product_code1, product_code2);
-    // console.log("detected text", detectedText1, detectedText2);
-    // console.log(typeof (product_code1));
-    // console.log(typeof (detectedText1));
-    // console.log(name ,age, gender,phone_number, previous_used_product,previous_used_brand, product_code1, product_code2, quantity, latitude, longitude);
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
     setLoading(true);
     const status = await Network.getStatus();
     if (quantity === 1 && geoLatitude && geoLongitude) {
@@ -152,6 +155,7 @@ const ImageToText = () => {
       }
       else {
         setLoading(false);
+        setIsSubmitting(false);
         if (!status.connected) {
           toast.error("Please check your internet connection.")
         } else if ((product_code1 && product_code1.toString().length !== 6)) {
@@ -168,6 +172,7 @@ const ImageToText = () => {
       }
       else {
         setLoading(false);
+        setIsSubmitting(false);
         if (!status.connected) {
           toast.error("Please check your internet connection")
         }
@@ -183,6 +188,7 @@ const ImageToText = () => {
       }
     } else {
       setLoading(false);
+      setIsSubmitting(false);
       if (!geoLatitude && !geoLongitude) {
         toast.error("Location problem!")
       } else {
