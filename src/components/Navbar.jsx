@@ -30,7 +30,7 @@ const Navbar = () => {
 
         // post request using capacitor http request
         const options = {
-            url: 'https://expactivation.app/api/v5/logout',
+            url: 'https://expactivation.app/api/v6/logout',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

@@ -16,6 +16,7 @@ import { Network } from '@capacitor/network';
 
 const BuyProductStart = () => {
   const [loading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate()
   const { customerData, removeData } = useContext(DataContext)
   const { name, age, gender, phone_number, previous_used_product, previous_used_brand } = customerData;
@@ -26,6 +27,10 @@ const BuyProductStart = () => {
   }
 
   const handleNoClick = async () => {
+    if (isSubmitting) {
+      return;
+    }
+    setIsSubmitting(true);
     setLoading(true);
     const position = await Geolocation?.getCurrentPosition();
     const status = await Network.getStatus();
@@ -47,7 +52,7 @@ const BuyProductStart = () => {
     };
 
     const options = {
-      url: 'https://expactivation.app/api/v5/store-customer-info',
+      url: 'https://expactivation.app/api/v6/store-customer-info',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -58,8 +63,8 @@ const BuyProductStart = () => {
       const response = await CapacitorHttp.post(options);
       console.log(response);
       if (response.data.success === true) {
-        console.log("inside if");
         setLoading(false);
+        setIsSubmitting(false);
         navigate("/homePage");
         removeData()
         toast.success('User data stored successfully!')
@@ -70,17 +75,21 @@ const BuyProductStart = () => {
           toast.error(msg[0]);
         }
         setLoading(false);
+        setIsSubmitting(false);
       }
       else if (response.status === 500) {
         setLoading(false);
+        setIsSubmitting(false);
         toast.error('Could not connect with server!')
       }
       else {
         setLoading(false);
+        setIsSubmitting(false);
         toast.error('User data is not stored!')
       }
     } else {
       setLoading(false);
+      setIsSubmitting(false);
       toast.error('Please check your internet connection!')
     }
 

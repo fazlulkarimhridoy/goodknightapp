@@ -32,7 +32,7 @@ const SuccessPage = () => {
   const handleSignout = async () => {
 
     const options = {
-      url: 'https://expactivation.app/api/v5/logout',
+      url: 'https://expactivation.app/api/v6/logout',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
